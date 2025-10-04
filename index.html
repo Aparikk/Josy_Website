@@ -1,92 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Startseite - Name der Autorin</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website im Aufbau — Josie H Matchèque</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
-        body {
-            background-color: white;
+        :root {
+            --bg: #0f0f0f;
+            --fg: #eaeaea;
+            --muted: #9aa0a6;
+            --accent: #2a7463;
         }
-        .shop-logo {
-            max-width: 100px;
-            max-height: 100px;
-            width: auto;
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(ellipse at 50% 40%, #151515 0%, #0f0f0f 60%);
+            color: var(--fg);
+            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+        }
+
+        main {
+            text-align: center;
+            padding: 2rem;
+            max-width: min(720px, 92vw)
+        }
+
+        img {
+            max-width: min(520px, 90vw);
             height: auto;
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 1rem
         }
-        .shop-logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
+
+        .note {
+            color: var(--muted);
+            margin: .25rem 0 0
         }
-        .padded-text {
-            padding-bottom: 20px;
-            padding: 5px;
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid #215a4f
         }
-        .logo-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-        .card {
-            background-color: rgba(163, 209, 198, 0.25);
+
+        a:hover {
+            opacity: .9
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Startseite</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#ueber-mich">Über mich</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="books.html">Bücher</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#kontakt">Kontakt</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    </section>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="card" style="width: 25rem;">
-            <img src="img/portrait_1.JPG" class="card-img-top" alt="Portrait of Josie H Matchèque">
-            <div class="card-body">
-                <h5 class="card-title text-center p-1">Josie H Matchèque</h5>
-                <p class="card-text padded-text">Schreibt Romane und hat bereits zwei Bücher unter das Volk gebracht! Holt euch euer Exemplar jetzt, bevor es ausverkauft ist und die verdammten Scalper euch abzocken!</p>
-                <div class="logo-row">
-                    <div class="shop-logo-container">
-                        <a href="https://www.thalia.de/shop/home/artikeldetails/A1073017158">
-                            <img src="img/thalia_logo.png" alt="Thalia" class="shop-logo">
-                        </a>
-                    </div>
-                    <div class="shop-logo-container" style="padding-top: 8px;">
-                        <a href="https://www.hugendubel.de/de/buch_gebunden/josie_h_matcheque-diamanten_fragmenta_calamitatis_life_is_a_story_story_one-48998125-produkt-details.html">
-                            <img src="img/hugendubel_logo.png" alt="Hugendubel" class="shop-logo">
-                        </a>
-                    </div>
-                    <div class="shop-logo-container">
-                        <a href="https://www.buecher.de/artikel/buch/diamanten-fragmenta-calamitatis-life_is_a_story_story_one/71516618/">
-                            <img src="img/bucher_logo.png" alt="Buecher" class="shop-logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="bg-light text-center py-3">
-        <p>&copy; 2023 Josie H Matchèque. Alle Rechte vorbehalten.</p>
-    </footer>
-    <script src="js/bootstrap.js"></script>
+    <main>
+        <img src="img/wip1.png" alt="Dackel mit Baustellenband – Website im Aufbau">
+        <p class="note">Wir polieren Texte und Seiten. Schau bald wieder vorbei.</p>
+        <p class="note">Kontakt: <a href="mailto:m.j.hamatschek@mail.de">m.j.hamatschek@mail.de</a></p>
+    </main>
 </body>
+
 </html>

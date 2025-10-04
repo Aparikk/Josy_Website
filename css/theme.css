@@ -1,0 +1,120 @@
+/* ======================================================================
+   Josy Website – Theme
+   Fonts: Playfair Display (headings), DM Mono (mono; Menlo fallback)
+   Palette (from design PDF):
+     --color-bg:     #FFEAD7;   /* cream paper */
+     --color-fg:     #441E21;   /* dark brown text */
+     --color-accent: #DD893E;   /* warm orange accent */
+   ====================================================================== */
+
+/* Load fonts (Google Fonts). You can also move these <link> tags to <head> if preferred. */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  /* Brand tokens (exact hex codes) */
+  --color-bg:     #FFEAD7;
+  --color-fg:     #441E21;
+  --color-accent: #DD893E;
+
+  /* Neutrals derived from the palette */
+  --color-muted:  color-mix(in srgb, var(--color-fg) 55%, #FFFFFF);
+  --color-border: color-mix(in srgb, var(--color-fg) 15%, #FFFFFF);
+
+  /* Typography */
+  --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "DM Mono", Menlo, ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(0,0,0,.07);
+  --maxw-measure: 72ch;
+
+  /* Map to Bootstrap CSS variables */
+  --bs-body-bg:           var(--color-bg);
+  --bs-body-color:        var(--color-fg);
+  --bs-border-color:      var(--color-border);
+  --bs-primary:           var(--color-accent);
+  --bs-link-color:        var(--color-accent);
+  --bs-link-hover-color:  color-mix(in srgb, var(--color-accent) 80%, black);
+  --bs-border-radius:     var(--radius);
+  --bs-heading-color:     var(--color-fg);
+  --bs-font-sans-serif:   var(--font-body);
+  --bs-font-monospace:    var(--font-mono);
+}
+
+/* Base */
+html, body { height: 100%; }
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-head);
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  margin-top: 0;
+}
+
+code, pre, kbd, samp { font-family: var(--font-mono); }
+
+/* Links */
+a {
+  color: var(--bs-link-color);
+  text-decoration-thickness: .08em;
+  text-underline-offset: .14em;
+}
+a:hover { color: var(--bs-link-hover-color); }
+
+/* Layout helpers */
+.container-narrow { max-width: var(--maxw-measure); }
+.card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Header / Nav */
+.navbar {
+  background: color-mix(in srgb, var(--color-bg) 92%, #fff);
+  border-bottom: 1px solid var(--color-border);
+}
+.navbar-brand { font-family: var(--font-head); font-weight: 600; }
+.navbar .nav-link.active { color: var(--color-accent) !important; }
+
+/* Buttons */
+.btn-primary {
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+  --bs-btn-hover-bg: color-mix(in srgb, var(--color-accent) 85%, black);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--color-accent) 80%, black);
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+}
+
+/* Hero (optional) */
+.hero {
+  padding: clamp(2rem, 6vw, 5rem) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+.hero-tagline {
+  color: var(--color-muted);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+/* Utilities */
+.text-muted-ink { color: var(--color-muted) !important; }
+.bg-paper      { background: var(--color-bg) !important; }
+.border-ink    { border-color: var(--color-border) !important; }

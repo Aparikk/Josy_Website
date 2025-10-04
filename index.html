@@ -2,73 +2,125 @@
 <html lang="de">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Website im Aufbau — Josie H Matchèque</title>
-    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Bootstrap + your theme (Playfair Display + DM Mono, palette) -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/theme.css" />
+
     <style>
         :root {
-            --bg: #0f0f0f;
-            --fg: #eaeaea;
-            --muted: #9aa0a6;
-            --accent: #2a7463;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%
+            --page-bg: #441E21;
+            /* reddish from theme */
+            --page-fg: #FFEAD7;
+            /* cream from theme for contrast */
+            --accent: var(--color-accent, #DD893E);
         }
 
         body {
-            margin: 0;
-            display: grid;
-            place-items: center;
-            background: radial-gradient(ellipse at 50% 40%, #151515 0%, #0f0f0f 60%);
-            color: var(--fg);
-            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-            text-rendering: optimizeLegibility;
+            background: var(--page-bg);
+            color: var(--page-fg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        main {
-            text-align: center;
-            padding: 2rem;
-            max-width: min(720px, 92vw)
+        .uc-wrap {
+            min-height: 100vh;
         }
 
-        img {
+        .uc-img {
             max-width: min(520px, 90vw);
             height: auto;
-            display: block;
-            margin: 0 auto 1rem
+            filter: drop-shadow(0 10px 28px rgba(0, 0, 0, .45));
         }
 
-        .note {
-            color: var(--muted);
-            margin: .25rem 0 0
+        .uc-title {
+            font-family: var(--font-head, serif);
+            font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+            line-height: 1.2;
+            margin-top: 1rem;
+            margin-bottom: .25rem;
         }
 
-        a {
+        .uc-note {
+            color: color-mix(in srgb, var(--page-fg) 75%, black);
+            font-size: clamp(.95rem, 2.5vw, 1rem);
+            margin: .25rem 0 0;
+        }
+
+        .uc-link {
             color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px solid #215a4f
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 80%, black);
         }
 
-        a:hover {
-            opacity: .9
+        .uc-link:hover {
+            opacity: .9;
+        }
+
+        /* Animated caret at the end of the sentence */
+        .type-line {
+            position: relative;
+            display: inline-block;
+            white-space: pre-wrap;
+        }
+
+        .type-line::after {
+            content: "";
+            display: inline-block;
+            width: 0.20em;
+            /* thin line like a text cursor */
+            height: 1em;
+            /* roughly cap height */
+            background: var(--accent);
+            margin-left: .25ch;
+            transform: translateY(.15em);
+            animation: caret-blink 1s steps(1, end) infinite;
+        }
+
+        @keyframes caret-blink {
+
+            0%,
+            45% {
+                opacity: 1;
+            }
+
+            55%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .type-line::after {
+                animation: none;
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
 <body>
-    <main>
-        <img src="img/wip1.png" alt="Dackel mit Baustellenband – Website im Aufbau">
-        <p class="note">Wir polieren Texte und Seiten. Schau bald wieder vorbei.</p>
-        <p class="note">Kontakt: <a href="mailto:m.j.hamatschek@mail.de">m.j.hamatschek@mail.de</a></p>
+    <main class="uc-wrap d-flex flex-column justify-content-center align-items-center text-center px-3">
+        <!-- Replace the src if your file name differs -->
+        <img class="uc-img img-fluid" src="/img/wip1.png" alt="Dackel mit Baustellenband – Website im Aufbau"
+            width="900" height="600" decoding="async" fetchpriority="high" />
+
+
+        <p class="uc-note">
+            <span class="type-line">Wir polieren gerade die Seiten. Schau bald wieder vorbei…</span>
+        </p>
+
+        <p class="uc-note">
+            Kontakt: <a class="uc-link" href="mailto:m.j.hamatschek@mail.de">m.j.hamatschek@mail.de</a>
+        </p>
     </main>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

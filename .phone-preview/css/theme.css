@@ -171,14 +171,40 @@ button:focus-visible {
   box-shadow: 0 1px 3px rgba(0,0,0,.2);
 }
 
-.flourish {
+.portrait-mark {
   position: absolute;
-  right: -2.3rem;
-  bottom: 1.7rem;
-  transform: rotate(28deg);
-  color: #aa6673;
-  font-size: 5rem;
-  filter: drop-shadow(4px 6px 3px rgba(0,0,0,.5));
+  z-index: 3;
+  right: -1.15rem;
+  bottom: 1.05rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  transform: rotate(12deg);
+  border: 2px solid #a85f73;
+  border-radius: 50%;
+  background: rgba(220, 202, 165, .16);
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, .28);
+}
+
+.portrait-mark::before,
+.portrait-mark::after {
+  content: "";
+  position: absolute;
+  background: #a85f73;
+}
+
+.portrait-mark::before {
+  top: .72rem;
+  left: .48rem;
+  width: 2.45rem;
+  height: 2px;
+  box-shadow: 0 .62rem 0 #a85f73, 0 1.24rem 0 #a85f73;
+}
+
+.portrait-mark::after {
+  top: .47rem;
+  left: 1.68rem;
+  width: 2px;
+  height: 2.5rem;
 }
 
 .letter-card {
@@ -651,7 +677,7 @@ button:focus-visible {
   .site-navbar .nav-item:last-child .nav-link { border-bottom: 0; }
   .site-navbar .nav-link.active { text-underline-offset: .25rem; }
   .home-hero { min-height: auto; }
-  .flourish { display: none; }
+  .portrait-mark { display: none; }
   .portrait-card { width: min(88%, 500px); }
   .letter-card { padding: 3rem 2.25rem 3.6rem; }
   .letter-card h1 { font-size: clamp(2.8rem, 13vw, 4rem); }
@@ -835,7 +861,7 @@ button:focus-visible { outline-color: var(--josy-focus-ring); }
   position: absolute;
   z-index: -1;
   top: 50%;
-  right: clamp(-1rem, 3vw, 4rem);
+  right: clamp(2rem, 5vw, 6rem);
   transform: translateY(-48%);
   color: var(--josy-monogram);
   font-family: var(--josy-display-font);

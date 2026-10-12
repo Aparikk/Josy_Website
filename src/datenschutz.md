@@ -7,8 +7,8 @@ stand: 12. Oktober 2026
 ## 1. Verantwortliche
 
 Marie J. Hamatschek<br>
-Universitätsplatz 1<br>
-31141 Hildesheim<br>
+Richard-Wagner-Str. 12<br>
+30177 Hannover<br>
 Deutschland<br>
 E-Mail: [{{ site.email }}](mailto:{{ site.email }})
 

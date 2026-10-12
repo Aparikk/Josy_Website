@@ -7,8 +7,8 @@ stand: 12. Oktober 2026
 ## Angaben gemäß § 5 DDG und § 18 Abs. 1 MStV
 
 Marie J. Hamatschek<br>
-Universitätsplatz 1<br>
-31141 Hildesheim<br>
+Richard-Wagner-Str. 12<br>
+30177 Hannover<br>
 Deutschland
 
 ## Kontakt
@@ -23,10 +23,6 @@ Die Betreiberin veröffentlicht ihre literarischen Werke unter dem Pseudonym **{
 ## Verantwortlich für den Inhalt
 
 Marie J. Hamatschek, Anschrift wie oben.
-
-## Hinweis zur Anschrift
-
-Die Universität Hildesheim ist weder Betreiberin noch inhaltlich verantwortlich für dieses Angebot.
 
 ## Urheberrecht
 

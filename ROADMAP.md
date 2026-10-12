@@ -11,8 +11,8 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 ## Where we are
 
 - 9 Oct 2026: Direction **C · Erster Satz** chosen. All other recommendations from the proposal adopted.
-- 9 Oct 2026: New site built on `development` (not committed yet). It runs locally with `npm start`. Every text Josie still has to write shows up as a yellow placeholder.
-- The live site (`main`) keeps showing the “im Aufbau” page until go-live.
+- 9 Oct 2026: New site built. It runs locally with `npm start`. Every text Josie still has to write shows up as a yellow placeholder.
+- 12 Oct 2026: **Live on https://matcheque.de** as a test run, placeholders included. Pages now deploys through GitHub Actions on every push to `main`.
 - The old Bootstrap prototype stays in git history (last commit `371b59a`).
 
 ## Decisions
@@ -96,7 +96,7 @@ Things only you can do, because they need your accounts, a decision about public
 
 ### Now
 
-- [ ] **Review and commit** the rebuild on `development` (or tell Claude to commit it). Nothing has been committed or pushed yet.
+- [x] Rebuild committed and pushed (`development` and `main`).
 - [ ] **Install the tools** for regenerating PDFs and images, if you want to run `npm run assets` yourself: `brew install typst pandoc` (both are on this Mac already).
 - [ ] **Keep `manuskripte/` safe.** It holds the full manuscripts and is git-ignored, so it exists only on this Mac. Back it up somewhere private.
 - [ ] **Delete or keep `output/`** locally (the 29 MB PDF export of the old site). It is no longer tracked by git.
@@ -126,9 +126,9 @@ git push --force --all
 
 ### Go live
 
-1. [ ] GitHub → repository Settings → Pages → Build and deployment → Source: **GitHub Actions**.
-2. [ ] Merge `development` into `main` and push. The workflow “Website veröffentlichen” builds and deploys.
-3. [ ] Check https://matcheque.de and https://www.matcheque.de, HTTPS enforced.
+1. [x] GitHub Pages source switched to **GitHub Actions** (12 Oct 2026).
+2. [x] `development` merged into `main` and pushed; the workflow “Website veröffentlichen” deployed successfully.
+3. [x] https://matcheque.de and https://www.matcheque.de answer with the new site; Cloudflare redirects http to https. (GitHub’s own “Enforce HTTPS” cannot be switched on because GitHub has no certificate behind the Cloudflare proxy. Not needed while Cloudflare handles HTTPS.)
 4. [ ] Cloudflare: Caching → Purge everything.
 5. [ ] Google Search Console: verify the domain, submit `https://matcheque.de/sitemap.xml`.
 6. [ ] A week later, search for “Josie H Matchèque”.

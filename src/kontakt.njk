@@ -1,0 +1,45 @@
+---
+layout: layouts/basis.njk
+titel: Kontakt
+beschreibung: "Kontakt zu Josie H Matchèque: für Lesepost, Agenturen, Verlage und Presse."
+---
+<div class="seite kontakt">
+  <header class="seiten-kopf">
+    <h1 class="seiten-titel">Kontakt</h1>
+    <p class="seiten-einleitung">Für Lesepost, Agenturen, Verlage und Presse.</p>
+  </header>
+
+  <div class="kontakt-raster">
+    <section aria-labelledby="per-mail">
+      <h2 id="per-mail" class="abschnitt-titel">Per E-Mail</h2>
+      <p class="email-gross"><a href="mailto:{{ site.email }}" id="email-adresse">{{ site.email }}</a></p>
+      <button class="knopf knopf--leise" type="button" data-kopieren="email-adresse" hidden>Adresse kopieren</button>
+    </section>
+
+    <section aria-labelledby="formular-titel">
+      <h2 id="formular-titel" class="abschnitt-titel">Oder hier schreiben</h2>
+      <form class="formular" id="kontaktformular" data-email="{{ site.email }}" action="https://formspree.io/f/{{ site.formspree }}" method="post" novalidate>
+        <div class="feld">
+          <label for="kontakt-name">Name</label>
+          <input id="kontakt-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="feld">
+          <label for="kontakt-email">E-Mail-Adresse</label>
+          <input id="kontakt-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="feld">
+          <label for="kontakt-nachricht">Nachricht</label>
+          <textarea id="kontakt-nachricht" name="nachricht" rows="8" minlength="10" maxlength="5000" required aria-describedby="kontakt-nachricht-hilfe"></textarea>
+          <p class="feld-hilfe" id="kontakt-nachricht-hilfe">10 bis 5.000 Zeichen.</p>
+        </div>
+        <p class="feld-falle" aria-hidden="true"><label for="kontakt-falle">Bitte leer lassen</label><input id="kontakt-falle" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></p>
+        <input type="hidden" name="_subject" value="Nachricht über matcheque.de">
+        <p class="formular-hinweis">Die Angaben werden über Formspree an mich übermittelt. Mehr dazu im <a href="/datenschutz/">Datenschutz</a>.</p>
+        <button class="knopf" type="submit">Nachricht senden</button>
+        <p class="formular-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</div>
+<script src="/assets/js/kopieren.js" defer></script>
+<script src="/assets/js/kontakt.js" defer></script>

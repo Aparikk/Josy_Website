@@ -1,0 +1,36 @@
+# Allgemeine Angaben für die ganze Website.
+# Alles, was mit "TODO" beginnt, ist ein Platzhalter. `npm run todo` listet alle offenen Stellen.
+# Die Abschnittsnummern verweisen auf _texte/website-texte.md.
+
+# Name, wie er überall erscheint (Abschnitt 0: mit oder ohne Punkt nach dem H?)
+name: Josie H Matchèque
+
+# Kleine Zeile unter dem Namen im Kopf der Seite
+unterzeile: Romane und Novellen
+
+# Ein Satz für Google und Link-Vorschauen, höchstens 155 Zeichen (Abschnitte 1 und 8)
+beschreibung: "TODO: Ein-Satz-Beschreibung für Google und Link-Vorschauen (Abschnitte 1 und 8)"
+
+# Stand der Agentursuche, erscheint auf der Startseite und bei „Für Agenturen“ (Abschnitt 5)
+status: "TODO: Status, z. B. ob du gerade eine Literaturagentur suchst (Abschnitt 5)"
+
+url: https://matcheque.de
+email: kontakt@matcheque.de
+
+# Formspree-Formular für die Kontaktseite
+formspree: xljrwelg
+
+# GoatCounter-Code (z. B. "matcheque"), sobald ein Konto existiert. Leer = keine Zählung.
+goatcounter: ""
+
+# Dürfen Presse und Agenturen das Porträt herunterladen? (Abschnitt 4)
+pressefotos: false
+
+# Bildnachweis für das Porträt (Abschnitt 4)
+fotografie: "TODO: Name der Fotografin oder des Fotografen (Abschnitt 4)"
+
+# Kurzvita in der 3. Person, 40 bis 60 Wörter. Steht auf Startseite, „Über mich“ und „Für Agenturen“ (Abschnitt 4)
+kurzvita: "TODO: Kurzvita in der 3. Person, 40 bis 60 Wörter (Abschnitt 4)"
+
+# Satz am Ende jeder Leseprobe (Abschnitt 8)
+nachDerLeseprobe: "Wie hat dir der Anfang gefallen? [Schreib mir.](/kontakt/)"

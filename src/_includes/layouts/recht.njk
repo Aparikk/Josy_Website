@@ -1,0 +1,14 @@
+---
+layout: layouts/basis.njk
+---
+<div class="seite recht">
+  <header class="seiten-kopf">
+    <h1 class="seiten-titel">{{ titel }}</h1>
+    {%- if stand %}
+    <p class="seiten-einleitung">Stand: {{ stand }}</p>
+    {%- endif %}
+  </header>
+  <div class="fliesstext recht-text">
+{{ content | safe }}
+  </div>
+</div>

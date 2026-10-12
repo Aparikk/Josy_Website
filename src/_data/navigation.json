@@ -1,0 +1,6 @@
+[
+  { "titel": "Bücher", "url": "/buecher/" },
+  { "titel": "Über mich", "url": "/ueber-mich/" },
+  { "titel": "Für Agenturen", "url": "/agenturen/" },
+  { "titel": "Kontakt", "url": "/kontakt/" }
+]

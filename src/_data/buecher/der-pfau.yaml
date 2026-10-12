@@ -1,0 +1,33 @@
+# Der Pfau – Angaben für Startseite, Buchseite, Leseprobe und Werkverzeichnis.
+# Felder mit "TODO" sind Platzhalter (Vorlage _texte/website-texte.md, Abschnitt 3.2).
+# Leere Felder ("") werden auf der Seite einfach weggelassen.
+
+slug: der-pfau
+reihenfolge: 2
+titel: Der Pfau
+# Steht so auf der Titelseite des Manuskripts. Leeren, falls es kein Untertitel sein soll.
+untertitel: Ich hasse Schach.
+gattung: Novelle
+genre: "TODO: Genre (3.2)"
+status: abgeschlossen
+
+farbe:
+  hell: "#0e5c5c"
+  dunkel: "#6cc0b8"
+  akzent: "#c9a447"
+
+manuskript: der-pfau.epub
+leseprobe:
+  kapitel: 4
+
+ersterSatz: ""
+normseiten: null
+
+logline: "TODO: Logline, ein Satz, höchstens 30 Wörter (3.2)"
+klappentext: |
+  TODO: Klappentext, 120 bis 200 Wörter, ohne das Ende zu verraten (3.2)
+warum: ""
+vergleichstitel: ""
+erzaehlform: ""
+ortUndZeit: ""
+inhaltshinweise: ""

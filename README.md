@@ -1,13 +1,57 @@
-# Josy Website
+# matcheque.de
 
-Statische, responsive Autorenseite für Josie H Matchèque.
+Autorinnenwebsite von Josie H Matchèque. Statische Website, gebaut mit [Eleventy](https://www.11ty.dev/) und über GitHub Pages veröffentlicht.
 
-## Struktur
+Gestaltung: Richtung „Erster Satz“. Die Startseite zeigt die ersten Sätze der Bücher, je einen pro Bildschirm. Schriften: Literata und Schibsted Grotesk (selbst gehostet). Jedes Buch hat eine eigene Farbe.
 
-- `index.html` – Startseite
-- `books.html` – Werkverzeichnis
-- `books/diamanten.html` – erste Buchdetailseite
-- `about.html` – Autorinnenprofil
-- `contact.html` – Kontakt und Verlagsanfragen
+Plan bis zum Livegang: [ROADMAP.md](ROADMAP.md).
 
-Das Layout verwendet das lokal eingebundene Bootstrap 5.3.8 sowie die projektspezifische Gestaltung in `css/theme.css`. Es gibt keine Build-Abhängigkeiten.
+## Loslegen
+
+```bash
+npm install
+npm start          # http://localhost:8080, lädt bei Änderungen neu
+```
+
+## Wo die Texte stehen
+
+| Was | Datei |
+|---|---|
+| Name, Unterzeile, Kurzvita, Status, E-Mail | `src/_data/site.yaml` |
+| Alles zu einem Buch (Logline, Klappentext, Farbe, Länge der Leseprobe …) | `src/_data/buecher/<buch>.yaml` |
+| Über mich (ausführliche Vita, Stationen) | `src/ueber-mich.md` |
+| Impressum, Datenschutz, Nutzungsbedingungen, Kolophon | `src/*.md` |
+
+Platzhalter beginnen mit `TODO` und erscheinen auf der Seite gelb markiert. `npm run todo` listet alle offenen Stellen.
+
+Die Vorlage, in die Josie ihre Texte schreibt: [`_texte/website-texte.md`](_texte/website-texte.md).
+
+## Manuskripte, Leseproben, Bilder
+
+Vollständige Manuskripte liegen nur lokal in `manuskripte/` (git-ignoriert) und werden nie veröffentlicht.
+
+```bash
+npm run manuskripte   # liest manuskripte/*.epub: Kennzahlen, erster Satz, Text der Leseprobe
+npm run assets        # erzeugt Leseprobe-PDF (A5) und -EPUB, Vorschaubilder, Icons
+```
+
+`npm run assets` braucht [Typst](https://typst.app/) und [pandoc](https://pandoc.org/): `brew install typst pandoc`.
+Die erzeugten Dateien (`src/downloads/`, `src/assets/og/`, `src/assets/icons/`) werden eingecheckt, damit GitHub Actions nur Eleventy ausführen muss.
+
+## Aufbau
+
+```
+src/                      Quellen der Website
+  _data/                  Texte und Buchdaten (YAML), manuskripte.json (erzeugt)
+  _includes/              Layouts, Bausteine, Leseprobentexte (erzeugt)
+  assets/                 CSS, Schriften, Bilder, Icons, Vorschaubilder
+  downloads/              Leseproben als PDF und EPUB (erzeugt)
+scripts/                  manuskripte.mjs, render-assets.mjs, todo.mjs, Typst-Vorlagen, Schriften für PDFs
+fotos/                    Originalfotos (nicht veröffentlicht)
+_texte/                   Textvorlage für Josie (nicht veröffentlicht)
+.github/workflows/        Bauen und Veröffentlichen auf GitHub Pages
+```
+
+## Veröffentlichen
+
+Jeder Push auf `main` baut die Website und veröffentlicht sie (GitHub Actions). Voraussetzung: in den Repository-Einstellungen unter Pages ist „GitHub Actions“ als Quelle gewählt.

@@ -1,0 +1,12 @@
+# build
+_site/
+node_modules/
+
+# full manuscripts and local exports: never commit
+manuskripte/
+output/
+
+# system
+.DS_Store
+
+.claude/

@@ -1,0 +1,53 @@
+---
+layout: layouts/basis.njk
+startseite: true
+koerperklasse: startseite
+ogBild: /assets/og/start.png
+---
+{%- from "partials/buch.njk" import farbe -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
+
+{%- for buch in liste %}
+<section class="incipit buch-farbe" style="{{ farbe(buch) }}" aria-label="{{ buch.titel }}">
+  <figure class="incipit-figur">
+    <blockquote class="incipit-satz incipit-satz--{{ buch.satz | satzlaenge }}{% if buch.satz | haengt %} haengt{% endif %}" cite="{{ ('/buecher/' ~ buch.slug ~ '/') | absolut(site.url) }}">
+      <p>{{ buch.satz }}</p>
+    </blockquote>
+    <figcaption class="incipit-quelle">
+      <a class="incipit-titel" href="/buecher/{{ buch.slug }}/"><cite>{{ buch.titel }}</cite></a>
+      <span class="incipit-gattung">{{ buch.gattung }}</span>
+      {%- if buch.hatLeseprobe %}
+      <a class="incipit-weiter" href="/buecher/{{ buch.slug }}/leseprobe/">Weiterlesen <span aria-hidden="true">→</span></a>
+      {%- else %}
+      <a class="incipit-weiter" href="/buecher/{{ buch.slug }}/">Zum Buch <span aria-hidden="true">→</span></a>
+      {%- endif %}
+    </figcaption>
+  </figure>
+</section>
+{%- endfor %}
+
+<section class="vorstellung" aria-labelledby="vorstellung-titel">
+  <img class="vorstellung-bild" src="/assets/img/portrait-hoch.jpg" alt="Porträt von {{ site.name }}" sizes="(min-width: 56em) 20rem, 60vw">
+  <div class="vorstellung-text">
+    <h2 id="vorstellung-titel" class="abschnitt-titel">Über mich</h2>
+    <div class="fliesstext">{{ site.kurzvita | md | safe }}</div>
+    <p class="status">{{ site.status }}</p>
+    <ul class="weiter-liste">
+      <li><a href="/ueber-mich/">Mehr über mich <span aria-hidden="true">→</span></a></li>
+      <li><a href="/agenturen/">Für Agenturen und Verlage <span aria-hidden="true">→</span></a></li>
+      <li><a href="/kontakt/">Kontakt <span aria-hidden="true">→</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": site.name,
+  "url": site.url,
+  "jobTitle": "Autorin",
+  "email": "mailto:" ~ site.email,
+  "image": ("/assets/img/portrait-hoch.jpg" | absolut(site.url))
+} | json | safe }}
+</script>

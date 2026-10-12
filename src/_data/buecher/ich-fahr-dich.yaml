@@ -1,0 +1,37 @@
+# Ich fahr dich. – Angaben für Startseite, Buchseite, Leseprobe und Werkverzeichnis.
+# Felder mit "TODO" sind Platzhalter (Vorlage _texte/website-texte.md, Abschnitt 3.1).
+# Leere Felder ("") werden auf der Seite einfach weggelassen.
+
+slug: ich-fahr-dich
+reihenfolge: 1
+titel: Ich fahr dich.
+untertitel: ""
+gattung: Roman
+genre: "TODO: Genre, z. B. Gegenwartsliteratur"
+status: abgeschlossen
+
+# Farbe des Buchs: hell = auf Papier und Titelblatt, dunkel = Textfarbe im Dunkelmodus, akzent = Strich im Titelblatt
+farbe:
+  hell: "#1d3b57"
+  dunkel: "#8db4da"
+  akzent: "#c9852f"
+
+# Vollständiges Manuskript in manuskripte/ (wird nie veröffentlicht, nur ausgelesen)
+manuskript: ich-fahr-dich.epub
+leseprobe:
+  kapitel: 4
+
+# Leer lassen = der echte erste Satz aus dem Manuskript steht auf der Startseite
+ersterSatz: ""
+
+# Normseiten aus Papyrus. Leer = Schätzung aus der Zeichenzahl
+normseiten: null
+
+logline: "TODO: Logline, ein Satz, höchstens 30 Wörter (3.1)"
+klappentext: |
+  TODO: Klappentext, 120 bis 200 Wörter, ohne das Ende zu verraten (3.1)
+warum: ""
+vergleichstitel: ""
+erzaehlform: ""
+ortUndZeit: ""
+inhaltshinweise: ""

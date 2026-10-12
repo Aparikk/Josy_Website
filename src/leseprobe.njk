@@ -1,0 +1,59 @@
+---js
+{
+  pagination: {
+    data: "buecher",
+    size: 1,
+    alias: "buchDaten",
+    resolve: "values",
+    before: (buecher, data) => buecher.filter((b) => data.manuskripte?.[b.slug]),
+  },
+  permalink: (data) => `/buecher/${data.buchDaten.slug}/leseprobe/`,
+  layout: "layouts/basis.njk",
+  koerperklasse: "lesen",
+  eleventyComputed: {
+    titel: (data) => `Leseprobe: ${data.buchDaten.titel}`,
+    ogBild: (data) => `/assets/og/${data.buchDaten.slug}.png`,
+  },
+}
+---
+{%- from "partials/buch.njk" import downloads, farbe -%}
+{%- set buch = buecher | buchliste(manuskripte) | findeBuch(buchDaten.slug) -%}
+{%- set m = buch.manuskriptDaten -%}
+<div class="fortschritt buch-farbe" style="{{ farbe(buch) }}" aria-hidden="true"></div>
+<article class="leseprobe buch-farbe" style="{{ farbe(buch) }}" lang="de">
+  <header class="leseprobe-kopf">
+    <p class="dachzeile"><a href="/buecher/{{ buch.slug }}/"><span aria-hidden="true">←</span> {{ buch.titel }}</a></p>
+    <p class="druck-autorin">{{ site.name }}</p>
+    <h1 class="leseprobe-titel">{{ buch.titel }}</h1>
+    {%- if buch.untertitel %}
+    <p class="leseprobe-untertitel">{{ buch.untertitel }}</p>
+    {%- endif %}
+    <p class="leseprobe-angabe">Leseprobe · {{ m.leseprobe.kapitel | length }} von {{ m.kapitelAnzahl }} Kapiteln · ≈ {{ m.leseprobe.normseiten }} Normseiten</p>
+    {%- if buch.motto.length %}
+    <blockquote class="motto"><p>{{ buch.motto | join("<br>") | safe }}</p></blockquote>
+    {%- endif %}
+    <nav class="leseprobe-inhalt" aria-label="Kapitel der Leseprobe">
+      <ol>
+        {%- for k in m.leseprobe.kapitel %}
+        <li><a href="#kapitel-{{ loop.index }}">{{ k }}</a></li>
+        {%- endfor %}
+      </ol>
+    </nav>
+  </header>
+
+  <div class="leseprobe-text">
+{% include "leseproben/" ~ buch.slug ~ ".html" %}
+  </div>
+
+  <footer class="leseprobe-ende">
+    <p class="ende-zeichen" aria-hidden="true">⁂</p>
+    <h2 class="ende-titel">Ende der Leseprobe</h2>
+    <p>Das vollständige Manuskript umfasst {{ m.kapitelAnzahl }} Kapitel und {% if buch.normseitenGeschaetzt %}etwa {% endif %}{{ buch.normseitenZahl | zahl }} Normseiten. Agenturen und Verlage erhalten es auf Anfrage: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <div class="nur-bildschirm">
+      <p>{{ site.nachDerLeseprobe | mdInline | safe }}</p>
+      {{ downloads(buch) }}
+      <p class="hinweis">Für Kindle: die EPUB-Datei mit „Send to Kindle“ von Amazon an den Reader schicken.</p>
+    </div>
+    <p class="rechte">© {{ jahr }} {{ site.name }}. Alle Rechte vorbehalten. Es gelten die <a href="/nutzungsbedingungen/">Nutzungsbedingungen</a>. {{ site.url | replace("https://", "") }}</p>
+  </footer>
+</article>

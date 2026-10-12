@@ -1,0 +1,114 @@
+---js
+{
+  pagination: { data: "buecher", size: 1, alias: "buchDaten", resolve: "values" },
+  permalink: (data) => `/buecher/${data.buchDaten.slug}/`,
+  layout: "layouts/basis.njk",
+  koerperklasse: "buchseite",
+  ogTyp: "book",
+  eleventyComputed: {
+    titel: (data) => data.buchDaten.titel,
+    ogBild: (data) => `/assets/og/${data.buchDaten.slug}.png`,
+  },
+}
+---
+{%- from "partials/buch.njk" import titelblatt, downloads, farbe, umfang -%}
+{%- set buch = buecher | buchliste(manuskripte) | findeBuch(buchDaten.slug) -%}
+{%- set m = buch.manuskriptDaten -%}
+<article class="buch buch-farbe" style="{{ farbe(buch) }}">
+  <header class="buch-kopf">
+    {{ titelblatt(buch, site.name) }}
+    <div class="buch-kopf-text">
+      <p class="dachzeile">{{ buch.gattung }}</p>
+      <h1 class="buch-titel">{{ buch.titel }}</h1>
+      {%- if buch.untertitel %}
+      <p class="buch-untertitel">{{ buch.untertitel }}</p>
+      {%- endif %}
+      <p class="buch-logline">{{ buch.logline }}</p>
+      <div class="buch-aktionen">
+        {%- if buch.hatLeseprobe %}
+        <a class="knopf" href="leseprobe/">Leseprobe lesen</a>
+        {%- endif %}
+        {{ downloads(buch) }}
+      </div>
+    </div>
+  </header>
+
+  <div class="buch-raster">
+    <div class="buch-text">
+      {%- if buch.motto.length %}
+      <blockquote class="motto"><p>{{ buch.motto | join("<br>") | safe }}</p></blockquote>
+      {%- endif %}
+
+      <section aria-labelledby="worum">
+        <h2 id="worum" class="abschnitt-titel">Worum es geht</h2>
+        <div class="fliesstext">{{ buch.klappentext | md | safe }}</div>
+      </section>
+
+      {%- if m.ersterAbsatz %}
+      <section class="anfang" aria-labelledby="anfang">
+        <h2 id="anfang" class="abschnitt-titel">So beginnt es</h2>
+        <blockquote class="anfang-text"><p>{{ m.ersterAbsatz | safe }}</p></blockquote>
+        <p><a class="pfeil-link" href="leseprobe/">Weiterlesen in der Leseprobe <span aria-hidden="true">→</span></a></p>
+      </section>
+      {%- endif %}
+
+      {%- if buch.warum %}
+      <section aria-labelledby="warum">
+        <h2 id="warum" class="abschnitt-titel">Warum dieses Buch</h2>
+        <div class="fliesstext">{{ buch.warum | md | safe }}</div>
+      </section>
+      {%- endif %}
+
+      {%- if buch.vergleichstitel %}
+      <section aria-labelledby="vergleich">
+        <h2 id="vergleich" class="abschnitt-titel">Für Leserinnen und Leser von</h2>
+        <div class="fliesstext">{{ buch.vergleichstitel | md | safe }}</div>
+      </section>
+      {%- endif %}
+    </div>
+
+    <aside class="buch-fakten" aria-labelledby="fakten">
+      <h2 id="fakten" class="fakten-titel">Angaben</h2>
+      <dl>
+        <div><dt>Gattung</dt><dd>{{ buch.gattung }}</dd></div>
+        <div><dt>Genre</dt><dd>{{ buch.genre }}</dd></div>
+        {%- if buch.woerterZahl %}
+        <div><dt>Umfang</dt><dd>{{ buch.woerterZahl | zahl }} Wörter{% if buch.normseitenZahl %}<br>{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }} Normseiten{% endif %}</dd></div>
+        {%- endif %}
+        {%- if m.kapitelAnzahl %}
+        <div><dt>Kapitel</dt><dd>{{ m.kapitelAnzahl }}</dd></div>
+        {%- endif %}
+        {%- if buch.erzaehlform %}
+        <div><dt>Erzählform</dt><dd>{{ buch.erzaehlform }}</dd></div>
+        {%- endif %}
+        {%- if buch.ortUndZeit %}
+        <div><dt>Ort und Zeit</dt><dd>{{ buch.ortUndZeit }}</dd></div>
+        {%- endif %}
+        <div><dt>Status</dt><dd>{{ buch.status }}</dd></div>
+        <div><dt>Sprache</dt><dd>Deutsch</dd></div>
+        {%- if buch.hatLeseprobe %}
+        <div><dt>Leseprobe</dt><dd>{{ m.leseprobe.kapitel | length }} von {{ m.kapitelAnzahl }} Kapiteln, ≈ {{ m.leseprobe.normseiten }} Normseiten</dd></div>
+        {%- endif %}
+        {%- if buch.inhaltshinweise %}
+        <div><dt>Inhaltshinweise</dt><dd>{{ buch.inhaltshinweise }}</dd></div>
+        {%- endif %}
+      </dl>
+      <p class="fakten-anfrage">Exposé und vollständiges Manuskript auf Anfrage. <a href="/agenturen/">Für Agenturen und Verlage</a></p>
+    </aside>
+  </div>
+</article>
+
+<script type="application/ld+json">
+{{ {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": buch.titel,
+  "alternativeHeadline": buch.untertitel or undefined,
+  "genre": buch.gattung,
+  "inLanguage": "de",
+  "url": page.url | absolut(site.url),
+  "image": ("/assets/og/" ~ buch.slug ~ ".png") | absolut(site.url),
+  "wordCount": buch.woerterZahl or undefined,
+  "author": { "@type": "Person", "name": site.name, "url": site.url }
+} | json | safe }}
+</script>

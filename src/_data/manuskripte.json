@@ -1,0 +1,47 @@
+{
+  "der-pfau": {
+    "woerter": 26729,
+    "woerterQuelle": "Papyrus",
+    "zeichen": 167929,
+    "normseitenGeschaetzt": 93,
+    "kapitelAnzahl": 14,
+    "untertitel": "Ich hasse Schach.",
+    "motto": [
+      "Und jedem Anfang wohnt eine Lüge inne,",
+      "die uns antreibt, ein letztes Mal alles zu geben."
+    ],
+    "ersterSatz": "„Stört es ihn gar nicht, wenn du ihn küsst, nur damit er aufhört, zu reden?“, entfährt es mir, zu früh.",
+    "ersterAbsatz": "„Stört es ihn gar nicht, wenn du ihn küsst, nur damit er aufhört, zu reden?“, entfährt es mir, zu früh. Die Tür ist noch nicht richtig zu, als ich mit der Frage schon halb durch bin. Reue durchzuckt mich wie ein sanfter Stromschlag. Offenbar stößt meine Selbstkontrolle langsam an ihre Grenzen.",
+    "leseprobe": {
+      "kapitel": [
+        "# 1",
+        "# 2",
+        "# 3",
+        "# 4"
+      ],
+      "woerter": 6709,
+      "normseiten": 24
+    }
+  },
+  "ich-fahr-dich": {
+    "woerter": 81381,
+    "woerterQuelle": "Papyrus",
+    "zeichen": 518142,
+    "normseitenGeschaetzt": 288,
+    "kapitelAnzahl": 41,
+    "untertitel": "",
+    "motto": [],
+    "ersterSatz": "Jede neue Minute verstärkte die Zugkraft, die auf meine Nerven wirkte, und auch, wenn es im Lichte der weiteren Geschehnisse absurd klingen mag: Die lodernden Flecken im Gesicht waren damals mein größtes Problem.",
+    "ersterAbsatz": "Jede neue Minute verstärkte die Zugkraft, die auf meine Nerven wirkte, und auch, wenn es im Lichte der weiteren Geschehnisse absurd klingen mag: Die lodernden Flecken im Gesicht waren damals mein größtes Problem. <em>Sie sind Familie</em>, sagte ich mir, erst danach bemerkend, dass ich die Lippen bewegt hatte. Noch mehr Hitze. Hätte ich geahnt, was geschehen würde, hätte ich den Moment vielleicht ausgekostet, die schwitzigen Hände, die ekelhaft professionellen Durchsagen, die klimatisierte Flughafenluft, doch dann wiederum hätte ich ja alles verhindert, wenn ich etwas geahnt hätte. So aber hatte ich keine Chance. Oder hatte ich die? Das mögen andere entscheiden.",
+    "leseprobe": {
+      "kapitel": [
+        "Im Halteverbot",
+        "Vergessen",
+        "Weißwein also",
+        "Nur ein Verbrechen"
+      ],
+      "woerter": 8143,
+      "normseiten": 29
+    }
+  }
+}

@@ -1,0 +1,57 @@
+---
+layout: layouts/basis.njk
+titel: Für Agenturen und Verlage
+beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt für Literaturagenturen und Verlage."
+---
+{%- from "partials/buch.njk" import umfang -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
+<div class="seite">
+  <header class="seiten-kopf">
+    <h1 class="seiten-titel">Für Agenturen und Verlage</h1>
+    <p class="seiten-einleitung">{{ site.status }}</p>
+  </header>
+
+  <section aria-labelledby="manuskripte">
+    <h2 id="manuskripte" class="abschnitt-titel">Manuskripte</h2>
+    <div class="tabelle-rahmen">
+      <table class="tabelle">
+        <thead><tr><th scope="col">Titel</th><th scope="col">Gattung</th><th scope="col" class="zahl">Wörter</th><th scope="col" class="zahl">Normseiten</th><th scope="col">Status</th><th scope="col">Leseprobe</th></tr></thead>
+        <tbody>
+          {%- for buch in liste %}
+          <tr>
+            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a></th>
+            <td data-label="Gattung">{{ buch.gattung }}</td>
+            <td data-label="Wörter" class="zahl">{{ buch.woerterZahl | zahl or "–" }}</td>
+            <td data-label="Normseiten" class="zahl">{% if buch.normseitenZahl %}{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }}{% else %}–{% endif %}</td>
+            <td data-label="Status">{{ buch.status }}</td>
+            <td data-label="Leseprobe">{% if buch.hatLeseprobe %}<a href="/buecher/{{ buch.slug }}/leseprobe/">lesen</a>{% else %}–{% endif %}</td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="hinweis">Normseiten mit ≈ sind aus der Zeichenzahl geschätzt (1.800 Zeichen je Seite).</p>
+  </section>
+
+  <section aria-labelledby="anfrage">
+    <h2 id="anfrage" class="abschnitt-titel">Auf Anfrage</h2>
+    <p>Exposés und vollständige Manuskripte gibt es per E-Mail:</p>
+    <p class="email-gross"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  </section>
+
+  <section aria-labelledby="kurzvita">
+    <h2 id="kurzvita" class="abschnitt-titel">Kurzvita</h2>
+    <div class="kopierbar">
+      <div class="fliesstext" id="kurzvita-text">{{ site.kurzvita | md | safe }}</div>
+      <button class="knopf knopf--leise" type="button" data-kopieren="kurzvita-text" hidden>Kurzvita kopieren</button>
+    </div>
+  </section>
+
+  {%- if site.pressefotos %}
+  <section aria-labelledby="fotos">
+    <h2 id="fotos" class="abschnitt-titel">Pressefoto</h2>
+    <p><a href="/assets/img/portrait-hoch.jpg" download>Porträt herunterladen</a> · Foto: {{ site.fotografie | ohneTodo("") }}</p>
+  </section>
+  {%- endif %}
+</div>
+<script src="/assets/js/kopieren.js" defer></script>

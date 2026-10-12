@@ -1,0 +1,23 @@
+{
+  "name": "matcheque-website",
+  "private": true,
+  "description": "Autorenwebsite von Josie H Matchèque",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "ELEVENTY_ENV=production eleventy",
+    "todo": "node scripts/todo.mjs",
+    "manuskripte": "python3 scripts/manuskripte.py",
+    "assets": "node scripts/render-assets.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^6.0.4",
+    "js-yaml": "^4.3.2",
+    "markdown-it": "^14.3.2",
+    "sharp": "^0.33.5"
+  }
+}

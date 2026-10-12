@@ -1,0 +1,36 @@
+{#- Bausteine rund um ein Buch: Titelblatt, Farbe, Downloads, Kennzahlen. -#}
+
+{% macro farbe(buch) -%}
+--buch-hell: {{ buch.farbe.hell }}; --buch-dunkel: {{ buch.farbe.dunkel }}; --buch-akzent: {{ buch.farbe.akzent }}
+{%- endmacro %}
+
+{% macro titelblatt(buch, name, klasse = "") %}
+<div class="titelblatt {{ klasse }}" style="{{ farbe(buch) }}" aria-hidden="true">
+  <span class="titelblatt-autorin">{{ name }}</span>
+  <span class="titelblatt-mitte">
+    <span class="titelblatt-titel">{{ buch.titel }}</span>
+    <span class="titelblatt-strich"></span>
+  </span>
+  <span class="titelblatt-gattung">{{ buch.gattung }}</span>
+</div>
+{% endmacro %}
+
+{% macro umfang(buch) -%}
+{%- if buch.woerterZahl %}{{ buch.woerterZahl | zahl }} Wörter{% endif -%}
+{%- if buch.normseitenZahl %} · {% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }} Normseiten{% endif -%}
+{%- endmacro %}
+
+{% macro downloads(buch) %}
+{%- set epub = "/downloads/" ~ buch.slug ~ "-leseprobe.epub" -%}
+{%- set pdf = "/downloads/" ~ buch.slug ~ "-leseprobe.pdf" -%}
+{%- if (epub | existiert) or (pdf | existiert) %}
+<ul class="downloads" aria-label="Leseprobe herunterladen">
+  {%- if epub | existiert %}
+  <li><a href="{{ epub }}" download data-goatcounter-click="download-{{ buch.slug }}-epub"><span class="downloads-format">EPUB</span> <span class="downloads-info">für E-Reader und Handy · {{ epub | dateigroesse }}</span></a></li>
+  {%- endif %}
+  {%- if pdf | existiert %}
+  <li><a href="{{ pdf }}" download data-goatcounter-click="download-{{ buch.slug }}-pdf"><span class="downloads-format">PDF</span> <span class="downloads-info">zum Drucken und für Tablets · {{ pdf | dateigroesse }}</span></a></li>
+  {%- endif %}
+</ul>
+{%- endif %}
+{% endmacro %}

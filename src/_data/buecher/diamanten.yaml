@@ -1,0 +1,34 @@
+# Diamanten – Angaben für Startseite, Buchseite und Werkverzeichnis.
+# Felder mit "TODO" sind Platzhalter (Vorlage _texte/website-texte.md, Abschnitt 3.3).
+# Sobald ein Manuskript in manuskripte/ liegt: `manuskript` eintragen und `npm run manuskripte` ausführen.
+
+slug: diamanten
+reihenfolge: 3
+titel: Diamanten
+untertitel: Fragmenta Calamitatis
+gattung: Roman
+genre: "TODO: Genre (3.3)"
+status: "TODO: Status (3.3)"
+
+farbe:
+  hell: "#6b1b2b"
+  dunkel: "#e0909f"
+  akzent: "#d6b26a"
+
+manuskript: ""
+leseprobe:
+  kapitel: 3
+
+# Ohne Manuskript muss der erste Satz hier stehen
+ersterSatz: "TODO: Erster Satz von Diamanten (3.3)"
+normseiten: null
+woerter: null
+
+logline: "TODO: Logline, ein Satz, höchstens 30 Wörter (3.3)"
+klappentext: |
+  TODO: Klappentext, 120 bis 200 Wörter, ohne das Ende zu verraten (3.3)
+warum: ""
+vergleichstitel: ""
+erzaehlform: ""
+ortUndZeit: ""
+inhaltshinweise: ""

@@ -1,0 +1,31 @@
+---
+layout: layouts/basis.njk
+titel: Bücher
+beschreibung: "Alle Romane und Novellen von Josie H Matchèque mit Umfang, Status und Leseproben."
+---
+{%- from "partials/buch.njk" import titelblatt, umfang, farbe -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
+<div class="seite">
+  <header class="seiten-kopf">
+    <h1 class="seiten-titel">Bücher</h1>
+  </header>
+  <ol class="werke">
+    {%- for buch in liste %}
+    <li class="werk buch-farbe" style="{{ farbe(buch) }}">
+      <a class="werk-bild" href="/buecher/{{ buch.slug }}/" tabindex="-1" aria-hidden="true">{{ titelblatt(buch, site.name, "titelblatt--klein") }}</a>
+      <div class="werk-text">
+        <h2 class="werk-titel"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a></h2>
+        {%- if buch.untertitel %}<p class="werk-untertitel">{{ buch.untertitel }}</p>{% endif %}
+        <p class="werk-angaben">{{ buch.gattung }}{% if buch.woerterZahl %} · {{ umfang(buch) }}{% endif %} · {{ buch.status }}</p>
+        <p class="werk-logline">{{ buch.logline }}</p>
+        <ul class="werk-links">
+          <li><a href="/buecher/{{ buch.slug }}/">Zum Buch <span aria-hidden="true">→</span></a></li>
+          {%- if buch.hatLeseprobe %}
+          <li><a href="/buecher/{{ buch.slug }}/leseprobe/">Leseprobe lesen <span aria-hidden="true">→</span></a></li>
+          {%- endif %}
+        </ul>
+      </div>
+    </li>
+    {%- endfor %}
+  </ol>
+</div>

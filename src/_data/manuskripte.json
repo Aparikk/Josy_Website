@@ -1,8 +1,32 @@
 {
+  "alma-mater": {
+    "woerter": 12632,
+    "woerterQuelle": "gezählt",
+    "zeichen": 83172,
+    "normseitenGeschaetzt": 46,
+    "kapitelAnzahl": 5,
+    "untertitel": "Kammerspiel in fünf mal drei Akten",
+    "motto": [],
+    "ersterSatz": "In einer Universitätsstadt, die nicht benannt zu werden wünscht, trafen sich zwei Wissenschaftler vor ihrem Institut.",
+    "ersterAbsatz": "In einer Universitätsstadt, die nicht benannt zu werden wünscht, trafen sich zwei Wissenschaftler vor ihrem Institut. Er war vor ihr dort. Von Weitem schon verfolgte er, wie sie durch den Schnee stapfte, beladen mit einer Kuchenplatte, bis ihre volle Lebensgröße erreicht war. Still standen sie sich gegenüber. Dann, wie auf eine geheime Losung hin, fielen sie einander in die Arme. So verharrten sie eine Weile, flüsternd, die Lippen dicht am Ohr des anderen, der Außenwelt weder Blick noch Einblick in ihre klandestine Unterredung gewährend. Ihr beider Atemnebel tanzte um sie her, mischte sich, glänzte golden in der Dämmerung.",
+    "leseprobe": {
+      "vollstaendig": false,
+      "mitTeilen": true,
+      "kapitel": [
+        "Prologos",
+        "Astra Mala: Was ist die Zeit?",
+        "Woraus besteht das Nichts?",
+        "Wann wird Mögliches wirklich?",
+        "Janus: Des Teufels Lieblingsköder"
+      ],
+      "woerter": 12632,
+      "normseiten": 46
+    }
+  },
   "der-pfau": {
-    "woerter": 26729,
+    "woerter": 26776,
     "woerterQuelle": "Papyrus",
-    "zeichen": 167929,
+    "zeichen": 168193,
     "normseitenGeschaetzt": 93,
     "kapitelAnzahl": 14,
     "untertitel": "Ich hasse Schach.",
@@ -13,14 +37,26 @@
     "ersterSatz": "„Stört es ihn gar nicht, wenn du ihn küsst, nur damit er aufhört, zu reden?“, entfährt es mir, zu früh.",
     "ersterAbsatz": "„Stört es ihn gar nicht, wenn du ihn küsst, nur damit er aufhört, zu reden?“, entfährt es mir, zu früh. Die Tür ist noch nicht richtig zu, als ich mit der Frage schon halb durch bin. Reue durchzuckt mich wie ein sanfter Stromschlag. Offenbar stößt meine Selbstkontrolle langsam an ihre Grenzen.",
     "leseprobe": {
+      "vollstaendig": true,
+      "mitTeilen": false,
       "kapitel": [
         "# 1",
         "# 2",
         "# 3",
-        "# 4"
+        "# 4",
+        "# 5",
+        "# 6",
+        "# 7",
+        "# 8",
+        "# 9",
+        "# 10",
+        "# 11",
+        "# 12",
+        "# 13",
+        "# 14"
       ],
-      "woerter": 6709,
-      "normseiten": 24
+      "woerter": 26835,
+      "normseiten": 93
     }
   },
   "ich-fahr-dich": {
@@ -34,14 +70,15 @@
     "ersterSatz": "Jede neue Minute verstärkte die Zugkraft, die auf meine Nerven wirkte, und auch, wenn es im Lichte der weiteren Geschehnisse absurd klingen mag: Die lodernden Flecken im Gesicht waren damals mein größtes Problem.",
     "ersterAbsatz": "Jede neue Minute verstärkte die Zugkraft, die auf meine Nerven wirkte, und auch, wenn es im Lichte der weiteren Geschehnisse absurd klingen mag: Die lodernden Flecken im Gesicht waren damals mein größtes Problem. <em>Sie sind Familie</em>, sagte ich mir, erst danach bemerkend, dass ich die Lippen bewegt hatte. Noch mehr Hitze. Hätte ich geahnt, was geschehen würde, hätte ich den Moment vielleicht ausgekostet, die schwitzigen Hände, die ekelhaft professionellen Durchsagen, die klimatisierte Flughafenluft, doch dann wiederum hätte ich ja alles verhindert, wenn ich etwas geahnt hätte. So aber hatte ich keine Chance. Oder hatte ich die? Das mögen andere entscheiden.",
     "leseprobe": {
+      "vollstaendig": false,
+      "mitTeilen": false,
       "kapitel": [
         "Im Halteverbot",
         "Vergessen",
-        "Weißwein also",
-        "Nur ein Verbrechen"
+        "Weißwein also"
       ],
-      "woerter": 8143,
-      "normseiten": 29
+      "woerter": 7158,
+      "normseiten": 26
     }
   }
 }

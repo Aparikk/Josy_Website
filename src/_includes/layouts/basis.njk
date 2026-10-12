@@ -1,5 +1,5 @@
-{%- set seitentitel = (titel ~ " · " ~ site.name) if (titel and not startseite) else (site.name ~ " · " ~ site.unterzeile) -%}
-{%- set standardBeschreibung = site.name ~ ": " ~ site.unterzeile ~ ". Erste Sätze, Leseproben und Kontakt für Agenturen und Verlage." -%}
+{%- set seitentitel = (titel ~ " · " ~ site.name) if (titel and not startseite) else (site.name ~ " · " ~ site.leitsatz) -%}
+{%- set standardBeschreibung = site.name ~ ": Romane und Novellen. Erste Sätze, Leseproben und Kontakt für Agenturen und Verlage." -%}
 {%- set seitenbeschreibung = beschreibung or (site.beschreibung | ohneTodo(standardBeschreibung)) -%}
 {%- set bild = (ogBild or "/assets/og/start.png") | absolut(site.url) -%}
 <!doctype html>
@@ -13,14 +13,12 @@
   <meta name="robots" content="noindex">
   {%- endif %}
   <link rel="canonical" href="{{ page.url | absolut(site.url) }}">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fdfdfb" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#fdfdfb">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/literata-roman.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css?v={{ cssVersion }}">
 
   <meta property="og:type" content="{{ ogTyp or 'website' }}">

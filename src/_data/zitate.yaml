@@ -1,0 +1,70 @@
+# Zitate für die wechselnde Galerie auf der Startseite und auf den Buchseiten.
+# buch: slug des Buchs · wer: Figur (optional) · text: das Zitat
+# Neue Zitate einfach unten anfügen.
+
+- buch: alma-mater
+  wer: Malika
+  text: "Verteidigungen, das müssen Sie verstehen, reihen sich in die wenigen großen Hochfeste des Lebens ein: glanzvoll wie ein Treueschwur, selten wie ein aufrichtiges Bekenntnis, und vor allem ewig wie, nun ja, der Tod."
+- buch: alma-mater
+  wer: Dr. Quamvis
+  text: "Entgegen der landläufigen Meinung ist der Tod oft leichter zu verkraften als die Alternative."
+- buch: alma-mater
+  wer: Janus Loren
+  text: "Ein unwahrscheinliches Relikt, eine ramponierte Ewigkeit. Wer ahnt schon, was von uns am Ende überleben wird?"
+- buch: alma-mater
+  wer: Janus Loren
+  text: "Sie sind so wundervoll lesbar, die Naturwissenschaftler; wenn doch bloß ein Gebiet existierte, was sie so mittelmäßig interessierte, nicht zu viel und nicht zu wenig, dann wäre leichte Konversation überhaupt kein Problem."
+- buch: alma-mater
+  wer: Janus Loren
+  text: "Um jemanden wie sie zu beeindrucken, brauchte man einen Doktortitel; Wiederbelebungsfertigkeiten waren tatsächlich mehr ein Hindernis, gehörte doch eine gewisse alltagspraktische Hilflosigkeit zum guten Ton unter Akademikern."
+- buch: alma-mater
+  wer: Janus
+  text: "Über’m Bunsenbrenner ein Messingkessel, ihr Haar gekräuselt von giftigen Dämpfen, Waldnachtschatten schwimmt in Bernstein, und sie liest deine Gedanken nicht, nein, sie erschafft sie. Hexen. Ich würde über Hexen schreiben."
+- buch: alma-mater
+  wer: Professor Pelargus
+  text: "Wenn man nach 4 Runden Revisionen von der NaturA akzeptiert wird, dann bedankt man sich huldigungsvoll und hält ansonsten die Klappe."
+- buch: alma-mater
+  wer: Professor Pelargus
+  text: "Ich habe da drei Menschen mit unermesslichem Potenzial und ohne jede Tauglichkeit für eine neun-bis-fünf-Büroanstellung, für die mittelfristig einfach nicht genug Geld da ist. Und während ich, anstatt zu veröffentlichen, bei Industriellen ein Stipendium hier, eine Konferenzkostenerstattung da erschnorre, fällt uns hier bröckchenweise die Decke auf den Kopf."
+- buch: alma-mater
+  wer: Erin Timeatur
+  text: "Ich wollte sagen: ›nicht jeder, den du liebst, stirbt‹ – aber das wäre eine Lüge gewesen. Daran sehen Sie, wie präzise man sein muss."
+- buch: alma-mater
+  wer: Erin Timeatur
+  text: "In dieser einen Sache hat Ulli Recht behalten: Es ist unerträglich, es immer besser zu wissen."
+- buch: alma-mater
+  wer: Vera Magiria
+  text: "Unwissen ist schwer zu ertragen – das Niemalswissenwerden ist schlicht nicht hinnehmbar."
+- buch: alma-mater
+  wer: Vera Magiria
+  text: "Was bei Agatha Christie der Gärtner ist, ist unter Chemikern die Köchin."
+- buch: ich-fahr-dich
+  text: "Das ist das Problem derjenigen, die stolz ihre weiße Weste durch die Welt tragen: Ist sie einmal besudelt, ist es auch egal."
+- buch: ich-fahr-dich
+  text: "‚Richard, weißt du, was Glück ist?‘, fragte sie unvermittelt. […] ‚Nicht ankommen zu wollen.‘"
+- buch: ich-fahr-dich
+  text: "Für jeden Nadelstich, den sie abbekam, hätte ich ein Messer geschluckt. Es ist ungeheuerlich, was Eifersucht aus Menschen macht, ungeheuerlich und unverzeihlich."
+- buch: ich-fahr-dich
+  text: "Der Herbst ist der schillernde Ausklang, das unmerkliche Hinübergleiten, die abendliche Versöhnlichkeit dem Scheitern gegenüber, genau richtig für Tee, der Herbst ist ein verdammter Sterbebegleiter."
+- buch: ich-fahr-dich
+  text: "In einem amerikanischen Film hätte man uns von hinten gezeigt, zwischen uns den obligatorischen Meter Abstand, der die stoische Einsamkeit unseres kompromisslosen Daseins unterstrichen hätte. So standen wir mehrere Minuten. In Wirklichkeit war ich alles andere als stoisch drauf."
+- buch: ich-fahr-dich
+  text: "Wie jeder gute Staatsanwalt hatte er einen klaren Blick auf die Welt, klarer vielleicht, als gesund war – aber jeder brauchte eine Knautschzone."
+- buch: ich-fahr-dich
+  text: "Dubbegläser, Versprechen, sogar Herzen – nichts bricht so leise wie das Recht."
+- buch: der-pfau
+  text: "Ich lernte Sascha kennen, indem er mich vom Brett fegte."
+- buch: der-pfau
+  text: "In jeder Partie trifft man sich selbst."
+- buch: der-pfau
+  text: "Der Punkt ist: Niemand kann Gedanken lesen. Und wenn es jemand könnte, müsste man ihn disqualifizieren. Vom Schach – und vom Leben."
+- buch: der-pfau
+  text: "‚Ich dachte, der Sinn eines Maskenballs wäre, dass man in aller Anonymität tun kann, was man will.‘ ‚Nein, der Sinn eines Maskenballs ist, dass niemand sieht, dass man nicht tun will, was man tut.‘"
+- buch: der-pfau
+  text: "Der öffentliche Heiratsantrag ist die perfideste Anmaßung unserer Zeit, versteckt hinter der heiliggequasselten Maske des Liebesgeständnisses."
+- buch: der-pfau
+  text: "Die Schnittmenge zwischen Intellekt und Bedacht ist unter Männern dieses Jahrhunderts gleich null, und sie resultiert in etwas gänzlich Archaischem: Charisma."
+- buch: der-pfau
+  text: "Weißt du, ab dem Moment, da du versuchst, zu gewinnen, lieferst du dich aus. Gedeih und Verderben. Im Grunde ist es eine Falle."
+- buch: der-pfau
+  text: "Alles verbraucht sich, sogar der Neuanfang. Man kann nicht beliebig oft den eigenen König stürzen und zur Startaufstellung zurückkehren."

@@ -6,15 +6,15 @@ beschreibung: "Wie diese Website gemacht ist: Schriften, Fotos, Technik."
 
 ## Schriften
 
-Gesetzt aus der **Literata** von TypeTogether und der **Schibsted Grotesk** von Bakken & Bæck, beide unter der SIL Open Font License. Die Schriften werden von dieser Website selbst ausgeliefert.
+Gesetzt aus der **Literata** von TypeTogether, mit echten Kapitälchen und Mediävalziffern, unter der SIL Open Font License. Die Schrift wird von dieser Website selbst ausgeliefert.
 
-## Fotos
+{% if site.fotografie %}## Fotos
 
-{% if site.fotografie | istTodo %}{{ site.fotografie }}{% else %}Porträt: {{ site.fotografie }}{% endif %}
+Porträt: {{ site.fotografie }}
 
-## Texte
+{% endif %}## Texte
 
-Alle Texte und Auszüge © {{ jahr }} {{ site.name }}. Die ersten Sätze auf der Startseite stammen aus den Manuskripten.
+Alle Texte und Auszüge © {{ jahr }} {{ site.name }}. Die ersten Sätze und Zitate stammen aus den Manuskripten.
 
 ## Technik
 

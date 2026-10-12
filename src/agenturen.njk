@@ -1,9 +1,8 @@
 ---
 layout: layouts/basis.njk
 titel: Für Agenturen und Verlage
-beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt für Literaturagenturen und Verlage."
+beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt von Josie H. Matchèque für Literaturagenturen und Verlage."
 ---
-{%- from "partials/buch.njk" import umfang -%}
 {%- set liste = buecher | buchliste(manuskripte) -%}
 <div class="seite">
   <header class="seiten-kopf">
@@ -15,28 +14,37 @@ beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt für Literaturagent
     <h2 id="manuskripte" class="abschnitt-titel">Manuskripte</h2>
     <div class="tabelle-rahmen">
       <table class="tabelle">
-        <thead><tr><th scope="col">Titel</th><th scope="col">Gattung</th><th scope="col" class="zahl">Wörter</th><th scope="col" class="zahl">Normseiten</th><th scope="col">Status</th><th scope="col">Leseprobe</th></tr></thead>
+        <thead><tr><th scope="col">Titel</th><th scope="col">Gattung</th><th scope="col" class="zahl">Wörter</th><th scope="col" class="zahl">Normseiten</th><th scope="col">Entstanden</th><th scope="col">Lesen</th></tr></thead>
         <tbody>
           {%- for buch in liste %}
           <tr>
-            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a></th>
-            <td data-label="Gattung">{{ buch.gattung }}</td>
+            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a>{% if buch.slug in site.angeboten %}<span class="angeboten">angeboten</span>{% endif %}</th>
+            <td data-label="Gattung">{{ buch.genre or buch.gattung }}</td>
             <td data-label="Wörter" class="zahl">{{ buch.woerterZahl | zahl or "–" }}</td>
             <td data-label="Normseiten" class="zahl">{% if buch.normseitenZahl %}{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }}{% else %}–{% endif %}</td>
-            <td data-label="Status">{{ buch.status }}</td>
-            <td data-label="Leseprobe">{% if buch.hatLeseprobe %}<a href="/buecher/{{ buch.slug }}/leseprobe/">lesen</a>{% else %}–{% endif %}</td>
+            <td data-label="Entstanden">{{ buch.entstanden or "–" }}</td>
+            <td data-label="Lesen">{% if buch.hatText %}<a href="/buecher/{{ buch.slug }}/leseprobe/">{{ "vollständig" if buch.vollstaendig else "Leseprobe" }}</a>{% else %}–{% endif %}</td>
           </tr>
           {%- endfor %}
         </tbody>
       </table>
     </div>
-    <p class="hinweis">Normseiten mit ≈ sind aus der Zeichenzahl geschätzt (1.800 Zeichen je Seite).</p>
   </section>
 
   <section aria-labelledby="anfrage">
     <h2 id="anfrage" class="abschnitt-titel">Auf Anfrage</h2>
-    <p>Exposés und vollständige Manuskripte gibt es per E-Mail:</p>
+    <p>Exposé, Leseprobe und vollständiges Manuskript per E-Mail:</p>
     <p class="email-gross"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  </section>
+
+  <section aria-labelledby="steckbrief">
+    <h2 id="steckbrief" class="abschnitt-titel">Auf einen Blick</h2>
+    <dl class="steckbrief">
+      <div><dt>Themen</dt><dd>{{ site.themen }}</dd></div>
+      <div><dt>Stil</dt><dd>{{ site.stil }}</dd></div>
+      <div><dt>Vergleichbar mit</dt><dd>{{ site.vergleichbar }}</dd></div>
+      <div><dt>Sprache</dt><dd>Deutsch</dd></div>
+    </dl>
   </section>
 
   <section aria-labelledby="kurzvita">
@@ -50,7 +58,7 @@ beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt für Literaturagent
   {%- if site.pressefotos %}
   <section aria-labelledby="fotos">
     <h2 id="fotos" class="abschnitt-titel">Pressefoto</h2>
-    <p><a href="/assets/img/portrait-hoch.jpg" download>Porträt herunterladen</a> · Foto: {{ site.fotografie | ohneTodo("") }}</p>
+    <p><a href="/assets/img/portrait-hoch.jpg" download>Porträt herunterladen</a>{% if site.fotografie %} · Foto: {{ site.fotografie }}{% endif %}</p>
   </section>
   {%- endif %}
 </div>

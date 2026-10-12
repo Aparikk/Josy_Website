@@ -1,8 +1,8 @@
 # matcheque.de
 
-Autorinnenwebsite von Josie H Matchèque. Statische Website, gebaut mit [Eleventy](https://www.11ty.dev/) und über GitHub Pages veröffentlicht.
+Autorinnenwebsite von Josie H. Matchèque. Statische Website, gebaut mit [Eleventy](https://www.11ty.dev/) und über GitHub Pages veröffentlicht.
 
-Gestaltung: Richtung „Erster Satz“. Die Startseite zeigt die ersten Sätze der Bücher, je einen pro Bildschirm. Schriften: Literata und Schibsted Grotesk (selbst gehostet). Jedes Buch hat eine eigene Farbe.
+Gestaltung: Richtung „Erster Satz“ auf Papier. Die Startseite zeigt die ersten Sätze der Bücher und wechselnde Zitate. Schrift: Literata (selbst gehostet) mit Kapitälchen. Jedes Buch hat eine eigene Farbe.
 
 Plan bis zum Livegang: [ROADMAP.md](ROADMAP.md).
 
@@ -18,8 +18,9 @@ npm start          # http://localhost:8080, lädt bei Änderungen neu
 | Was | Datei |
 |---|---|
 | Name, Unterzeile, Kurzvita, Status, E-Mail | `src/_data/site.yaml` |
-| Alles zu einem Buch (Logline, Klappentext, Farbe, Länge der Leseprobe …) | `src/_data/buecher/<buch>.yaml` |
-| Über mich (ausführliche Vita, Stationen) | `src/ueber-mich.md` |
+| Alles zu einem Buch (Logline, Klappentext, Farbe, Leseprobe, Downloads …) | `src/_data/buecher/<buch>.yaml` |
+| Zitate für die wechselnde Galerie | `src/_data/zitate.yaml` |
+| Über mich | `src/ueber-mich.njk` (Texte in `site.yaml`) |
 | Impressum, Datenschutz, Nutzungsbedingungen, Kolophon | `src/*.md` |
 
 Platzhalter beginnen mit `TODO` und erscheinen auf der Seite gelb markiert. `npm run todo` listet alle offenen Stellen.

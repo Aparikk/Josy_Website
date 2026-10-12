@@ -1,12 +1,12 @@
 ---
 layout: layouts/basis.njk
 titel: Kontakt
-beschreibung: "Kontakt zu Josie H Matchèque: für Lesepost, Agenturen, Verlage und Presse."
+beschreibung: "Kontakt zu Josie H. Matchèque: für Lesepost, Agenturen, Verlage, Presse und Lesungen."
 ---
 <div class="seite kontakt">
   <header class="seiten-kopf">
     <h1 class="seiten-titel">Kontakt</h1>
-    <p class="seiten-einleitung">Für Lesepost, Agenturen, Verlage und Presse.</p>
+    <p class="seiten-einleitung">Ich freue mich über Lesepost, Anfragen von Agenturen und Verlagen, von der Presse und für Lesungen.</p>
   </header>
 
   <div class="kontakt-raster">
@@ -17,7 +17,7 @@ beschreibung: "Kontakt zu Josie H Matchèque: für Lesepost, Agenturen, Verlage 
     </section>
 
     <section aria-labelledby="formular-titel">
-      <h2 id="formular-titel" class="abschnitt-titel">Oder hier schreiben</h2>
+      <h2 id="formular-titel" class="abschnitt-titel">Oder direkt hier</h2>
       <form class="formular" id="kontaktformular" data-email="{{ site.email }}" action="https://formspree.io/f/{{ site.formspree }}" method="post" novalidate>
         <div class="feld">
           <label for="kontakt-name">Name</label>
@@ -34,7 +34,7 @@ beschreibung: "Kontakt zu Josie H Matchèque: für Lesepost, Agenturen, Verlage 
         </div>
         <p class="feld-falle" aria-hidden="true"><label for="kontakt-falle">Bitte leer lassen</label><input id="kontakt-falle" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></p>
         <input type="hidden" name="_subject" value="Nachricht über matcheque.de">
-        <p class="formular-hinweis">Die Angaben werden über Formspree an mich übermittelt. Mehr dazu im <a href="/datenschutz/">Datenschutz</a>.</p>
+        <p class="formular-hinweis">Ihre Angaben werden über Formspree an mich übermittelt. Mehr dazu im <a href="/datenschutz/">Datenschutz</a>.</p>
         <button class="knopf" type="submit">Nachricht senden</button>
         <p class="formular-status" role="status" aria-live="polite"></p>
       </form>

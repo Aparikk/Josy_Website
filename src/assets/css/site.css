@@ -1,9 +1,10 @@
-/* matcheque.de · Richtung C „Erster Satz“
-   Die Startseite besteht aus den ersten Sätzen der Bücher, je einer pro Bildschirm.
-   Literata trägt alles, was gelesen wird; Schibsted Grotesk alles, was bedient wird.
-   Farbe kommt nur aus den Büchern: jedes hat eine eigene. */
+/* matcheque.de · Richtung C „Erster Satz“, auf Papier
+   Die Startseite besteht aus den ersten Sätzen der Bücher.
+   Josies Wunsch: schrullig, verkopft, altmodisch – nicht clean, nicht minimalistisch.
+   Darum: warmes Papier, eine einzige Schrift (Literata) mit Kapitälchen, Kursive und Ornamenten,
+   doppelte Linien wie im Bleisatz. Farbe kommt nur aus den Büchern. */
 
-/* ---------- Schriften (selbst gehostet) ---------- */
+/* ---------- Schrift (selbst gehostet) ---------- */
 
 @font-face {
   font-family: "Literata";
@@ -19,62 +20,39 @@
   font-style: italic;
   font-display: swap;
 }
-@font-face {
-  font-family: "Schibsted Grotesk";
-  src: url("/assets/fonts/schibsted-grotesk.woff2") format("woff2-variations"), url("/assets/fonts/schibsted-grotesk.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ---------- Tokens ---------- */
 
 :root {
-  --papier: #fdfdfb;
-  --papier-2: #f2f2ee;
-  --tinte: #151515;
-  --bleistift: #5f5f5c;
-  --linie: #e0dfd9;
-  --fokus: #1d3b57;
-  --platzhalter: #9a5b00;
-  --platzhalter-grund: #fff3d6;
+  --papier: #f3eee3;
+  --papier-2: #e9e1d0;
+  --tinte: #231d18;
+  --bleistift: #6a6056;
+  --linie: #cbbfa8;
+  --siegel: #6b1b2b;
+  --fokus: #6b1b2b;
+  --platzhalter: #8a4b00;
+  --platzhalter-grund: #f7e2b5;
 
   --serif: "Literata", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --grotesk: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --rand: clamp(1.25rem, 5vw, 4.5rem);
-  --breite: 78rem;
-  --spalte: 36rem;
+  --breite: 74rem;
+  --spalte: 35rem;
 
-  --klein: 0.875rem;
+  --klein: 0.9375rem;
   --text: 1.0625rem;
   --gross: 1.3125rem;
 
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 @media (min-width: 48em) {
   :root { --text: 1.1875rem; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --papier: #111214;
-    --papier-2: #1a1b1e;
-    --tinte: #ebe9e4;
-    --bleistift: #a3a19c;
-    --linie: #2d2e32;
-    --fokus: #8db4da;
-    --platzhalter: #f0b85a;
-    --platzhalter-grund: #33280f;
-  }
-}
-
-/* Jedes Buch bringt seine Farbe mit (gesetzt als --buch-hell/-dunkel/-akzent im style-Attribut). */
+/* Jedes Buch bringt seine Farbe mit (--buch-hell und --buch-akzent im style-Attribut). */
 .buch-farbe { --buch: var(--buch-hell); }
-@media (prefers-color-scheme: dark) {
-  .buch-farbe { --buch: var(--buch-dunkel); }
-}
 
 /* ---------- Grundlagen ---------- */
 
@@ -103,7 +81,6 @@ body {
 @view-transition { navigation: auto; }
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  html { scroll-behavior: auto; }
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -111,20 +88,32 @@ img { max-width: 100%; height: auto; display: block; }
 h1, h2, h3 { text-wrap: balance; font-weight: 400; margin: 0; }
 p, li, dd, blockquote { hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty; }
 p { margin: 0 0 1em; }
+em, i, cite { font-style: italic; }
 
 a {
   color: inherit;
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
-  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
   transition: text-decoration-color 0.15s;
 }
 a:hover { text-decoration-color: currentColor; }
 
 :focus-visible { outline: 2px solid var(--fokus); outline-offset: 3px; border-radius: 1px; }
 
-::selection { background: color-mix(in srgb, var(--buch, var(--fokus)) 25%, transparent); }
+::selection { background: color-mix(in srgb, var(--buch, var(--siegel)) 22%, transparent); }
+
+/* Kapitälchen: die Stimme für alles, was beschriftet und bedient wird. */
+.kap,
+.kopf-name, .kopf-nav, .fuss, .abschnitt-titel, .dachzeile, .knopf, .pfeil-link,
+.incipit-gattung, .incipit-weiter, .downloads-format, .buch-fakten dt, .fakten-titel,
+.werk-angaben, .werk-links, .tabelle thead th, .leseprobe-angabe, .leseprobe-inhalt,
+.neuigkeit-marke, .zitate-steuerung, .zitat-quelle, .feld label, .titelblatt-gattung {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.07em;
+  font-variant-numeric: oldstyle-nums;
+}
 
 .sprungmarke {
   position: absolute;
@@ -134,8 +123,6 @@ a:hover { text-decoration-color: currentColor; }
   padding: 0.5rem 0.9rem;
   background: var(--tinte);
   color: var(--papier);
-  font-family: var(--grotesk);
-  font-size: var(--klein);
   transform: translateY(-200%);
 }
 .sprungmarke:focus { transform: none; }
@@ -144,164 +131,160 @@ a:hover { text-decoration-color: currentColor; }
 .platzhalter {
   color: var(--platzhalter);
   background: var(--platzhalter-grund);
-  font-family: var(--grotesk);
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-style: normal;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.4;
-  padding: 0.1em 0.35em;
-  border-radius: 2px;
+  padding: 0.05em 0.35em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
-/* ---------- Kopf und Fuß ---------- */
+/* Ornament zwischen Abschnitten */
+.ornament { text-align: center; color: var(--bleistift); font-size: 1.1rem; margin: 0; }
+
+/* ---------- Kopf und Fuß: wie ein Titelblatt ---------- */
 
 .kopf {
   max-width: var(--breite);
   margin-inline: auto;
-  padding: 1.5rem var(--rand) 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem 2rem;
-  font-family: var(--grotesk);
-  font-size: var(--klein);
-  line-height: 1.3;
+  padding: 1.6rem var(--rand) 0;
+  text-align: center;
 }
-.kopf-marke { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0.9rem; }
-.kopf-name { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: 0.005em; }
+.kopf-innen { padding-bottom: 1.1rem; border-bottom: 3px double var(--linie); display: grid; gap: 0.6rem; justify-items: center; }
+.kopf-marke { display: grid; gap: 0.1rem; }
+.kopf-name { margin: 0; font-size: 1.35rem; font-weight: 500; letter-spacing: 0.14em; line-height: 1.2; }
 .kopf-name a { text-decoration: none; }
-.kopf-zeile { margin: 0; color: var(--bleistift); }
-.kopf-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; }
-.kopf-nav a { text-decoration: none; color: var(--bleistift); padding-block: 0.3rem; }
+.kopf-zeile { margin: 0; font-style: italic; color: var(--bleistift); font-size: var(--klein); }
+.kopf-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 1.5rem; font-size: 1.05rem; }
+.kopf-nav a { text-decoration: none; color: var(--bleistift); padding-block: 0.2rem; }
 .kopf-nav a:hover { color: var(--tinte); }
-.kopf-nav a[aria-current="page"], .kopf-nav a.aktiv { color: var(--tinte); text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 0.35em; }
+.kopf-nav a[aria-current="page"], .kopf-nav a.aktiv { color: var(--tinte); text-decoration: underline; text-decoration-color: var(--siegel); text-underline-offset: 0.3em; }
 
 .fuss {
   max-width: var(--breite);
   margin: 6rem auto 0;
-  padding: 1.5rem var(--rand) 2.5rem;
-  border-top: 1px solid var(--linie);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 2rem;
-  font-family: var(--grotesk);
-  font-size: var(--klein);
+  padding: 0 var(--rand) 2.5rem;
+  text-align: center;
   color: var(--bleistift);
+  font-size: 1rem;
 }
+.fuss-innen { border-top: 3px double var(--linie); padding-top: 1.4rem; display: grid; gap: 0.6rem; justify-items: center; }
 .fuss p { margin: 0; }
-.fuss ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.2rem; }
+.fuss ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem 1.3rem; }
 .fuss a { text-decoration: none; }
 .fuss a:hover { color: var(--tinte); text-decoration: underline; }
 
-/* ---------- Startseite: die ersten Sätze ---------- */
+/* ---------- Startseite ---------- */
+
+.auftakt {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vw, 7rem) var(--rand) clamp(1rem, 4vw, 2rem);
+  text-align: center;
+}
+.auftakt-motto { margin: 0 0 0.6rem; font-variant-caps: all-small-caps; letter-spacing: 0.32em; color: var(--siegel); font-size: 1.15rem; }
+.auftakt-titel { margin: 0; font-size: clamp(2.5rem, 1.3rem + 4.6vw, 5rem); font-weight: 300; font-style: italic; line-height: 1.06; letter-spacing: -0.015em; }
+.auftakt-text { margin: 1.8rem auto 0; max-width: 32em; font-size: var(--gross); line-height: 1.5; }
+.auftakt-text p:last-child { margin-bottom: 0; }
+.neuigkeit { margin: 1.6rem auto 0; max-width: 34em; }
+.neuigkeit-marke { color: var(--siegel); margin-right: 0.4em; }
 
 .incipit {
   max-width: var(--breite);
   margin-inline: auto;
   padding-inline: var(--rand);
-  min-height: min(88svh, 60rem);
+  min-height: min(84svh, 56rem);
   display: grid;
   align-content: center;
-  padding-block: 5rem;
+  padding-block: 4rem;
 }
-.incipit + .incipit { border-top: 1px solid var(--linie); }
 .incipit-figur { margin: 0; }
-
-.incipit-satz {
-  margin: 0;
-  font-family: var(--serif);
-  font-weight: 300;
-  line-height: 1.14;
-  letter-spacing: -0.012em;
-  font-variant-numeric: oldstyle-nums;
-}
+.incipit-satz { margin: 0; font-weight: 300; line-height: 1.14; letter-spacing: -0.01em; }
 .incipit-satz p, .incipit-satz > span { margin: 0; display: block; hyphens: manual; -webkit-hyphens: manual; }
-.incipit-satz .platzhalter { display: inline; font-size: 0.42em; vertical-align: middle; }
-.incipit-satz--kurz { font-size: clamp(2.25rem, 1.1rem + 4.6vw, 5.25rem); max-width: 15em; }
+.incipit-satz--kurz { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 5rem); max-width: 15em; }
 .incipit-satz--mittel { font-size: clamp(1.95rem, 1rem + 3.3vw, 4rem); max-width: 18em; }
 .incipit-satz--lang { font-size: clamp(1.7rem, 0.95rem + 2.4vw, 3.1rem); max-width: 22em; }
 .incipit-satz.haengt p { text-indent: -0.42em; }
 @supports (hanging-punctuation: first) {
   .incipit-satz.haengt p { text-indent: 0; hanging-punctuation: first; }
 }
+.incipit-satz .platzhalter { display: inline; font-size: 0.42em; vertical-align: middle; }
 
-.incipit-quelle {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.4rem 1.4rem;
-  font-family: var(--grotesk);
-  font-size: 1rem;
-  line-height: 1.4;
-}
-.incipit-titel { font-weight: 600; text-decoration-color: var(--buch); text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
-.incipit-titel cite { font-style: normal; }
+.incipit-quelle { margin-top: clamp(1.5rem, 3vw, 2.4rem); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 1.3rem; font-size: 1.15rem; line-height: 1.4; }
+.incipit-titel { font-style: italic; text-decoration-color: var(--buch); text-decoration-thickness: 2px; text-underline-offset: 0.28em; }
+.incipit-titel cite { font-style: italic; }
 .incipit-gattung { color: var(--bleistift); }
-.incipit-weiter { text-decoration: none; color: var(--buch); font-weight: 500; }
+.incipit-weiter { text-decoration: none; color: var(--buch); }
 .incipit-weiter:hover { text-decoration: underline; }
 
-/* Vorstellung unter den Sätzen */
+/* Wechselnde Zitate */
+.zitate { max-width: 52rem; margin: 0 auto; padding: 3rem var(--rand) 1rem; text-align: center; }
+.zitate .abschnitt-titel { justify-content: center; }
+.zitate .abschnitt-titel::before { content: ""; flex: 0 0 2.5rem; height: 0; border-top: 1px solid var(--linie); }
+.zitate-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.5rem; }
+.zitate.bereit .zitate-liste { gap: 0; }
+.zitate.bereit .zitate-liste > li { grid-area: 1 / 1; }
+.zitate-liste > li { margin: 0; }
+.zitat { margin: 0; }
+.zitat p { margin: 0; font-style: italic; font-weight: 300; font-size: clamp(1.45rem, 1rem + 1.6vw, 2.2rem); line-height: 1.32; text-wrap: balance; }
+.zitat-quelle { display: block; margin-top: 1.1rem; color: var(--bleistift); font-size: 1.05rem; }
+.zitat-quelle cite { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--buch, var(--tinte)); }
+.zitat-quelle a { text-decoration: none; }
+.zitat-quelle a:hover cite { text-decoration: underline; }
+.zitate-steuerung { display: none; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.8rem; font-size: 1.05rem; color: var(--bleistift); }
+.zitate.bereit .zitate-steuerung { display: flex; }
+.zitate-steuerung button { font: inherit; color: inherit; letter-spacing: inherit; font-variant-caps: inherit; background: none; border: 0; padding: 0.4rem 0.5rem; cursor: pointer; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.25em; }
+.zitate-steuerung button:hover { color: var(--tinte); text-decoration-color: currentColor; }
+.zitate-zaehler { font-variant-numeric: oldstyle-nums tabular-nums; min-width: 4.5em; }
+@media (prefers-reduced-motion: no-preference) {
+  .zitate.bereit .zitate-liste > li:not([hidden]) { animation: einblenden 0.7s ease both; }
+  @keyframes einblenden { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* Vorstellung */
 .vorstellung {
   max-width: var(--breite);
   margin: 0 auto;
-  padding: 5rem var(--rand) 0;
-  border-top: 1px solid var(--linie);
+  padding: 4rem var(--rand) 0;
   display: grid;
   gap: 2.5rem clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
 @media (min-width: 48em) {
-  .vorstellung { grid-template-columns: minmax(12rem, 20rem) minmax(0, var(--spalte)); }
+  .vorstellung { grid-template-columns: minmax(12rem, 19rem) minmax(0, var(--spalte)); justify-content: center; }
 }
-.vorstellung-bild { width: min(100%, 20rem); aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1); }
+.vorstellung-bild { width: min(100%, 19rem); aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) sepia(0.12); border: 1px solid var(--linie); padding: 0.5rem; background: var(--papier-2); }
 .vorstellung-text { min-width: 0; }
-.status { font-family: var(--grotesk); font-size: 1rem; color: var(--bleistift); }
-
-.weiter-liste { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.6rem; font-family: var(--grotesk); font-size: 1rem; }
-.weiter-liste a { text-decoration: none; }
+.status { color: var(--bleistift); font-style: italic; }
+.weiter-liste { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+.weiter-liste a { text-decoration: none; font-variant-caps: all-small-caps; letter-spacing: 0.07em; font-size: 1.1rem; }
 .weiter-liste a:hover { text-decoration: underline; }
 
 /* ---------- Gemeinsame Bausteine ---------- */
 
-.seite {
-  max-width: var(--breite);
-  margin-inline: auto;
-  padding: clamp(3rem, 8vw, 6rem) var(--rand) 0;
-}
-.seiten-kopf { margin-bottom: clamp(2.5rem, 6vw, 4.5rem); max-width: 48rem; }
-.seiten-titel { font-size: clamp(2.6rem, 1.4rem + 4.5vw, 5rem); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; }
+.seite { max-width: var(--breite); margin-inline: auto; padding: clamp(3rem, 8vw, 5.5rem) var(--rand) 0; }
+.seiten-kopf { margin-bottom: clamp(2.5rem, 6vw, 4rem); max-width: 48rem; }
+.seiten-titel { font-size: clamp(2.6rem, 1.4rem + 4.5vw, 4.8rem); font-weight: 300; font-style: italic; line-height: 1.04; letter-spacing: -0.015em; }
 .seiten-einleitung { margin: 1.2rem 0 0; font-size: var(--gross); color: var(--bleistift); max-width: 34em; }
 
 .abschnitt-titel {
-  font-family: var(--grotesk);
-  font-size: var(--klein);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: var(--bleistift);
-  margin: 0 0 1rem;
+  margin: 0 0 1.1rem;
 }
+.abschnitt-titel::after { content: ""; flex: 0 0 2.5rem; height: 0; border-top: 1px solid var(--linie); }
 section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-titel { margin-top: 3.5rem; }
 
 .fliesstext { max-width: var(--spalte); }
 .fliesstext > :last-child { margin-bottom: 0; }
-.fliesstext h2 { font-family: var(--grotesk); font-size: var(--klein); font-weight: 600; letter-spacing: 0.02em; color: var(--bleistift); margin: 3rem 0 1rem; }
+.fliesstext h2 { font-variant-caps: all-small-caps; letter-spacing: 0.07em; font-size: 1.1rem; font-weight: 500; color: var(--bleistift); margin: 3rem 0 1rem; }
 .fliesstext ul, .fliesstext ol { padding-left: 1.2em; }
 .fliesstext li { margin-bottom: 0.4em; }
 
-.dachzeile {
-  font-family: var(--grotesk);
-  font-size: var(--klein);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--buch, var(--bleistift));
-  margin: 0 0 0.75rem;
-}
+.dachzeile { font-size: 1.1rem; font-weight: 500; color: var(--buch, var(--bleistift)); margin: 0 0 0.6rem; }
 .dachzeile a { text-decoration: none; }
 .dachzeile a:hover { text-decoration: underline; }
 
@@ -309,31 +292,32 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  padding: 0.8rem 1.3rem;
+  padding: 0.5rem 1.2rem 0.6rem;
   border: 1px solid var(--buch, var(--tinte));
-  background: var(--buch, var(--tinte));
-  color: var(--papier);
-  font-family: var(--grotesk);
-  font-size: 1rem;
-  font-weight: 600;
+  outline: 1px solid var(--buch, var(--tinte));
+  outline-offset: 2px;
+  background: transparent;
+  color: var(--buch, var(--tinte));
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 0;
   transition: background-color 0.15s, color 0.15s;
 }
-.knopf:hover { background: transparent; color: var(--buch, var(--tinte)); }
+.knopf:hover { background: var(--buch, var(--tinte)); color: var(--papier); }
+.knopf:focus-visible { outline: 2px solid var(--fokus); outline-offset: 3px; }
 .knopf:disabled { opacity: 0.6; cursor: progress; }
-.knopf--leise { background: transparent; color: var(--tinte); border-color: var(--linie); font-weight: 500; font-size: var(--klein); padding: 0.55rem 0.9rem; }
-.knopf--leise:hover { border-color: var(--tinte); color: var(--tinte); }
+.knopf--leise { outline: 0; border-color: var(--linie); color: var(--tinte); font-size: 1rem; padding: 0.3rem 0.8rem 0.4rem; }
+.knopf--leise:hover { background: var(--papier-2); color: var(--tinte); }
 
-.pfeil-link { font-family: var(--grotesk); font-size: 1rem; text-decoration: none; color: var(--buch, var(--tinte)); font-weight: 500; }
+.pfeil-link { font-size: 1.15rem; text-decoration: none; color: var(--buch, var(--tinte)); }
 .pfeil-link:hover { text-decoration: underline; }
 
-.hinweis { font-family: var(--grotesk); font-size: var(--klein); color: var(--bleistift); }
+.hinweis { font-size: var(--klein); color: var(--bleistift); font-style: italic; }
 
-.email-gross { font-size: clamp(1.5rem, 1rem + 2vw, 2.4rem); font-weight: 300; letter-spacing: -0.01em; margin: 0 0 1rem; overflow-wrap: anywhere; }
-.email-gross a { text-decoration-thickness: 1px; }
+.email-gross { font-size: clamp(1.3rem, 0.9rem + 1.8vw, 2.1rem); font-weight: 300; font-style: italic; margin: 0 0 1rem; overflow-wrap: anywhere; }
 
 /* ---------- Titelblatt (typografisches Cover) ---------- */
 
@@ -346,43 +330,33 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
   flex-direction: column;
   justify-content: space-between;
   background: var(--buch-hell);
-  color: #f6f3ec;
-  font-family: var(--serif);
+  color: #f6f1e6;
   line-height: 1.1;
 }
-.titelblatt-autorin { font-style: italic; font-size: 6.4cqi; opacity: 0.9; }
+.titelblatt-autorin { font-style: italic; font-size: 6.4cqi; opacity: 0.92; }
 .titelblatt-mitte { display: grid; gap: 6cqi; }
-.titelblatt-titel { font-size: 13cqi; font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; text-wrap: balance; }
+.titelblatt-titel { font-size: 13cqi; font-weight: 300; line-height: 1.02; letter-spacing: -0.01em; text-wrap: balance; }
 .titelblatt-strich { width: 18cqi; height: max(2px, 0.8cqi); background: var(--buch-akzent); }
-.titelblatt-gattung { font-family: var(--grotesk); font-size: 4.4cqi; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85; }
+.titelblatt-gattung { font-size: 5.6cqi; letter-spacing: 0.14em; opacity: 0.88; }
 
 /* ---------- Buchseite ---------- */
 
-.buch {
-  max-width: var(--breite);
-  margin-inline: auto;
-  padding: clamp(3rem, 7vw, 5.5rem) var(--rand) 0;
-}
-.buch-kopf {
-  display: grid;
-  gap: 2.5rem clamp(2.5rem, 6vw, 6rem);
-  align-items: end;
-  margin-bottom: clamp(3.5rem, 8vw, 6rem);
-}
+.buch { max-width: var(--breite); margin-inline: auto; padding: clamp(3rem, 7vw, 5rem) var(--rand) 0; }
+.buch-kopf { display: grid; gap: 2.5rem clamp(2.5rem, 6vw, 6rem); align-items: end; margin-bottom: clamp(3.5rem, 8vw, 5.5rem); }
 .buch-kopf .titelblatt { width: min(100%, 17rem); }
 @media (min-width: 48em) {
   .buch-kopf { grid-template-columns: minmax(13rem, 19rem) minmax(0, 1fr); }
   .buch-kopf .titelblatt { width: 100%; }
 }
-.buch-titel { font-size: clamp(2.8rem, 1.5rem + 5vw, 5.5rem); font-weight: 300; line-height: 1; letter-spacing: -0.025em; }
+.buch-titel { font-size: clamp(2.8rem, 1.5rem + 5vw, 5.4rem); font-weight: 300; line-height: 1; letter-spacing: -0.02em; }
 .buch-untertitel { margin: 0.8rem 0 0; font-size: var(--gross); font-style: italic; color: var(--bleistift); }
 .buch-logline { margin: 1.6rem 0 0; font-size: var(--gross); line-height: 1.45; max-width: 30em; }
-.buch-aktionen { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
+.buch-aktionen { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem 1.8rem; align-items: center; }
 
-.downloads { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-family: var(--grotesk); font-size: var(--klein); line-height: 1.35; }
+.downloads { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; line-height: 1.35; }
 .downloads a { display: inline-flex; flex-direction: column; text-decoration: none; padding-block: 0.2rem; }
-.downloads-format { font-weight: 700; letter-spacing: 0.04em; text-decoration: underline; text-decoration-color: var(--buch, currentColor); text-underline-offset: 0.25em; }
-.downloads-info { color: var(--bleistift); }
+.downloads-format { font-size: 1.1rem; font-weight: 500; text-decoration: underline; text-decoration-color: var(--buch, currentColor); text-underline-offset: 0.25em; }
+.downloads-info { color: var(--bleistift); font-size: var(--klein); font-style: italic; }
 .downloads a:hover .downloads-format { text-decoration-thickness: 2px; }
 
 .buch-raster { display: grid; gap: 3.5rem clamp(2.5rem, 6vw, 6rem); align-items: start; }
@@ -395,33 +369,43 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .motto { margin: 0 0 3.5rem; font-style: italic; font-size: var(--gross); line-height: 1.5; color: var(--bleistift); }
 .motto p { margin: 0; }
 
-.anfang-text { margin: 0 0 1.2rem; padding-left: 1.2rem; border-left: 2px solid var(--buch); font-size: var(--text); }
-.anfang-text p { margin: 0; }
+.auszug { margin: 0 0 1.2rem; }
+.auszug p { margin: 0; text-indent: 1.4em; }
+.auszug p:first-child { text-indent: 0; }
+.auszug p:first-child::first-letter { float: left; font-size: 3.4em; line-height: 0.82; padding: 0.06em 0.08em 0 0; color: var(--buch); }
 
-.buch-fakten { font-family: var(--grotesk); font-size: var(--klein); line-height: 1.45; font-variant-numeric: lining-nums tabular-nums; }
-.fakten-titel { font-size: var(--klein); font-weight: 600; letter-spacing: 0.02em; color: var(--bleistift); margin: 0 0 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--linie); }
-.buch-fakten dl { margin: 0; display: grid; gap: 0.9rem; }
-.buch-fakten dt { color: var(--bleistift); }
-.buch-fakten dd { margin: 0.1rem 0 0; }
-.fakten-anfrage { margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--linie); color: var(--bleistift); }
+.buch .zitate { padding-inline: 0; max-width: none; text-align: left; margin-top: 3.5rem; padding-top: 0; }
+.buch .zitate .abschnitt-titel { justify-content: flex-start; }
+.buch .zitate .abschnitt-titel::before { display: none; }
+.buch .zitate-steuerung { justify-content: flex-start; }
+.buch .zitat p { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); text-wrap: pretty; }
+
+.buch-fakten { font-size: 1rem; line-height: 1.45; }
+.fakten-titel { font-size: 1.1rem; font-weight: 500; color: var(--bleistift); margin: 0 0 1rem; padding-bottom: 0.7rem; border-bottom: 3px double var(--linie); }
+.buch-fakten dl { margin: 0; display: grid; gap: 0.85rem; }
+.buch-fakten dt { color: var(--bleistift); font-size: 1rem; }
+.buch-fakten dd { margin: 0.05rem 0 0; }
+.fakten-anfrage { margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--linie); color: var(--bleistift); font-style: italic; }
 
 /* ---------- Werkverzeichnis ---------- */
 
-.werke { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.werk { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem); padding-block: 2.5rem; border-top: 1px solid var(--linie); align-items: start; }
+.werke { list-style: none; margin: 0; padding: 0; counter-reset: werk; }
+.werk { counter-increment: werk; display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1.5rem clamp(1.5rem, 4vw, 3rem); padding-block: 2.5rem; border-top: 1px solid var(--linie); align-items: start; }
+.werk:first-child { border-top: 3px double var(--linie); }
 @media (min-width: 48em) { .werk { grid-template-columns: 9rem minmax(0, 1fr); } }
 .werk-bild { display: block; text-decoration: none; }
-.werk-titel { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.015em; }
+.werk-titel { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 300; line-height: 1.1; }
+.werk-titel::before { content: counter(werk, upper-roman) ". "; color: var(--bleistift); font-size: 0.6em; vertical-align: 0.25em; margin-right: 0.2em; }
 .werk-titel a { text-decoration: none; }
 .werk-titel a:hover { text-decoration: underline; text-decoration-color: var(--buch); }
 .werk-untertitel { margin: 0.4rem 0 0; font-style: italic; color: var(--bleistift); }
-.werk-angaben { margin: 0.8rem 0 0; font-family: var(--grotesk); font-size: var(--klein); color: var(--bleistift); font-variant-numeric: lining-nums; }
+.werk-angaben { margin: 0.8rem 0 0; font-size: 1rem; color: var(--bleistift); }
 .werk-logline { margin: 1rem 0 0; max-width: 34em; }
-.werk-links { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; font-family: var(--grotesk); font-size: 1rem; }
-.werk-links a { text-decoration: none; color: var(--buch); font-weight: 500; }
+.werk-links { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; font-size: 1.1rem; }
+.werk-links a { text-decoration: none; color: var(--buch); }
 .werk-links a:hover { text-decoration: underline; }
 
-/* ---------- Leseprobe ---------- */
+/* ---------- Lesen im Browser ---------- */
 
 .fortschritt { position: fixed; inset: 0 0 auto 0; height: 3px; background: var(--buch); transform-origin: 0 50%; transform: scaleX(0); z-index: 5; display: none; }
 @supports (animation-timeline: scroll()) {
@@ -429,136 +413,124 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
   @keyframes fortschritt { to { transform: scaleX(1); } }
 }
 
-.leseprobe { max-width: calc(var(--spalte) + 2 * var(--rand)); margin-inline: auto; padding: clamp(3rem, 8vw, 6rem) var(--rand) 0; }
-.leseprobe-kopf { margin-bottom: 4rem; }
+.leseprobe { max-width: calc(var(--spalte) + 2 * var(--rand)); margin-inline: auto; padding: clamp(3rem, 8vw, 5.5rem) var(--rand) 0; }
+.leseprobe-kopf { margin-bottom: 4rem; text-align: center; }
 .druck-autorin { display: none; }
-.leseprobe-titel { font-size: clamp(2.6rem, 1.4rem + 4.5vw, 4.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.02em; }
+.leseprobe-titel { font-size: clamp(2.6rem, 1.4rem + 4.5vw, 4.4rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; }
 .leseprobe-untertitel { margin: 0.6rem 0 0; font-style: italic; font-size: var(--gross); color: var(--bleistift); }
-.leseprobe-angabe { margin: 1.2rem 0 0; font-family: var(--grotesk); font-size: var(--klein); color: var(--bleistift); font-variant-numeric: lining-nums; }
-.leseprobe-kopf .motto { margin: 2.5rem 0 0; }
-.leseprobe-inhalt { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--linie); font-family: var(--grotesk); font-size: var(--klein); }
-.leseprobe-inhalt ol { margin: 0; padding-left: 1.4em; display: grid; gap: 0.3rem; color: var(--bleistift); }
+.leseprobe-angabe { margin: 1.2rem 0 0; font-size: 1.05rem; color: var(--bleistift); }
+.leseprobe-kopf .motto { margin: 2.5rem auto 0; }
+.leseprobe-inhalt { margin: 2.5rem auto 0; padding-top: 1.2rem; border-top: 3px double var(--linie); font-size: 1.05rem; max-width: 26rem; text-align: left; }
+.leseprobe-inhalt ol { margin: 0; padding-left: 2em; display: grid; gap: 0.25rem; color: var(--bleistift); list-style: upper-roman; }
 .leseprobe-inhalt a { color: var(--tinte); text-decoration: none; }
 .leseprobe-inhalt a:hover { text-decoration: underline; }
 
 .leseprobe-text { font-size: var(--text); line-height: 1.62; }
 .leseprobe-text p { margin: 0; text-indent: 1.4em; }
 .leseprobe-text p.ohne-einzug { text-indent: 0; }
-@media (min-width: 40em) {
-  .leseprobe-text p { text-align: justify; }
+@media (min-width: 40em) { .leseprobe-text p { text-align: justify; } }
+.kapitel + .kapitel, .kapitel + .teil { margin-top: 5rem; }
+.kapitel h2, .kapitel h3 { font-style: italic; font-size: var(--gross); text-align: center; margin: 0 0 2.2rem; scroll-margin-top: 2rem; }
+.leseprobe-text .kapitel-untertitel { text-align: center; text-indent: 0; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--bleistift); margin: -1.4rem 0 2.2rem; }
+.kapitel > h2 + p.ohne-einzug::first-letter, .kapitel > h3 + p.ohne-einzug::first-letter, .kapitel-untertitel + p.ohne-einzug::first-letter {
+  float: left; font-size: 3.3em; line-height: 0.8; padding: 0.07em 0.08em 0 0; color: var(--buch);
 }
-.kapitel + .kapitel { margin-top: 5rem; }
-.kapitel h2 { font-style: italic; font-size: var(--gross); text-align: center; margin: 0 0 2.2rem; scroll-margin-top: 2rem; }
+.teil { text-align: center; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 300; font-style: italic; margin: 6rem 0 3rem; }
+.teil::before { content: "⁂"; display: block; font-style: normal; font-size: 1.1rem; color: var(--bleistift); margin-bottom: 1rem; }
 .szenenwechsel { border: 0; margin: 1.6rem 0; text-align: center; height: auto; }
 .szenenwechsel::after { content: "⁂"; color: var(--bleistift); font-size: 1rem; }
 
-.leseprobe-ende { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--linie); }
-.ende-zeichen { text-align: center; color: var(--buch); font-size: 1.4rem; margin-bottom: 1.5rem; }
-.ende-titel { font-size: var(--gross); margin-bottom: 1rem; }
-.leseprobe-ende .downloads { margin: 1.5rem 0; }
-.rechte { margin-top: 2.5rem; font-family: var(--grotesk); font-size: var(--klein); color: var(--bleistift); }
+.leseprobe-ende { margin-top: 5rem; padding-top: 2rem; border-top: 3px double var(--linie); text-align: center; }
+.ende-zeichen { color: var(--buch); font-size: 1.4rem; margin-bottom: 1rem; }
+.ende-titel { font-size: var(--gross); font-style: italic; margin-bottom: 1rem; }
+.leseprobe-ende .downloads { justify-content: center; margin: 1.5rem 0; }
+.rechte { margin-top: 2.5rem; font-size: var(--klein); color: var(--bleistift); }
 
 /* ---------- Agenturen ---------- */
 
 .tabelle-rahmen { overflow-x: auto; margin-bottom: 0.8rem; }
-.tabelle { width: 100%; min-width: 38rem; border-collapse: collapse; font-family: var(--grotesk); font-size: 1rem; line-height: 1.4; font-variant-numeric: lining-nums tabular-nums; }
+.tabelle { width: 100%; min-width: 38rem; border-collapse: collapse; font-size: 1rem; line-height: 1.4; font-variant-numeric: oldstyle-nums tabular-nums; border-top: 3px double var(--linie); }
 .tabelle th, .tabelle td { text-align: left; vertical-align: baseline; padding: 0.8rem 1.2rem 0.8rem 0; border-bottom: 1px solid var(--linie); }
-.tabelle thead th { font-size: var(--klein); font-weight: 600; color: var(--bleistift); }
-.tabelle tbody th { font-family: var(--serif); font-weight: 400; font-size: var(--gross); }
+.tabelle thead th { font-size: 1rem; font-weight: 500; color: var(--bleistift); }
+.tabelle tbody th { font-weight: 400; font-style: italic; font-size: var(--gross); }
 .tabelle tbody th a { text-decoration: none; }
 .tabelle tbody th a:hover { text-decoration: underline; }
 .tabelle .zahl { text-align: right; }
+.angeboten { font-variant-caps: all-small-caps; letter-spacing: 0.07em; color: var(--siegel); font-style: normal; font-size: 0.75em; margin-left: 0.4em; white-space: nowrap; }
 
-/* Auf schmalen Bildschirmen wird jede Zeile zu einem kleinen Steckbrief. */
 @media (max-width: 40em) {
   .tabelle { min-width: 0; }
   .tabelle thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .tabelle tr { display: grid; grid-template-columns: max-content 1fr; column-gap: 1.2rem; padding-block: 1.2rem; border-bottom: 1px solid var(--linie); }
   .tabelle tbody th { grid-column: 1 / -1; padding: 0 0 0.6rem; border: 0; }
   .tabelle td { display: contents; }
-  .tabelle td::before { content: attr(data-label); color: var(--bleistift); font-size: var(--klein); padding-block: 0.15rem; }
+  .tabelle td::before { content: attr(data-label); color: var(--bleistift); font-variant-caps: all-small-caps; letter-spacing: 0.07em; padding-block: 0.15rem; }
   .tabelle .zahl { text-align: left; }
 }
+
+.steckbrief { margin: 0; display: grid; gap: 0.9rem; max-width: 44rem; }
+.steckbrief div { display: grid; gap: 0.1rem; }
+@media (min-width: 40em) { .steckbrief div { grid-template-columns: 11rem 1fr; gap: 1rem; } }
+.steckbrief dt { color: var(--bleistift); font-variant-caps: all-small-caps; letter-spacing: 0.07em; }
+.steckbrief dd { margin: 0; }
 
 .kopierbar { display: grid; gap: 1rem; justify-items: start; }
 
 /* ---------- Über mich ---------- */
 
 .ueber-raster { display: grid; gap: 2.5rem clamp(2.5rem, 6vw, 6rem); align-items: start; }
-@media (min-width: 56em) { .ueber-raster { grid-template-columns: minmax(14rem, 22rem) minmax(0, var(--spalte)); } }
+@media (min-width: 56em) { .ueber-raster { grid-template-columns: minmax(14rem, 21rem) minmax(0, var(--spalte)); } }
 .ueber-bild { margin: 0; }
-.ueber-bild img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1); }
-.ueber-bild figcaption { margin-top: 0.6rem; font-family: var(--grotesk); font-size: var(--klein); color: var(--bleistift); }
+.ueber-bild img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) sepia(0.12); border: 1px solid var(--linie); padding: 0.5rem; background: var(--papier-2); }
+.ueber-bild figcaption { margin-top: 0.6rem; font-size: var(--klein); font-style: italic; color: var(--bleistift); }
+.lektuere { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+.lektuere li { margin: 0; }
+.lektuere strong { font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.06em; font-size: 1.1em; }
 
 /* ---------- Kontakt ---------- */
 
 .kontakt-raster { display: grid; gap: 2.5rem clamp(3rem, 8vw, 8rem); align-items: start; }
 @media (min-width: 60em) { .kontakt-raster { grid-template-columns: minmax(0, 1fr) minmax(0, 32rem); } }
 
-.formular { display: grid; gap: 1.4rem; font-family: var(--grotesk); }
-.feld { display: grid; gap: 0.4rem; }
-.feld label { font-size: var(--klein); font-weight: 600; }
+.formular { display: grid; gap: 1.4rem; }
+.feld { display: grid; gap: 0.3rem; }
+.feld label { font-size: 1.05rem; font-weight: 500; }
 .feld input, .feld textarea {
   width: 100%;
-  padding: 0.75rem 0.85rem;
-  border: 1px solid var(--linie);
-  border-bottom-color: var(--bleistift);
+  padding: 0.5rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--bleistift);
   border-radius: 0;
-  background: var(--papier-2);
+  background: transparent;
   color: var(--tinte);
   font: inherit;
-  font-size: 1rem;
+  font-size: var(--text);
   line-height: 1.5;
 }
-.feld textarea { font-family: var(--serif); font-size: var(--text); resize: vertical; min-height: 12rem; }
-.feld input:focus, .feld textarea:focus { outline: 2px solid var(--fokus); outline-offset: 0; border-color: transparent; }
-.feld [aria-invalid="true"] { border-color: #b3261e; }
-.feld-hilfe, .formular-hinweis { margin: 0; font-size: var(--klein); color: var(--bleistift); }
-.feld-fehler { margin: 0; font-size: var(--klein); color: #b3261e; }
-@media (prefers-color-scheme: dark) {
-  .feld [aria-invalid="true"] { border-color: #f2a39c; }
-  .feld-fehler { color: #f2a39c; }
-}
+.feld textarea { resize: vertical; min-height: 11rem; line-height: 1.6em; padding-top: 0.2em; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.6em - 1px), var(--linie) calc(1.6em - 1px), var(--linie) 1.6em); background-attachment: local; }
+.feld input:focus, .feld textarea:focus { outline: none; border-bottom: 2px solid var(--fokus); }
+.feld [aria-invalid="true"] { border-bottom-color: #a1281e; }
+.feld-hilfe, .formular-hinweis { margin: 0; font-size: var(--klein); color: var(--bleistift); font-style: italic; }
+.feld-fehler { margin: 0; font-size: var(--klein); color: #a1281e; }
 .feld-falle { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .formular .knopf { justify-self: start; }
-.formular-status { margin: 0; font-size: 1rem; min-height: 1.5em; }
-.formular-status[data-zustand="ok"] { font-family: var(--serif); font-size: var(--gross); }
+.formular-status { margin: 0; min-height: 1.5em; }
+.formular-status[data-zustand="ok"] { font-style: italic; font-size: var(--gross); }
 
 /* ---------- Rechtliches, Kolophon, Fehlerseite ---------- */
 
-.recht-text h2 { font-family: var(--grotesk); font-size: 1rem; font-weight: 600; color: var(--tinte); letter-spacing: 0; margin: 2.8rem 0 0.8rem; }
+.recht-text h2 { font-variant-caps: all-small-caps; letter-spacing: 0.06em; font-size: 1.15rem; font-weight: 500; margin: 2.8rem 0 0.8rem; }
 .recht-text h2:first-child { margin-top: 0; }
-.kasten { padding: 1rem 1.2rem; background: var(--papier-2); }
+.kasten { padding: 1rem 1.2rem; border: 1px solid var(--linie); outline: 1px solid var(--linie); outline-offset: 3px; }
 
 .fehlerseite { min-height: 50svh; display: grid; align-content: center; gap: 2rem; }
 
-/* ---------- Druck (Leseprobe als A5-PDF) ---------- */
-
-@page {
-  size: A5;
-  margin: 18mm 16mm 20mm;
-  @bottom-center { content: counter(page); font-family: "Literata", serif; font-size: 8.5pt; color: #5f5f5c; }
-}
-@page :first { @bottom-center { content: none; } }
+/* ---------- Druck ---------- */
 
 @media print {
-  :root { --papier: #fff; --tinte: #000; --bleistift: #444; --linie: #ccc; --text: 10.25pt; --gross: 12pt; }
-  .buch-farbe { --buch: var(--buch-hell); }
-  body { background: #fff; color: #000; }
-  .sprungmarke, .kopf, .fuss, .fortschritt, .nur-bildschirm, .leseprobe-inhalt, .leseprobe-kopf .dachzeile { display: none !important; }
-  .leseprobe { max-width: none; padding: 0; }
-  .leseprobe-kopf { min-height: 160mm; display: flex; flex-direction: column; justify-content: center; text-align: center; break-after: page; margin: 0; }
-  .druck-autorin { display: block; font-style: italic; font-size: 12pt; margin: 0 0 10mm; }
-  .leseprobe-titel { font-size: 30pt; }
-  .leseprobe-angabe { margin-top: 8mm; }
-  .leseprobe-kopf .motto { margin: 14mm auto 0; font-size: 10pt; max-width: 80%; }
-  .leseprobe-text { line-height: 1.45; }
-  .leseprobe-text p { text-align: justify; orphans: 2; widows: 2; }
-  .kapitel { break-before: page; }
-  .kapitel + .kapitel { margin-top: 0; }
-  .kapitel h2 { margin: 18mm 0 10mm; font-size: 13pt; }
-  .leseprobe-ende { break-before: page; border: 0; margin: 0; padding-top: 40mm; text-align: center; }
-  .leseprobe-ende a { text-decoration: none; }
-  .rechte { margin-top: 20mm; }
-  a { color: inherit; }
+  :root { --papier: #fff; --tinte: #000; --bleistift: #444; --linie: #bbb; }
+  body { background: #fff; }
+  .sprungmarke, .kopf, .fuss, .fortschritt, .nur-bildschirm, .zitate-steuerung { display: none !important; }
 }
+
+abbr[title] { text-decoration: none; cursor: help; }

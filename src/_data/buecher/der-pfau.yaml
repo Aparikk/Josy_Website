@@ -1,33 +1,40 @@
-# Der Pfau – Angaben für Startseite, Buchseite, Leseprobe und Werkverzeichnis.
-# Felder mit "TODO" sind Platzhalter (Vorlage _texte/website-texte.md, Abschnitt 3.2).
-# Leere Felder ("") werden auf der Seite einfach weggelassen.
+# Der Pfau – Angaben für Startseite, Buchseite, Lesen und Werkverzeichnis.
 
 slug: der-pfau
 reihenfolge: 2
 titel: Der Pfau
-# Steht so auf der Titelseite des Manuskripts. Leeren, falls es kein Untertitel sein soll.
 untertitel: Ich hasse Schach.
 gattung: Novelle
-genre: "TODO: Genre (3.2)"
+genre: Novelle
 status: abgeschlossen
+entstanden: 2022–2026
+reihe: Einzelband
+erzaehlform: Ich-Erzählerin
+ortUndZeit: Deutschland, Jetzt-Zeit
+inhaltshinweise: ""
+woerter: 26772
+normseiten: 120
 
 farbe:
   hell: "#0e5c5c"
-  dunkel: "#6cc0b8"
   akzent: "#c9a447"
 
 manuskript: der-pfau.epub
-leseprobe:
-  kapitel: 4
+lesen:
+  umfang: vollstaendig
+  kapitel: alle
+dateien:
+  epub: der-pfau.epub
+  pdf: der-pfau.pdf
 
 ersterSatz: ""
-normseiten: null
 
-logline: "TODO: Logline, ein Satz, höchstens 30 Wörter (3.2)"
+logline: "Nia hält nichts von Ewigkeit, aber zu Eva. Als Trauzeugin verteidigt sie deren Polterabend, einen Maskenball, gegen die Jugendpassion Schach. Trunken von Erinnerung, trifft Nia ihren Meister, der ihr Innerstes ausliest – bis das Fähnchen fällt."
 klappentext: |
-  TODO: Klappentext, 120 bis 200 Wörter, ohne das Ende zu verraten (3.2)
+  Nia hält Evas Hochzeit für einen Fehler. Als Trauzeugin unterstützt sie sie dennoch auf dem opulenten Maskenball, Evas Version eines Polterabends. Sie trägt auch die für sie vorgesehene Ehrenmaske, in der sie aussieht wie ein Pfau. Ansonsten gibt Eva ihr nur einen Auftrag: Schach, integraler Teil der gemeinsamen Jugend, ist in jeder Form zu unterbinden. Zu schnell wird ein Ball zum Turnier. Die Kein-Schach-Politik kommt Nia entgegen. Schach ist die unverfälschbarste Metrik des persönlichen Entwicklungsstands. Wer aber wächst, der wächst irgendwann aus allem heraus, aus jeder liebgewonnenen Illusion und aus jeder Beziehung. Nia hasst Schach. Dies sagt sie auch der Weißen Dame, die sie in der Bibliothek trifft. Von da an läuft nichts mehr nach Plan. Noch vor dem großen Poltern schwimmt in Nias Sektglas ein Verlobungsring und sie bricht ihren Schwur, nie wieder zu spielen. Gestrandet an einer trockenen Hausbar, trinkt sie Wasser aus der Kaffeetasse eines Fremden mit schwarzer Maske – ein Mann, der dieselben Bücher liest wie sie, ihre Gedanken vor ihr zu Ende denkt und sie zwingt, sich einzugestehen, dass sie bis gerade eben unzumutbar, existenziell, untröstlich einsam war. Es ist Geisterstunde. Zusammen mit den anderen Toten erhebt sich die Hoffnung.
+lieblingsstelle: |
+  Sein Blick war aufs Brett geheftet, die einzige Realität, eine dunkle Locke fiel ihm dabei in die Stirn, wie um ihn abzuschirmen, und nichts an seiner Distanziertheit war unbeholfen oder gar schüchtern, dafür waren seine Gesten zu unverschämt, das samten-dumpfe Klacken seiner Figuren beim Aufsetzen zu laut. Der erste Schaulustige an unserem Tisch muss Vladi gewesen sein, denn er krallte ihm die Hand in die Schulter, und das hätte sonst niemand getan. Es war, als wolle er ihn massieren oder ihm den nächsten Zug morsen. Das einzige, was ich zu dem Zeitpunkt über den schlaksigen, bebrillten Zuschauer registrierte, war, dass er unseren Zweitbesten besiegt hatte, ein Lehrersöhnchen aus meiner Parallelklasse. Die Hand lag nicht lange auf der Schulter, denn mein enigmatischer Gegner, dessen jede Geste ich inzwischen mit mehr als nur strategischer Aufmerksamkeit verfolgte, zischte böse auf und wedelte sie weg, so wie man Vögel verscheucht. Dabei löste er die Augen weiterhin nicht vom Brett. Irgendetwas maß er dort, irgendetwas probierte er aus, hebelte, formte, sortierte, justierte, befehligte er, und es hatte etwas Majestätisches. Von einem Moment auf den nächsten ergriff mich der Drang, zu sehen, was er sah, gefolgt von der entsetzlichen Erkenntnis, dass das absolut unmöglich war. Zum ersten Mal im Leben überraschte mich die Ur-Frustration, die aus dem Nebel des kollektiven Unbewussten hochschnellt wie ein Seeungeheuer, wenn wir uns einen Zentimeter zu weit über die Reling beugen.
 warum: ""
-vergleichstitel: ""
-erzaehlform: ""
-ortUndZeit: ""
-inhaltshinweise: ""
+vergleichstitel: |
+  - Arthur Schnitzler: *Traumnovelle*
+  - Charles Dickens: *Große Erwartungen*

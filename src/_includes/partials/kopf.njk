@@ -1,17 +1,19 @@
 <header class="kopf">
-  <div class="kopf-marke">
-    {%- if startseite %}
-    <h1 class="kopf-name"><a href="/" aria-current="page">{{ site.name }}</a></h1>
-    {%- else %}
-    <p class="kopf-name"><a href="/">{{ site.name }}</a></p>
-    {%- endif %}
-    <p class="kopf-zeile">{{ site.unterzeile }}</p>
+  <div class="kopf-innen">
+    <div class="kopf-marke">
+      {%- if startseite %}
+      <h1 class="kopf-name"><a href="/" aria-current="page">{{ site.name }}</a></h1>
+      {%- else %}
+      <p class="kopf-name"><a href="/">{{ site.name }}</a></p>
+      {%- endif %}
+      <p class="kopf-zeile">{{ site.motto }} · {{ site.leitsatz }}</p>
+    </div>
+    <nav class="kopf-nav" aria-label="Hauptnavigation">
+      <ul>
+        {%- for punkt in navigation %}
+        <li><a href="{{ punkt.url }}"{% if page.url == punkt.url %} aria-current="page"{% elif page.url.startsWith(punkt.url) %} class="aktiv"{% endif %}>{{ punkt.titel }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
   </div>
-  <nav class="kopf-nav" aria-label="Hauptnavigation">
-    <ul>
-      {%- for punkt in navigation %}
-      <li><a href="{{ punkt.url }}"{% if page.url == punkt.url %} aria-current="page"{% elif page.url.startsWith(punkt.url) %} class="aktiv"{% endif %}>{{ punkt.titel }}</a></li>
-      {%- endfor %}
-    </ul>
-  </nav>
 </header>

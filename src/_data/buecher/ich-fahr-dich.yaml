@@ -1,37 +1,40 @@
-# Ich fahr dich. – Angaben für Startseite, Buchseite, Leseprobe und Werkverzeichnis.
-# Felder mit "TODO" sind Platzhalter (Vorlage _texte/website-texte.md, Abschnitt 3.1).
-# Leere Felder ("") werden auf der Seite einfach weggelassen.
+# Ich fahr dich. – Angaben für Startseite, Buchseite, Lesen und Werkverzeichnis.
 
 slug: ich-fahr-dich
-reihenfolge: 1
+reihenfolge: 3
 titel: Ich fahr dich.
 untertitel: ""
 gattung: Roman
-genre: "TODO: Genre, z. B. Gegenwartsliteratur"
+genre: Literarischer Roman
 status: abgeschlossen
+entstanden: "2022"
+reihe: Band 1 von 2
+erzaehlform: Ich-Erzähler
+ortUndZeit: Gegenwart, Norddeutschland
+inhaltshinweise: sexuelle Gewalt
+woerter: 81381
+normseiten: 368
 
-# Farbe des Buchs: hell = auf Papier und Titelblatt, dunkel = Textfarbe im Dunkelmodus, akzent = Strich im Titelblatt
 farbe:
   hell: "#1d3b57"
-  dunkel: "#8db4da"
   akzent: "#c9852f"
 
-# Vollständiges Manuskript in manuskripte/ (wird nie veröffentlicht, nur ausgelesen)
 manuskript: ich-fahr-dich.epub
-leseprobe:
-  kapitel: 4
+lesen:
+  umfang: leseprobe
+  kapitel: 3
+dateien:
+  epub: ich-fahr-dich-leseprobe.epub
+  pdf: ich-fahr-dich-leseprobe.pdf
 
-# Leer lassen = der echte erste Satz aus dem Manuskript steht auf der Startseite
 ersterSatz: ""
 
-# Normseiten aus Papyrus. Leer = Schätzung aus der Zeichenzahl
-normseiten: null
-
-logline: "TODO: Logline, ein Satz, höchstens 30 Wörter (3.1)"
+logline: "Staatsanwalt Richard holt die Tochter seines alten Mentors vom Flughafen ab. Überfordert von ihrer plötzlichen Fraulichkeit, verliert er sie kurzzeitig und überlässt sie demselben Serientäter, dessentwegen ihr Vater überhaupt angereist ist. Richard verspricht ihr, zu schweigen."
 klappentext: |
-  TODO: Klappentext, 120 bis 200 Wörter, ohne das Ende zu verraten (3.1)
-warum: ""
-vergleichstitel: ""
-erzaehlform: ""
-ortUndZeit: ""
-inhaltshinweise: ""
+  Diesen einen Vergewaltiger dran zu bekommen, ist karriereentscheidend, so viel ist Staatsanwalt Richard Horvath klar. Wenn ihm dabei irgendjemand eine Hilfe sein wird, dann sein Mentor aus Referendariatszeiten, der berühmte Oberstaatsanwalt Bernd Grund. Der kommt, Richard zuliebe, sogar persönlich, und er bringt seine Töchter mit. Auf das Wiedersehen hat Richard sich gewissenhaft vorbereitet. Dummerweise hat er dabei nicht bedacht, wie die vergangenen zehn Geburtstage, zu denen er der kleinen Mara stets eine Glückwunschkarte schickte, ihre Erscheinung verändert haben. So erwischt es ihn in der Flughafenhalle eiskalt, als diese distanzgebietend anmutige Fremde ihn mit unerhörter Vertraulichkeit begrüßt. Wer unter Schock steht, der scheitert mitunter an den simpelsten Aufgaben. Er hätte sie durch diese Stadt, deren Fahrradkeller ihm aus den Ermittlungsakten so wohlbekannt sind, einfach nur heil nach Hause manövrieren müssen. Er hätte sie nur fahren müssen.
+lieblingsstelle: |
+  Im Feierabendverkehr trieben wir dahin. Mara beugte sich vor und drehte sich zur Seite, schaute aus verengten Augen in den bunt erleuchteten Regen, als teile er ihr irgendetwas Wichtiges mit. Ihr Fuß wippte sachte im Takt, auf unerklärliche, widersinnige, wundersame Weise unbeschwert. Der Umschlag tanzte wie vergessen auf ihrem Schoß. Als ginge das. Als könnte man wirklich – und man musste ja schließlich, konnte gar nicht anders – aber nein, ich durfte nicht, wenngleich ich uns beiden nichts sehnlicher wünschte – aber sie, aber wie, wie konnte man sowas je: vergessen.
+warum: "Die erste Szene dieses Romans habe ich in leicht abgewandelter Form geträumt."
+vergleichstitel: |
+  - Juli Zeh: *Corpus Delicti*
+  - Ödön von Horváth: *Jugend ohne Gott*

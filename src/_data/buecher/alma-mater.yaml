@@ -1,0 +1,45 @@
+# Alma Mater – Angaben für Startseite, Buchseite, Lesen und Werkverzeichnis.
+# Felder mit "TODO" sind Platzhalter. Leere Felder ("") werden auf der Seite weggelassen.
+
+slug: alma-mater
+reihenfolge: 1
+titel: Alma Mater
+untertitel: Kammerspiel in fünf mal drei Akten
+gattung: Roman
+genre: Literarischer Roman
+status: abgeschlossen
+entstanden: 2022–2026
+reihe: Einzelband
+erzaehlform: wechselnde Ich-Erzähler (Rashomon-Prinzip)
+ortUndZeit: irgendwann an einer deutschen Universität
+inhaltshinweise: ""
+woerter: 54806
+normseiten: 238
+
+farbe:
+  hell: "#6b1b2b"
+  akzent: "#d6b26a"
+
+# Quelle für den Text im Browser, den ersten Satz und die Kennzahlen (in manuskripte/, nie veröffentlicht)
+manuskript: alma-mater-leseprobe.epub
+lesen:
+  umfang: leseprobe
+  kapitel: alle
+  angabe: Prolog und Kapitel 1–4
+# Downloads aus manuskripte/. Leer = wird erzeugt.
+dateien:
+  epub: alma-mater-leseprobe.epub
+  pdf: ""
+
+ersterSatz: "In einer Universitätsstadt, die nicht benannt zu werden wünscht, trafen sich zwei Wissenschaftler vor ihrem Institut. Er war vor ihr dort."
+
+logline: "Die Alte Sternwarte feiert einen neuen Doktor: Wenn Beinahe-Geliebte, schwangere Ehefrau, Doktorvater, plagiierte Kollegin, Ghostwriter und institutsinterne Übergriffigkeitsbeauftragte sich zusammen betrinken, ist wahrscheinlich am Ende einer tot."
+klappentext: |
+  Die Alte Sternwarte feiert einen neuen Doktor. Dass er das nicht allein geschafft haben kann, ist unausgesprochenes Allgemeinwissen. Sogar Vera, beim Protokollieren noch in romantischer Trance, dämmert dies endlich, als sie dem titellosen Janus begegnet, der verdächtiger-, aber vor allem bezaubernderweise spricht wie sein Bruder schreibt. Derweil spukt durchs Gemäuer ein handfester Plagiatsvorwurf, in Person von Veras bester Freundin Erin. Bei Professor Pelargus stößt diese auf taube Ohren, und das, obwohl er Erin für einen Doktorvater ungewöhnlich nahe steht. Dies weiß nun wirklich niemand, am allerwenigsten die Vertrauensperson Dr. Quamvis. Die ist heute sowieso mit einem größeren Rätsel beschäftigt: Was ist die Wirklichkeit? Konkreter: Ist sie es wirklich, ihre im dritten Semester abgetauchte Studienfreundin, die da schwanger am Arm des Gefeierten hängt? An diesem Abend fährt ein Rettungswagen im Hof der Alten Sternwarte vor. Fünf Menschen bezeugen eine unheilvolle Feier – aber doch nicht ganz dieselbe.
+lieblingsstelle: |
+  Menschliche Körper würden weniger elegant fliegen. Und doch ist die Brüstung nur hüfthoch, als wäre genau das der geheime Zweck dieses Turms. Wie viele wissenschaftliche Dispute wohl derart geregelt wurden? Ich blättere zum Anhang A und reiße dessen erste Seite – das Titelblatt des Manuskripts – aus dem Einband, dann in 2 Hälften, sodass der Riss Lorens Namen von meinem sauber trennt. Dann in Viertel, Achtel, werfe die Fetzen in den trudelnden Schnee. Konfetti. (Kopernikus oder Aristoteles?) Als Nächstes nehme ich 3 Seiten auf einmal. (Aderlass oder Quecksilber? Anima motrix oder gravitas?) Reißendes Papier in 42 m Höhe, inmitten der verschneiten Stille, kurzärmlig bei 6° Celsius, das ist thanatotische Lebendigkeit. (Betriebsausflug nach Stellaburgi oder zur Frankfurter Buchmesse? Und verehrte collegae, wenn wir wegen Weber weiter zaudern, kommt uns die Lipsiensis zuvor. Sehr richtig, collega, aber treten Sie doch bitte mal einen Schritt zurück.) Luis segelt vor meinem inneren Auge in die weißgraue Tiefe, dann Loren, dessen Diss-Konfetti ihn sanft umwölkt. Ulli, verzweifelt versucht, ihn zu retten, folgt, wie die Motte dem Licht, verblendet bis zum Ende. Und nichts wird aus ihr. Quod erat demonstrandum. … In dieser einen Sache hat Ulli Recht behalten: Es ist unerträglich, es immer besser zu wissen. Wenn alles bewiesen ist, was zu beweisen war, was machst du dann? Nichts? Und mehrere Sekunden lang hält sich der Impuls, über die Brüstung zu klettern. Der Backstein knistert unter meiner Handfläche.
+
+  Doch dann treiben die Schneeflocken einen Lärm an, der die Idylle zerreißt und die Endzeit vertagt. Ein Geschrei, hektisch, dissonant, bald schon mehrstimmig. Ich schließe die Augen und atme den eisigen Nordwestwind ein. Jetzt haben sie’s geschafft. Jetzt haben sie einen umgebracht. Ich frage mich, um wen es schade wäre. Mir fällt keiner ein. Einen Unschuldigen werden sie jedenfalls nicht gefunden haben. So stehe ich noch an die 10 sec da, lasse die Kälte einwirken. Als sich die Augen wieder öffnen, tanzt der Schnee im Blaulicht, die Trage huscht leer zum Haupteingang hinein, kriecht nach ein paar Minuten beladen wieder hinaus. Ich möchte die Augen wieder schließen, aber diesmal kann ich nicht. Es ist ein Bild des Niederganges, geradezu ekelerregend, und doch fesselt es mich an die Brüstung. Was ist aus uns geworden? Getötet haben wir immer, aber früher töteten wir für die Wahrheit.
+warum: "*Alma Mater* basiert auf meinen persönlichen Erfahrungen mit Universitäten und meiner Beziehung zur Wissenschaft. Es ist um meine Disputation herum erschienen."
+vergleichstitel: |
+  - Donna Tartt: *Die geheime Geschichte*

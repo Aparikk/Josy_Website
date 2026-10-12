@@ -1,7 +1,7 @@
 ---
 layout: layouts/basis.njk
 titel: Bücher
-beschreibung: "Alle Romane und Novellen von Josie H Matchèque mit Umfang, Status und Leseproben."
+beschreibung: "Alle Romane und Novellen von Josie H. Matchèque mit Umfang, Status und Leseproben."
 ---
 {%- from "partials/buch.njk" import titelblatt, umfang, farbe -%}
 {%- set liste = buecher | buchliste(manuskripte) -%}
@@ -16,12 +16,12 @@ beschreibung: "Alle Romane und Novellen von Josie H Matchèque mit Umfang, Statu
       <div class="werk-text">
         <h2 class="werk-titel"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a></h2>
         {%- if buch.untertitel %}<p class="werk-untertitel">{{ buch.untertitel }}</p>{% endif %}
-        <p class="werk-angaben">{{ buch.gattung }}{% if buch.woerterZahl %} · {{ umfang(buch) }}{% endif %} · {{ buch.status }}</p>
+        <p class="werk-angaben">{{ buch.gattung }}{% if buch.entstanden %} · {{ buch.entstanden }}{% endif %}{% if buch.woerterZahl %} · {{ umfang(buch) }}{% endif %}</p>
         <p class="werk-logline">{{ buch.logline }}</p>
         <ul class="werk-links">
           <li><a href="/buecher/{{ buch.slug }}/">Zum Buch <span aria-hidden="true">→</span></a></li>
-          {%- if buch.hatLeseprobe %}
-          <li><a href="/buecher/{{ buch.slug }}/leseprobe/">Leseprobe lesen <span aria-hidden="true">→</span></a></li>
+          {%- if buch.hatText %}
+          <li><a href="/buecher/{{ buch.slug }}/leseprobe/">{{ buch.lesenLink }} <span aria-hidden="true">→</span></a></li>
           {%- endif %}
         </ul>
       </div>

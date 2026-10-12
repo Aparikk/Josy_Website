@@ -7,12 +7,14 @@
   ogTyp: "book",
   eleventyComputed: {
     titel: (data) => data.buchDaten.titel,
+    beschreibung: (data) => data.buchDaten.logline,
     ogBild: (data) => `/assets/og/${data.buchDaten.slug}.png`,
   },
 }
 ---
-{%- from "partials/buch.njk" import titelblatt, downloads, farbe, umfang -%}
-{%- set buch = buecher | buchliste(manuskripte) | findeBuch(buchDaten.slug) -%}
+{%- from "partials/buch.njk" import titelblatt, downloads, farbe, zitate as zitatGalerie -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
+{%- set buch = liste | findeBuch(buchDaten.slug) -%}
 {%- set m = buch.manuskriptDaten -%}
 <article class="buch buch-farbe" style="{{ farbe(buch) }}">
   <header class="buch-kopf">
@@ -25,8 +27,8 @@
       {%- endif %}
       <p class="buch-logline">{{ buch.logline }}</p>
       <div class="buch-aktionen">
-        {%- if buch.hatLeseprobe %}
-        <a class="knopf" href="leseprobe/">Leseprobe lesen</a>
+        {%- if buch.hatText %}
+        <a class="knopf" href="leseprobe/">{{ buch.lesenLink }}</a>
         {%- endif %}
         {{ downloads(buch) }}
       </div>
@@ -45,10 +47,17 @@
       </section>
 
       {%- if m.ersterAbsatz %}
-      <section class="anfang" aria-labelledby="anfang">
+      <section aria-labelledby="anfang">
         <h2 id="anfang" class="abschnitt-titel">So beginnt es</h2>
-        <blockquote class="anfang-text"><p>{{ m.ersterAbsatz | safe }}</p></blockquote>
-        <p><a class="pfeil-link" href="leseprobe/">Weiterlesen in der Leseprobe <span aria-hidden="true">→</span></a></p>
+        <blockquote class="auszug"><p>{{ m.ersterAbsatz | safe }}</p></blockquote>
+        <p><a class="pfeil-link" href="leseprobe/">Weiterlesen <span aria-hidden="true">→</span></a></p>
+      </section>
+      {%- endif %}
+
+      {%- if buch.lieblingsstelle %}
+      <section aria-labelledby="lieblingsstelle">
+        <h2 id="lieblingsstelle" class="abschnitt-titel">Lieblingsstelle der Autorin</h2>
+        <blockquote class="auszug">{{ buch.lieblingsstelle | md | safe }}</blockquote>
       </section>
       {%- endif %}
 
@@ -58,6 +67,8 @@
         <div class="fliesstext">{{ buch.warum | md | safe }}</div>
       </section>
       {%- endif %}
+
+      {{ zitatGalerie(zitate | zitateFuer(buch.slug), liste, "Sätze aus dem Buch", false) }}
 
       {%- if buch.vergleichstitel %}
       <section aria-labelledby="vergleich">
@@ -70,13 +81,15 @@
     <aside class="buch-fakten" aria-labelledby="fakten">
       <h2 id="fakten" class="fakten-titel">Angaben</h2>
       <dl>
-        <div><dt>Gattung</dt><dd>{{ buch.gattung }}</dd></div>
-        <div><dt>Genre</dt><dd>{{ buch.genre }}</dd></div>
+        <div><dt>Gattung</dt><dd>{{ buch.genre or buch.gattung }}</dd></div>
         {%- if buch.woerterZahl %}
         <div><dt>Umfang</dt><dd>{{ buch.woerterZahl | zahl }} Wörter{% if buch.normseitenZahl %}<br>{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }} Normseiten{% endif %}</dd></div>
         {%- endif %}
-        {%- if m.kapitelAnzahl %}
-        <div><dt>Kapitel</dt><dd>{{ m.kapitelAnzahl }}</dd></div>
+        {%- if buch.entstanden %}
+        <div><dt>Entstanden</dt><dd>{{ buch.entstanden }}</dd></div>
+        {%- endif %}
+        {%- if buch.reihe %}
+        <div><dt>Reihe</dt><dd>{{ buch.reihe }}</dd></div>
         {%- endif %}
         {%- if buch.erzaehlform %}
         <div><dt>Erzählform</dt><dd>{{ buch.erzaehlform }}</dd></div>
@@ -85,27 +98,30 @@
         <div><dt>Ort und Zeit</dt><dd>{{ buch.ortUndZeit }}</dd></div>
         {%- endif %}
         <div><dt>Status</dt><dd>{{ buch.status }}</dd></div>
-        <div><dt>Sprache</dt><dd>Deutsch</dd></div>
-        {%- if buch.hatLeseprobe %}
-        <div><dt>Leseprobe</dt><dd>{{ m.leseprobe.kapitel | length }} von {{ m.kapitelAnzahl }} Kapiteln, ≈ {{ m.leseprobe.normseiten }} Normseiten</dd></div>
+        {%- if buch.hatText %}
+        <div><dt>{{ "Online" if buch.vollstaendig else "Leseprobe" }}</dt><dd>{{ buch.lesenAngabe }}</dd></div>
         {%- endif %}
         {%- if buch.inhaltshinweise %}
-        <div><dt>Inhaltshinweise</dt><dd>{{ buch.inhaltshinweise }}</dd></div>
+        <div><dt>Inhaltshinweis</dt><dd>{{ buch.inhaltshinweise }}</dd></div>
         {%- endif %}
       </dl>
+      {%- if not buch.vollstaendig %}
       <p class="fakten-anfrage">Exposé und vollständiges Manuskript auf Anfrage. <a href="/agenturen/">Für Agenturen und Verlage</a></p>
+      {%- endif %}
     </aside>
   </div>
 </article>
 
+<script src="/assets/js/zitate.js" defer></script>
 <script type="application/ld+json">
 {{ {
   "@context": "https://schema.org",
   "@type": "Book",
   "name": buch.titel,
   "alternativeHeadline": buch.untertitel or undefined,
-  "genre": buch.gattung,
+  "genre": buch.genre or buch.gattung,
   "inLanguage": "de",
+  "description": buch.logline,
   "url": page.url | absolut(site.url),
   "image": ("/assets/og/" ~ buch.slug ~ ".png") | absolut(site.url),
   "wordCount": buch.woerterZahl or undefined,

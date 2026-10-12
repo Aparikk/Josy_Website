@@ -1,0 +1,31 @@
+---
+layout: layouts/basis.njk
+titel: Über mich
+beschreibung: "Über Josie H. Matchèque: Kurzvita und was sie liest."
+---
+<div class="seite ueber">
+  <header class="seiten-kopf">
+    <h1 class="seiten-titel">Über mich</h1>
+  </header>
+  <div class="ueber-raster">
+    <figure class="ueber-bild">
+      <img src="/assets/img/portrait-hoch.jpg" alt="Porträt von {{ site.name }}" sizes="(min-width: 56em) 21rem, 90vw" loading="eager" fetchpriority="high">
+      {%- if site.fotografie %}
+      <figcaption>Foto: {{ site.fotografie }}</figcaption>
+      {%- endif %}
+    </figure>
+    <div class="fliesstext ueber-text">
+      {{ site.kurzvita | md | safe }}
+
+      <h2>Was ich lese</h2>
+      <ul class="lektuere">
+        {%- for l in site.lektuere %}
+        <li><strong>{{ l.autor }}</strong>: {{ l.warum }}</li>
+        {%- endfor %}
+      </ul>
+
+      <h2>Worüber ich schreibe</h2>
+      <p>{{ site.themen }}.</p>
+    </div>
+  </div>
+</div>

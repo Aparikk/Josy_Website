@@ -12,7 +12,8 @@ const istTodo = (wert) => typeof wert === "string" && wert.trim().startsWith("TO
 export default function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (inhalt) => yaml.load(inhalt));
 
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts/*.woff2": "assets/fonts" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts/*.txt": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
   eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
@@ -41,6 +42,11 @@ export default function (eleventyConfig) {
       .sort((a, b) => a.reihenfolge - b.reihenfolge)
       .map((b) => {
         const m = manuskripte[b.slug] || {};
+        const vollstaendig = b.lesen?.umfang === "vollstaendig";
+        const kapitel = m.leseprobe?.kapitel?.length || 0;
+        const angabe =
+          b.lesen?.angabe ||
+          (vollstaendig ? "Vollständiger Text" : kapitel ? `Kapitel 1–${kapitel} von ${m.kapitelAnzahl}` : "");
         return {
           ...b,
           manuskriptDaten: m,
@@ -48,11 +54,17 @@ export default function (eleventyConfig) {
           woerterZahl: b.woerter ?? m.woerter ?? null,
           normseitenZahl: b.normseiten ?? m.normseitenGeschaetzt ?? null,
           normseitenGeschaetzt: !b.normseiten && !!m.normseitenGeschaetzt,
-          hatLeseprobe: !!m.leseprobe,
+          hatText: !!m.leseprobe,
+          vollstaendig,
+          lesenAngabe: angabe,
+          lesenLink: vollstaendig ? "Online lesen" : "Leseprobe lesen",
+          dateiBasis: vollstaendig ? b.slug : `${b.slug}-leseprobe`,
           motto: m.motto || [],
         };
       })
   );
+
+  eleventyConfig.addFilter("zitateFuer", (zitate, slug) => (slug ? zitate.filter((z) => z.buch === slug) : zitate));
 
   eleventyConfig.addFilter("findeBuch", (liste, slug) => liste.find((b) => b.slug === slug));
   eleventyConfig.addFilter("zahl", (n) => (n == null ? "" : zahl.format(n)));

@@ -1,21 +1,41 @@
 # Allgemeine Angaben für die ganze Website.
 # Alles, was mit "TODO" beginnt, ist ein Platzhalter. `npm run todo` listet alle offenen Stellen.
-# Die Abschnittsnummern verweisen auf _texte/website-texte.md.
 
-# Name, wie er überall erscheint (Abschnitt 0: mit oder ohne Punkt nach dem H?)
-name: Josie H Matchèque
+name: Josie H. Matchèque
 
-# Kleine Zeile unter dem Namen im Kopf der Seite
-unterzeile: Romane und Novellen
+# Motto: Quod erat scribendum
+motto: Q.E.S.
+leitsatz: Was geschrieben werden muss
 
-# Ein Satz für Google und Link-Vorschauen, höchstens 155 Zeichen (Abschnitte 1 und 8)
-beschreibung: "TODO: Ein-Satz-Beschreibung für Google und Link-Vorschauen (Abschnitte 1 und 8)"
+# Für Google und Link-Vorschauen, höchstens 155 Zeichen
+beschreibung: "Josie H. Matchèque: Romane und Novellen. Q.E.S. – Was geschrieben werden muss."
 
-# Stand der Agentursuche, erscheint auf der Startseite und bei „Für Agenturen“ (Abschnitt 5)
-status: "TODO: Status, z. B. ob du gerade eine Literaturagentur suchst (Abschnitt 5)"
+# Startseite
+einleitung: |
+  Schreiben ist ein einsames Unterfangen. Auf diesen Seiten teile ich meine Romane und Erzählungen mit der Welt, auf dass sie für andere Ähnliches oder auch ganz Anderes bedeuten mögen, als für mich.
+neuigkeit: "Stolz verkünde ich, dass mein Roman [„Alma Mater“](/buecher/alma-mater/) vollendet ist und nach einer Agentur sucht."
+
+# Kurzvita in der 3. Person
+kurzvita: "Josie H. Matchèque wuchs in Hamburg auf. Sie studierte Psychologie in Luxemburg, Hamburg und Greifswald und wurde 2024 promoviert. Sie schreibt seit 2019 Romane und lebt in Hannover."
+
+# Für Agenturen und Verlage
+status: "Ich suche derzeit eine Literaturagentur und biete meine Manuskripte auch direkt Verlagen an."
+angeboten: [ich-fahr-dich, alma-mater]
+themen: Existenzielle Krisen, intelligente Protagonisten, Loyalität und Integrität
+stil: Zwanzigstes-Jahrhundert-Stil
+vergleichbar: Donna Tartt, Juli Zeh
+
+# Was ich lese (Über mich)
+lektuere:
+  - autor: F. Scott Fitzgerald
+    warum: "Er schafft es, das Scheitern so zu beschreiben, dass man es nachmachen will, korrigiere: muss."
+  - autor: Thomas Mann
+    warum: "Da sieht man erst, was man an der deutschen Sprache hat."
+  - autor: Vladimir Nabokov
+    warum: "Der kann einem wirklich alles erzählen."
 
 url: https://matcheque.de
-email: kontakt@matcheque.de
+email: Josie.h.matcheque@e.mail.de
 
 # Formspree-Formular für die Kontaktseite
 formspree: xljrwelg
@@ -23,14 +43,11 @@ formspree: xljrwelg
 # GoatCounter-Code (z. B. "matcheque"), sobald ein Konto existiert. Leer = keine Zählung.
 goatcounter: ""
 
-# Dürfen Presse und Agenturen das Porträt herunterladen? (Abschnitt 4)
+# Dürfen Presse und Agenturen das Porträt herunterladen?
 pressefotos: false
 
-# Bildnachweis für das Porträt (Abschnitt 4)
-fotografie: "TODO: Name der Fotografin oder des Fotografen (Abschnitt 4)"
+# Bildnachweis für das Porträt. Leer = kein Nachweis.
+fotografie: ""
 
-# Kurzvita in der 3. Person, 40 bis 60 Wörter. Steht auf Startseite, „Über mich“ und „Für Agenturen“ (Abschnitt 4)
-kurzvita: "TODO: Kurzvita in der 3. Person, 40 bis 60 Wörter (Abschnitt 4)"
-
-# Satz am Ende jeder Leseprobe (Abschnitt 8)
-nachDerLeseprobe: "Wie hat dir der Anfang gefallen? [Schreib mir.](/kontakt/)"
+# Satz am Ende jeder Leseprobe und in den heruntergeladenen Dateien
+nachDerLeseprobe: "Viel Spaß damit! Neuigkeiten zu diesem und meinen anderen Werken finden Sie hier auf matcheque.de."

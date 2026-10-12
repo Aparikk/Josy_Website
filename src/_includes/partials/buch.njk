@@ -1,7 +1,7 @@
-{#- Bausteine rund um ein Buch: Titelblatt, Farbe, Downloads, Kennzahlen. -#}
+{#- Bausteine rund um ein Buch: Titelblatt, Farbe, Downloads, Zitate. -#}
 
 {% macro farbe(buch) -%}
---buch-hell: {{ buch.farbe.hell }}; --buch-dunkel: {{ buch.farbe.dunkel }}; --buch-akzent: {{ buch.farbe.akzent }}
+--buch-hell: {{ buch.farbe.hell }}; --buch-akzent: {{ buch.farbe.akzent }}
 {%- endmacro %}
 
 {% macro titelblatt(buch, name, klasse = "") %}
@@ -21,16 +21,43 @@
 {%- endmacro %}
 
 {% macro downloads(buch) %}
-{%- set epub = "/downloads/" ~ buch.slug ~ "-leseprobe.epub" -%}
-{%- set pdf = "/downloads/" ~ buch.slug ~ "-leseprobe.pdf" -%}
+{%- set epub = "/downloads/" ~ buch.dateiBasis ~ ".epub" -%}
+{%- set pdf = "/downloads/" ~ buch.dateiBasis ~ ".pdf" -%}
+{%- set was = "Buch" if buch.vollstaendig else "Leseprobe" -%}
 {%- if (epub | existiert) or (pdf | existiert) %}
-<ul class="downloads" aria-label="Leseprobe herunterladen">
+<ul class="downloads" aria-label="{{ was }} herunterladen">
   {%- if epub | existiert %}
-  <li><a href="{{ epub }}" download data-goatcounter-click="download-{{ buch.slug }}-epub"><span class="downloads-format">EPUB</span> <span class="downloads-info">für E-Reader und Handy · {{ epub | dateigroesse }}</span></a></li>
+  <li><a href="{{ epub }}" download data-goatcounter-click="download-{{ buch.dateiBasis }}-epub"><span class="downloads-format">{{ was }} als EPUB</span> <span class="downloads-info">für E-Reader und Handy · {{ epub | dateigroesse }}</span></a></li>
   {%- endif %}
   {%- if pdf | existiert %}
-  <li><a href="{{ pdf }}" download data-goatcounter-click="download-{{ buch.slug }}-pdf"><span class="downloads-format">PDF</span> <span class="downloads-info">zum Drucken und für Tablets · {{ pdf | dateigroesse }}</span></a></li>
+  <li><a href="{{ pdf }}" download data-goatcounter-click="download-{{ buch.dateiBasis }}-pdf"><span class="downloads-format">{{ was }} als PDF</span> <span class="downloads-info">zum Drucken und für Tablets · {{ pdf | dateigroesse }}</span></a></li>
   {%- endif %}
 </ul>
+{%- endif %}
+{% endmacro %}
+
+{#- Wechselnde Zitate. liste: Zitate, buecher: angereicherte Buchliste, titel: Überschrift -#}
+{% macro zitate(liste, buecher, titel, mitBuch = true) %}
+{%- if liste.length %}
+<section class="zitate" aria-labelledby="zitate-titel" data-zitate>
+  <h2 id="zitate-titel" class="abschnitt-titel">{{ titel }}</h2>
+  <ul class="zitate-liste">
+    {%- for z in liste %}
+    {%- set b = buecher | findeBuch(z.buch) %}
+    <li class="buch-farbe" style="{{ farbe(b) }}">
+      <blockquote class="zitat">
+        <p>„{{ z.text }}“</p>
+      </blockquote>
+      <span class="zitat-quelle">{% if z.wer %}{{ z.wer }}{% if mitBuch %} in {% endif %}{% endif %}{% if mitBuch %}<a href="/buecher/{{ b.slug }}/"><cite>{{ b.titel }}</cite></a>{% endif %}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+  <div class="zitate-steuerung">
+    <button type="button" data-zurueck aria-label="Vorheriges Zitat">‹ zurück</button>
+    <span class="zitate-zaehler" aria-live="polite"></span>
+    <button type="button" data-weiter aria-label="Nächstes Zitat">weiter ›</button>
+    <button type="button" data-pause aria-pressed="false">anhalten</button>
+  </div>
+</section>
 {%- endif %}
 {% endmacro %}

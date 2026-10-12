@@ -12,13 +12,25 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 
 - 9 Oct 2026: Direction **C · Erster Satz** chosen. All other recommendations from the proposal adopted.
 - 9 Oct 2026: New site built. It runs locally with `npm start`. Every text Josie still has to write shows up as a yellow placeholder.
-- 12 Oct 2026: **Live on https://matcheque.de** as a test run, placeholders included. Pages now deploys through GitHub Actions on every push to `main`.
+- 12 Oct 2026: **Live on https://matcheque.de** as a test run. Pages deploys through GitHub Actions on every push to `main`.
+- 12 Oct 2026: Josie’s texts, files and new portrait are in. Paper redesign (“schrullig, verkopft, altmodisch”), *Alma Mater* replaces *Diamanten*, rotating quote gallery, “Sie” everywhere. No placeholders left.
 - The old Bootstrap prototype stays in git history (last commit `371b59a`).
 
 ## Decisions
 
-| Decision | Status | Value |
-|---|---|---|
+| Decision | Value |
+|---|---|
+| Design direction | C · Erster Satz, on warm paper: one typeface (Literata) with small caps, italics, ornaments and double rules |
+| Stack | Eleventy 3, texts in YAML/Markdown, GitHub Actions → GitHub Pages, domain and Cloudflare unchanged |
+| Books, newest first | *Alma Mater* (sample: prologue and chapters 1–4), *Der Pfau* (complete, free), *Ich fahr dich.* (sample: chapters 1–3) |
+| Downloads | Josie’s own EPUB/PDF files, with corrected metadata. The *Alma Mater* PDF is generated (Typst, A5) because there was none |
+| License | CC BY-NC-ND 4.0: sharing allowed with credit, no sale, no changes |
+| Name | Josie H. Matchèque (with the dot) |
+| Address | “Sie” everywhere |
+| Covers | Typographic title pages in one color per book |
+| Download counting | **open (Igor)**: GoatCounter suggested, off until an account exists |
+
+---|---|---|
 | Design direction | decided | C · Erster Satz: the homepage is the first sentences of her books |
 | Stack | decided | Eleventy 3, texts in YAML/Markdown, GitHub Actions → GitHub Pages, domain and Cloudflare unchanged |
 | Downloads | decided | Public reading samples (web, EPUB, PDF). Full manuscripts only on request by email |
@@ -36,8 +48,8 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 ## Phase 1 · Foundation (Claude) ✓
 
 - [x] Eleventy 3 project: `src/` → `_site/`, Nunjucks layouts, YAML data files
-- [x] Design tokens, light and dark (follows the device), per-book colors
-- [x] Self-hosted, subsetted fonts (Literata with small caps and old-style figures, Schibsted Grotesk)
+- [x] Design tokens on warm paper (light only), per-book colors
+- [x] Self-hosted, subsetted Literata with small caps and old-style figures
 - [x] Image pipeline (AVIF/WebP/JPEG, responsive sizes)
 - [x] GitHub Actions workflow that builds and deploys to GitHub Pages (`.github/workflows/deploy.yml`)
 - [x] Cleanup: Bootstrap, old HTML pages, `.phone-preview/` removed; `output/` untracked; `.gitignore`
@@ -47,25 +59,26 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 
 - [x] Homepage: one first sentence per screen, book title and link underneath
 - [x] Book pages with typographic title page, motto, facts, opening paragraph, sample and downloads
-- [x] Leseprobe reader in the browser (progress bar, book typography, dark mode)
+- [x] Leseprobe reader in the browser (progress bar, book typography, drop caps, parts and chapter subtitles)
 - [x] Sample files: A5 PDF (Typst) and EPUB (pandoc) with correct metadata and title-page cover
 - [x] Werkverzeichnis (`/buecher/`)
 - [x] Über mich, Für Agenturen und Verlage (stacked fact sheet on phones), Kontakt (Formspree without the unpkg script)
 - [x] Impressum, Datenschutz, Nutzungsbedingungen ported; Kolophon; 404
 - [x] Open Graph images per book, favicon from Literata’s “è”, sitemap, robots.txt, structured data (Person, Book)
-- [x] Placeholder system: missing texts are marked `TODO`, shown in yellow, listed by `npm run todo` (currently 17)
+- [x] Placeholder system: missing texts are marked `TODO`, shown in yellow, listed by `npm run todo` (currently none)
 
 ## Phase 3 · Content (Josie)
 
-- [ ] Fill in [`_texte/website-texte.md`](_texte/website-texte.md); Claude moves the texts into the YAML files
-- [ ] Decide name spelling (with or without the dot after “H”)
-- [ ] Confirm or replace the first sentences on the homepage (Der Pfau could also open with its motto)
-- [ ] Der Pfau: is “Ich hasse Schach.” a subtitle? It is shown as one right now
-- [ ] Diamanten: first sentence, genre, status, and the manuscript if a sample should go online
-- [ ] Normseiten from Papyrus for each book (the site currently estimates them from the character count)
-- [ ] Photo session: portrait upright and landscape, desk, notebooks, something handwritten; photographer’s name for the credit
-- [ ] Read both reading samples once in the browser and as PDF (length, where they end)
-- [ ] Review the legal pages. Datenschutz was updated for self-hosted fonts, the new form and no local storage
+- [x] Texts from the template (received 12 Oct 2026 as .odt, original in `manuskripte/alt/`)
+- [x] Name spelling, address form, book order, download choices
+- [x] New portrait
+- [x] Final EPUB/PDF files
+- [ ] Photographer’s name for the credit (left out until known)
+- [ ] May press and agencies download the portrait? (download button stays off until yes)
+- [ ] Optional: two or three sentences to agencies and publishers (section 5 of the template was left empty)
+- [ ] Check four small text edits Claude made (see below)
+
+**Small edits Claude made to Josie’s texts:** “Josie H. Matchèque, wuchs” → comma removed · *Der Pfau* blurb “engegen” → “entgegen” · “Ödön von Horvath” → “Horváth” · the sentence after downloads switched to “Sie”. Also worth a look: “Es ist um meine Disputation herum *erschienen*” (maybe *entstanden*?).
 
 ## Phase 4 · Pre-launch check (Claude, Igor)
 
@@ -103,10 +116,10 @@ Things only you can do, because they need your accounts, a decision about public
 
 ### Manuscript metadata (with Josie, in Papyrus)
 
-- [ ] Der Pfau: the EPUB says author “M. J. H.”, rights “Max Mustermann”, publisher “Papyrus Testverlag, Berlin” and a placeholder ISBN. Fix in Papyrus and re-export. (The website’s sample files already carry correct metadata.)
-- [ ] Der Pfau: chapter numbering jumps from “# 11” to “# 13”. Intended?
-- [ ] Ich fahr dich.: the rights line reads “Josie H.  Matchèque” with a double space.
-- [ ] After a new export: put the EPUB into `manuskripte/`, then run `npm run manuskripte && npm run assets`.
+- [x] Der Pfau: author and chapter numbering fixed in the new export.
+- [ ] Der Pfau and Alma Mater: Papyrus still writes “Max Mustermann” into the rights field. `npm run assets` overwrites it in the website files, but it’s worth fixing in Papyrus (project or export settings).
+- [ ] **Exporting EPUBs:** the new *Der Pfau* and *Alma Mater* EPUBs were zipped with an extra folder around them (macOS “Compress”), which e-readers reject. The site repackages them automatically. When sending EPUBs elsewhere, send the file Papyrus exports directly.
+- [ ] After a new export: put the files into `manuskripte/` (names as in the book’s YAML under `manuskript` and `dateien`), then run `npm run manuskripte && npm run assets`.
 
 ### Remove the full manuscripts from the git history
 

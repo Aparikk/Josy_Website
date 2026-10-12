@@ -4,8 +4,8 @@ const formular = document.getElementById("kontaktformular");
 const status = formular?.querySelector(".formular-status");
 
 const meldungen = {
-  name: "Bitte gib deinen Namen an.",
-  email: "Bitte gib eine gültige E-Mail-Adresse an.",
+  name: "Bitte geben Sie Ihren Namen an.",
+  email: "Bitte geben Sie eine gültige E-Mail-Adresse an.",
   nachricht: "Die Nachricht braucht mindestens 10 Zeichen.",
 };
 
@@ -48,10 +48,10 @@ formular?.addEventListener("submit", async (ereignis) => {
     });
     if (!antwort.ok) throw new Error(String(antwort.status));
     formular.reset();
-    status.textContent = "Danke, die Nachricht ist angekommen.";
+    status.textContent = "Vielen Dank, Ihre Nachricht ist angekommen.";
     status.dataset.zustand = "ok";
   } catch {
-    status.textContent = `Das hat nicht geklappt. Bitte versuch es noch einmal oder schreib direkt an ${formular.dataset.email || "kontakt@matcheque.de"}.`;
+    status.textContent = `Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie direkt an ${formular.dataset.email}.`;
     status.dataset.zustand = "fehler";
   } finally {
     knopf.disabled = false;

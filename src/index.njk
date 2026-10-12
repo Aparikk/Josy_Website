@@ -4,10 +4,20 @@ startseite: true
 koerperklasse: startseite
 ogBild: /assets/og/start.png
 ---
-{%- from "partials/buch.njk" import farbe -%}
+{%- from "partials/buch.njk" import farbe, zitate as zitatGalerie -%}
 {%- set liste = buecher | buchliste(manuskripte) -%}
 
+<section class="auftakt" aria-labelledby="auftakt-titel">
+  <p class="auftakt-motto"><abbr title="Quod erat scribendum">{{ site.motto }}</abbr></p>
+  <p class="auftakt-titel" id="auftakt-titel">{{ site.leitsatz }}</p>
+  <div class="auftakt-text">{{ site.einleitung | md | safe }}</div>
+  {%- if site.neuigkeit %}
+  <p class="neuigkeit"><span class="neuigkeit-marke">Neu</span> {{ site.neuigkeit | mdInline | safe }}</p>
+  {%- endif %}
+</section>
+
 {%- for buch in liste %}
+<p class="ornament" aria-hidden="true">⁂</p>
 <section class="incipit buch-farbe" style="{{ farbe(buch) }}" aria-label="{{ buch.titel }}">
   <figure class="incipit-figur">
     <blockquote class="incipit-satz incipit-satz--{{ buch.satz | satzlaenge }}{% if buch.satz | haengt %} haengt{% endif %}" cite="{{ ('/buecher/' ~ buch.slug ~ '/') | absolut(site.url) }}">
@@ -16,7 +26,7 @@ ogBild: /assets/og/start.png
     <figcaption class="incipit-quelle">
       <a class="incipit-titel" href="/buecher/{{ buch.slug }}/"><cite>{{ buch.titel }}</cite></a>
       <span class="incipit-gattung">{{ buch.gattung }}</span>
-      {%- if buch.hatLeseprobe %}
+      {%- if buch.hatText %}
       <a class="incipit-weiter" href="/buecher/{{ buch.slug }}/leseprobe/">Weiterlesen <span aria-hidden="true">→</span></a>
       {%- else %}
       <a class="incipit-weiter" href="/buecher/{{ buch.slug }}/">Zum Buch <span aria-hidden="true">→</span></a>
@@ -26,12 +36,14 @@ ogBild: /assets/og/start.png
 </section>
 {%- endfor %}
 
+<p class="ornament" aria-hidden="true">⁂</p>
+{{ zitatGalerie(zitate, liste, "Aus den Büchern") }}
+
 <section class="vorstellung" aria-labelledby="vorstellung-titel">
-  <img class="vorstellung-bild" src="/assets/img/portrait-hoch.jpg" alt="Porträt von {{ site.name }}" sizes="(min-width: 56em) 20rem, 60vw">
+  <img class="vorstellung-bild" src="/assets/img/portrait-hoch.jpg" alt="Porträt von {{ site.name }}" sizes="(min-width: 56em) 19rem, 70vw">
   <div class="vorstellung-text">
     <h2 id="vorstellung-titel" class="abschnitt-titel">Über mich</h2>
     <div class="fliesstext">{{ site.kurzvita | md | safe }}</div>
-    <p class="status">{{ site.status }}</p>
     <ul class="weiter-liste">
       <li><a href="/ueber-mich/">Mehr über mich <span aria-hidden="true">→</span></a></li>
       <li><a href="/agenturen/">Für Agenturen und Verlage <span aria-hidden="true">→</span></a></li>
@@ -40,6 +52,7 @@ ogBild: /assets/og/start.png
   </div>
 </section>
 
+<script src="/assets/js/zitate.js" defer></script>
 <script type="application/ld+json">
 {{ {
   "@context": "https://schema.org",

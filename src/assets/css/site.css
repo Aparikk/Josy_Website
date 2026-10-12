@@ -221,8 +221,6 @@ a:hover { text-decoration-color: currentColor; }
 .zitate .abschnitt-titel { justify-content: center; }
 .zitate .abschnitt-titel::before { content: ""; flex: 0 0 2.5rem; height: 0; border-top: 1px solid var(--linie); }
 .zitate-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.5rem; }
-.zitate.bereit .zitate-liste { gap: 0; }
-.zitate.bereit .zitate-liste > li { grid-area: 1 / 1; }
 .zitate-liste > li { margin: 0; }
 .zitat { margin: 0; }
 .zitat p { margin: 0; font-style: italic; font-weight: 300; font-size: clamp(1.45rem, 1rem + 1.6vw, 2.2rem); line-height: 1.32; text-wrap: balance; }
@@ -230,14 +228,30 @@ a:hover { text-decoration-color: currentColor; }
 .zitat-quelle cite { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--buch, var(--tinte)); }
 .zitat-quelle a { text-decoration: none; }
 .zitat-quelle a:hover cite { text-decoration: underline; }
-.zitate-steuerung { display: none; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.8rem; font-size: 1.05rem; color: var(--bleistift); }
+
+/* Mit JavaScript: alle Zitate liegen übereinander (die Höhe richtet sich nach dem längsten, nichts springt),
+   eines ist sichtbar. Beim Wechsel blendet das alte nach oben aus und das neue von unten ein. */
+.zitate.bereit .zitate-liste { gap: 0; align-items: center; }
+.zitate.bereit .zitate-liste > li { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s linear 0.7s; }
+.zitate.bereit .zitate-liste > li.weg { transform: translateY(-1rem); }
+.zitate.bereit .zitate-liste > li.aktiv { opacity: 1; visibility: visible; transform: none; transition: opacity 0.9s ease 0.35s, transform 0.9s ease 0.35s, visibility 0s; }
+
+/* Zeitleiste: füllt sich bis zum nächsten Zitat, steht still beim Anhalten oder mit der Maus darüber. */
+.zitate-uhr { display: none; position: relative; height: 1px; width: min(14rem, 60%); margin: 2rem auto 0; background: var(--linie); overflow: hidden; }
+.zitate-uhr::after { content: ""; position: absolute; inset: -1px 0; background: var(--siegel); transform-origin: 0 50%; transform: scaleX(0); }
+.zitate.bereit.laeuft .zitate-uhr { display: block; }
+.zitate.laeuft .zitate-uhr::after { animation: zitat-uhr 9s linear forwards; }
+.zitate.laeuft.wartet .zitate-uhr::after { animation-play-state: paused; }
+@keyframes zitat-uhr { to { transform: scaleX(1); } }
+
+.zitate-steuerung { display: none; justify-content: center; align-items: center; gap: 1rem; margin-top: 1rem; font-size: 1.05rem; color: var(--bleistift); }
 .zitate.bereit .zitate-steuerung { display: flex; }
 .zitate-steuerung button { font: inherit; color: inherit; letter-spacing: inherit; font-variant-caps: inherit; background: none; border: 0; padding: 0.4rem 0.5rem; cursor: pointer; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.25em; }
 .zitate-steuerung button:hover { color: var(--tinte); text-decoration-color: currentColor; }
 .zitate-zaehler { font-variant-numeric: oldstyle-nums tabular-nums; min-width: 4.5em; }
-@media (prefers-reduced-motion: no-preference) {
-  .zitate.bereit .zitate-liste > li:not([hidden]) { animation: einblenden 0.7s ease both; }
-  @keyframes einblenden { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .zitate.bereit .zitate-liste > li, .zitate.bereit .zitate-liste > li.aktiv { transition: none; transform: none; }
 }
 
 /* Vorstellung */
@@ -378,6 +392,7 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .buch .zitate .abschnitt-titel { justify-content: flex-start; }
 .buch .zitate .abschnitt-titel::before { display: none; }
 .buch .zitate-steuerung { justify-content: flex-start; }
+.buch .zitate-uhr { margin-left: 0; }
 .buch .zitat p { font-size: clamp(1.3rem, 1rem + 1vw, 1.7rem); text-wrap: pretty; }
 
 .buch-fakten { font-size: 1rem; line-height: 1.45; }
@@ -456,7 +471,8 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .tabelle tbody th a { text-decoration: none; }
 .tabelle tbody th a:hover { text-decoration: underline; }
 .tabelle .zahl { text-align: right; }
-.angeboten { font-variant-caps: all-small-caps; letter-spacing: 0.07em; color: var(--siegel); font-style: normal; font-size: 0.75em; margin-left: 0.4em; white-space: nowrap; }
+.angeboten, .frei { font-variant-caps: all-small-caps; letter-spacing: 0.07em; color: var(--siegel); font-style: normal; font-size: 0.75em; margin-left: 0.4em; white-space: nowrap; }
+.frei { color: #2c6a3f; }
 
 @media (max-width: 40em) {
   .tabelle { min-width: 0; }

@@ -76,6 +76,13 @@ export default function (eleventyConfig) {
   // Schriftgröße eines ersten Satzes nach seiner Länge.
   eleventyConfig.addFilter("satzlaenge", (satz = "") => (satz.length < 130 ? "kurz" : satz.length < 260 ? "mittel" : "lang"));
 
+  // Zitat in deutsche Anführungszeichen setzen; Anführungen im Zitat werden zu einfachen.
+  eleventyConfig.addFilter("zitieren", (satz = "") => {
+    const text = String(satz).trim();
+    if (!text || istTodo(text)) return text;
+    return `„${text.replace(/„/g, "‚").replace(/[“”]/g, "‘")}“`;
+  });
+
   // Beginnt ein Satz mit einem Anführungszeichen, hängt es optisch in den Rand.
   eleventyConfig.addFilter("haengt", (satz = "") => /^[„“"»‚‘]/.test(satz.trim()));
 

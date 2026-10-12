@@ -34,6 +34,7 @@ const buecher = fs
 const jahr = new Date().getFullYear();
 const domain = site.url.replace("https://", "");
 const zahl = (n) => new Intl.NumberFormat("de-DE").format(n);
+const zitieren = (s) => (s ? `„${s.trim().replace(/„/g, "‚").replace(/[“”]/g, "‘")}“` : "");
 const rechte = `© ${jahr} ${site.name}. Lizenz: CC BY-NC-ND 4.0 – Weitergabe mit Namensnennung erlaubt, nicht kommerziell, ohne Bearbeitung. ${domain}`;
 
 // Typst-Vorlage mit eigenen Daten in einem frischen Arbeitsordner übersetzen.
@@ -81,7 +82,7 @@ const buchDaten = (b) => ({
   untertitel: b.untertitel || "",
   gattung: b.gattung,
   farbe: b.farbe,
-  satz: b.ersterSatz || manuskripte[b.slug]?.ersterSatz || "",
+  satz: zitieren(b.ersterSatz || manuskripte[b.slug]?.ersterSatz || ""),
   url: domain,
 });
 

@@ -1,4 +1,6 @@
 // Wechselnde Zitate: zeigt eines nach dem anderen, in zufälliger Reihenfolge.
+// Die Zeitleiste unter dem Zitat ist die Uhr: Ist sie voll, kommt das nächste.
+// Mit der Maus oder dem Tastaturfokus im Bereich hält sie an.
 // Ohne JavaScript stehen alle Zitate untereinander. Bei „Bewegung reduzieren“ wechselt nichts von allein.
 const ruhig = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -8,36 +10,44 @@ for (const bereich of document.querySelectorAll("[data-zitate]")) {
 
   const reihenfolge = eintraege.map((_, i) => i).sort(() => Math.random() - 0.5);
   const zaehler = bereich.querySelector(".zitate-zaehler");
+  const uhr = bereich.querySelector(".zitate-uhr");
   const pause = bereich.querySelector("[data-pause]");
-  let stelle = 0;
+  let stelle = -1;
   let angehalten = ruhig;
-  let uhr = null;
 
   function zeigen(neu) {
+    const vorher = eintraege[reihenfolge[stelle]];
     stelle = (neu + reihenfolge.length) % reihenfolge.length;
-    eintraege.forEach((e, i) => (e.hidden = i !== reihenfolge[stelle]));
+    const jetzt = eintraege[reihenfolge[stelle]];
+    for (const e of eintraege) {
+      e.classList.toggle("aktiv", e === jetzt);
+      e.classList.toggle("weg", e === vorher && e !== jetzt);
+      e.setAttribute("aria-hidden", String(e !== jetzt));
+    }
     zaehler.textContent = `${stelle + 1} von ${reihenfolge.length}`;
-  }
-  function planen() {
-    clearInterval(uhr);
-    if (!angehalten) uhr = setInterval(() => zeigen(stelle + 1), 9000);
+    // Zeitleiste neu starten
+    bereich.classList.remove("laeuft");
+    void uhr.offsetWidth;
+    if (!angehalten) bereich.classList.add("laeuft");
   }
   function setzePause(wert) {
     angehalten = wert;
     pause.setAttribute("aria-pressed", String(wert));
     pause.textContent = wert ? "abspielen" : "anhalten";
-    planen();
+    bereich.classList.toggle("laeuft", !wert);
   }
 
-  bereich.querySelector("[data-weiter]").addEventListener("click", () => { zeigen(stelle + 1); planen(); });
-  bereich.querySelector("[data-zurueck]").addEventListener("click", () => { zeigen(stelle - 1); planen(); });
+  uhr.addEventListener("animationend", () => zeigen(stelle + 1));
+  bereich.querySelector("[data-weiter]").addEventListener("click", () => zeigen(stelle + 1));
+  bereich.querySelector("[data-zurueck]").addEventListener("click", () => zeigen(stelle - 1));
   pause.addEventListener("click", () => setzePause(!angehalten));
-  bereich.addEventListener("mouseenter", () => clearInterval(uhr));
-  bereich.addEventListener("mouseleave", planen);
-  bereich.addEventListener("focusin", () => clearInterval(uhr));
-  bereich.addEventListener("focusout", planen);
+  const warten = (an) => bereich.classList.toggle("wartet", an);
+  bereich.addEventListener("mouseenter", () => warten(true));
+  bereich.addEventListener("mouseleave", () => warten(false));
+  bereich.addEventListener("focusin", () => warten(true));
+  bereich.addEventListener("focusout", () => warten(false));
 
   bereich.classList.add("bereit");
-  zeigen(0);
   setzePause(angehalten);
+  zeigen(0);
 }

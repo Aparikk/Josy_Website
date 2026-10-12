@@ -18,7 +18,7 @@ beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt von Josie H. Match�
         <tbody>
           {%- for buch in liste %}
           <tr>
-            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a>{% if buch.slug in site.angeboten %}<span class="angeboten">angeboten</span>{% endif %}</th>
+            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a>{% if buch.slug in site.angeboten %}<span class="angeboten">angeboten</span>{% elif buch.vollstaendig %}<span class="frei">frei</span>{% endif %}</th>
             <td data-label="Gattung">{{ buch.genre or buch.gattung }}</td>
             <td data-label="Wörter" class="zahl">{{ buch.woerterZahl | zahl or "–" }}</td>
             <td data-label="Normseiten" class="zahl">{% if buch.normseitenZahl %}{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }}{% else %}–{% endif %}</td>
@@ -41,9 +41,8 @@ beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt von Josie H. Match�
     <h2 id="steckbrief" class="abschnitt-titel">Auf einen Blick</h2>
     <dl class="steckbrief">
       <div><dt>Themen</dt><dd>{{ site.themen }}</dd></div>
-      <div><dt>Stil</dt><dd>{{ site.stil }}</dd></div>
+      <div><dt>Genre</dt><dd>{{ site.genre }}</dd></div>
       <div><dt>Vergleichbar mit</dt><dd>{{ site.vergleichbar }}</dd></div>
-      <div><dt>Sprache</dt><dd>Deutsch</dd></div>
     </dl>
   </section>
 

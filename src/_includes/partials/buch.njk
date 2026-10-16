@@ -48,7 +48,7 @@
       <blockquote class="zitat">
         <p>„{{ z.text }}“</p>
       </blockquote>
-      <span class="zitat-quelle">{% if z.wer %}{{ z.wer }}{% if mitBuch %} in {% endif %}{% endif %}{% if mitBuch %}<a href="/buecher/{{ b.slug }}/"><cite>{{ b.titel }}</cite></a>{% endif %}</span>
+      <span class="zitat-quelle">{% if z.wer %}{{ z.wer }}{% if mitBuch %}, in {% endif %}{% endif %}{% if mitBuch %}<a href="/buecher/{{ b.slug }}/"><cite>{{ b.titel }}</cite></a>{% endif %}</span>
     </li>
     {%- endfor %}
   </ul>

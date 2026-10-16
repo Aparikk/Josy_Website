@@ -78,7 +78,7 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 - [ ] Optional: two or three sentences to agencies and publishers (section 5 of the template was left empty)
 - [ ] Check four small text edits Claude made (see below)
 
-**Small edits Claude made to Josie’s texts:** “Josie H. Matchèque, wuchs” → comma removed · *Der Pfau* blurb “engegen” → “entgegen” · “Ödön von Horvath” → “Horváth” · the sentence after downloads switched to “Sie”. Also worth a look: “Es ist um meine Disputation herum *erschienen*” (maybe *entstanden*?).
+**Small edits Claude made to Josie’s texts:** “Josie H. Matchèque, wuchs” → comma removed · *Der Pfau* blurb “engegen” → “entgegen” · “Ödön von Horvath” → “Horváth” · the sentence after downloads switched to “Sie”.
 
 ## Phase 4 · Pre-launch check (Claude, Igor)
 

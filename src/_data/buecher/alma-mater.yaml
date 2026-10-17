@@ -29,6 +29,8 @@ lesen:
 # Downloads aus manuskripte/. Leer = wird erzeugt.
 dateien:
   epub: alma-mater-leseprobe.epub
+  # Josies PDF (manuskripte/alma-mater-leseprobe.pdf) hat „Leseporbe“ auf Titelseite und Kopfzeilen.
+  # Bis zu einem neuen Export wird das PDF aus dem Text erzeugt. Danach hier eintragen: alma-mater-leseprobe.pdf
   pdf: ""
 
 ersterSatz: "In einer Universitätsstadt, die nicht benannt zu werden wünscht, trafen sich zwei Wissenschaftler vor ihrem Institut. Er war vor ihr dort."

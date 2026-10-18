@@ -11,9 +11,16 @@
     <span class="titelblatt-titel">{{ buch.titel }}</span>
     <span class="titelblatt-strich"></span>
   </span>
-  <span class="titelblatt-gattung">{{ buch.gattung }}</span>
+  <span class="titelblatt-gattung">{{ buch.gattung }}{% if buch.band %} · Band {{ buch.band }}{% endif %}</span>
 </div>
 {% endmacro %}
+
+{#- Hinweis auf die Reihe: „Band 2 · Fortsetzung zu Ich fahr dich.“ bzw. „Band 1 · Fortsetzung: Waten in Zement“ -#}
+{% macro reihe(buch, liste) -%}
+{%- if buch.vorgaenger %}{% set v = liste | findeBuch(buch.vorgaenger) %}Band {{ buch.band }} · Fortsetzung zu <a href="/buecher/{{ v.slug }}/"><cite>{{ v.titel }}</cite></a>
+{%- elif buch.fortsetzung %}{% set f = liste | findeBuch(buch.fortsetzung) %}Band {{ buch.band }} · Fortsetzung: <a href="/buecher/{{ f.slug }}/"><cite>{{ f.titel }}</cite></a>
+{%- endif %}
+{%- endmacro %}
 
 {% macro umfang(buch) -%}
 {%- if buch.woerterZahl %}{{ buch.woerterZahl | zahl }} Wörter{% endif -%}
@@ -54,10 +61,12 @@
   </ul>
   <div class="zitate-uhr" aria-hidden="true"></div>
   <div class="zitate-steuerung">
-    <button type="button" data-zurueck aria-label="Vorheriges Zitat">‹ zurück</button>
-    <span class="zitate-zaehler" aria-live="polite"></span>
-    <button type="button" data-weiter aria-label="Nächstes Zitat">weiter ›</button>
-    <button type="button" data-pause aria-pressed="false">anhalten</button>
+    <div class="zitate-blaettern">
+      <button type="button" data-zurueck aria-label="Vorheriges Zitat"><span aria-hidden="true">‹</span><span class="zitate-wort"> zurück</span></button>
+      <span class="zitate-zaehler" aria-live="polite"></span>
+      <button type="button" data-weiter aria-label="Nächstes Zitat"><span class="zitate-wort">weiter </span><span aria-hidden="true">›</span></button>
+    </div>
+    <button type="button" class="zitate-pause" data-pause aria-pressed="false">anhalten</button>
   </div>
 </section>
 {%- endif %}

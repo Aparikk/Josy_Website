@@ -17,10 +17,12 @@ import sharp from "sharp";
 
 const root = path.resolve(import.meta.dirname, "..");
 const manuskripteDir = path.join(root, "manuskripte");
-const downloadsDir = path.join(root, "src/downloads");
+const downloadsZiel = path.join(root, "src/downloads");
 const vorlagen = path.join(root, "scripts/typst");
 const schriften = path.join(root, "scripts/schriften");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "matcheque-"));
+// Downloads entstehen erst in einem Arbeitsordner und ersetzen src/downloads nur, wenn alles geklappt hat.
+const downloadsDir = path.join(tmp, "downloads");
 
 const site = yaml.load(fs.readFileSync(path.join(root, "src/_data/site.yaml"), "utf8"));
 const manuskripte = JSON.parse(fs.readFileSync(path.join(root, "src/_data/manuskripte.json"), "utf8"));
@@ -81,6 +83,7 @@ const buchDaten = (b) => ({
   titel: b.titel,
   untertitel: (b.untertitel || "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[*_]/g, ""),
   gattung: b.gattung,
+  zeile: b.band ? `${b.gattung} · Band ${b.band}` : b.gattung,
   farbe: b.farbe,
   satz: zitieren(b.ersterSatz || manuskripte[b.slug]?.ersterSatz || ""),
   url: domain,
@@ -88,7 +91,6 @@ const buchDaten = (b) => ({
 
 try {
   fs.mkdirSync(path.join(root, "src/assets/og"), { recursive: true });
-  fs.rmSync(downloadsDir, { recursive: true, force: true });
   fs.mkdirSync(downloadsDir, { recursive: true });
 
   console.log("· Vorschaubilder");
@@ -176,6 +178,8 @@ try {
   await sharp(icon(180, 4)).png().toFile(path.join(root, "src/assets/icons/apple-touch-icon.png"));
   await sharp(icon(32, 0)).png().toFile(path.join(root, "src/assets/icons/favicon-32.png"));
 
+  fs.rmSync(downloadsZiel, { recursive: true, force: true });
+  fs.cpSync(downloadsDir, downloadsZiel, { recursive: true });
   console.log("✓ fertig. Danach `npm start` oder `npm run build`.");
 } finally {
   fs.rmSync(tmp, { recursive: true, force: true });

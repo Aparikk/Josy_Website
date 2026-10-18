@@ -4,7 +4,7 @@ startseite: true
 koerperklasse: startseite
 ogBild: /assets/og/start.png
 ---
-{%- from "partials/buch.njk" import farbe, zitate as zitatGalerie -%}
+{%- from "partials/buch.njk" import farbe, reihe, zitate as zitatGalerie -%}
 {%- set liste = buecher | buchliste(manuskripte) -%}
 
 <section class="auftakt" aria-labelledby="auftakt-titel">
@@ -20,6 +20,9 @@ ogBild: /assets/og/start.png
 <p class="ornament" aria-hidden="true">⁂</p>
 <section class="incipit buch-farbe" style="{{ farbe(buch) }}" aria-label="{{ buch.titel }}">
   <figure class="incipit-figur">
+    {%- if buch.vorgaenger or buch.fortsetzung %}
+    <p class="incipit-reihe">{{ reihe(buch, liste) }}</p>
+    {%- endif %}
     {%- set satz = buch.satz | zitieren %}
     <blockquote class="incipit-satz incipit-satz--{{ satz | satzlaenge }}{% if satz | haengt %} haengt{% endif %}" cite="{{ ('/buecher/' ~ buch.slug ~ '/') | absolut(site.url) }}">
       <p>{{ satz }}</p>

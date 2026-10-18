@@ -1,7 +1,7 @@
 # Ich fahr dich. – Angaben für Startseite, Buchseite, Lesen und Werkverzeichnis.
 
 slug: ich-fahr-dich
-reihenfolge: 4
+reihenfolge: 3
 titel: Ich fahr dich.
 untertitel: ""
 gattung: Roman
@@ -9,6 +9,7 @@ genre: Literarischer Roman
 status: abgeschlossen
 entstanden: "2022"
 reihe: Band 1 von 2
+band: 1
 fortsetzung: waten-in-zement
 erzaehlform: Ich-Erzähler
 ortUndZeit: Gegenwart, Norddeutschland

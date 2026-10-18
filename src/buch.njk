@@ -20,7 +20,7 @@
   <header class="buch-kopf">
     {{ titelblatt(buch, site.name) }}
     <div class="buch-kopf-text">
-      <p class="dachzeile">{{ buch.gattung }}</p>
+      <p class="dachzeile">{{ buch.gattung }}{% if buch.band %} · Band {{ buch.band }}{% endif %}</p>
       <h1 class="buch-titel">{{ buch.titel }}</h1>
       {%- if buch.untertitel %}
       <p class="buch-untertitel">{{ buch.untertitel | mdInline | safe }}</p>
@@ -91,7 +91,7 @@
         {%- if buch.reihe %}
         {%- set fortsetzung = liste | findeBuch(buch.fortsetzung) if buch.fortsetzung else null %}
         {%- set vorgaenger = liste | findeBuch(buch.vorgaenger) if buch.vorgaenger else null %}
-        <div><dt>Reihe</dt><dd>{{ buch.reihe }}{% if fortsetzung %}<br>Fortsetzung: <a href="/buecher/{{ fortsetzung.slug }}/"><cite>{{ fortsetzung.titel }}</cite></a>{% endif %}{% if vorgaenger %}<br>Davor: <a href="/buecher/{{ vorgaenger.slug }}/"><cite>{{ vorgaenger.titel }}</cite></a>{% endif %}</dd></div>
+        <div><dt>Reihe</dt><dd>{{ buch.reihe }}{% if fortsetzung %}<br>Fortsetzung: <a href="/buecher/{{ fortsetzung.slug }}/"><cite>{{ fortsetzung.titel }}</cite></a>{% endif %}{% if vorgaenger %}<br>Fortsetzung zu <a href="/buecher/{{ vorgaenger.slug }}/"><cite>{{ vorgaenger.titel }}</cite></a>{% endif %}</dd></div>
         {%- endif %}
         {%- if buch.erzaehlform %}
         <div><dt>Erzählform</dt><dd>{{ buch.erzaehlform }}</dd></div>

@@ -198,6 +198,9 @@ a:hover { text-decoration-color: currentColor; }
   padding-block: 4rem;
 }
 .incipit-figur { margin: 0; }
+.incipit-reihe { margin: 0 0 1.2rem; font-variant-caps: all-small-caps; letter-spacing: 0.08em; font-size: 1.1rem; color: var(--buch); }
+.incipit-reihe a { text-decoration-color: color-mix(in srgb, var(--buch) 45%, transparent); }
+.incipit-reihe cite { font-variant-caps: normal; letter-spacing: 0; }
 .incipit-satz { margin: 0; font-weight: 300; line-height: 1.14; letter-spacing: -0.01em; }
 .incipit-satz p, .incipit-satz > span { margin: 0; display: block; hyphens: manual; -webkit-hyphens: manual; }
 .incipit-satz--kurz { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 5rem); max-width: 15em; }
@@ -229,12 +232,14 @@ a:hover { text-decoration-color: currentColor; }
 .zitat-quelle a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--buch, currentColor) 50%, transparent); text-underline-offset: 0.25em; }
 .zitat-quelle a:hover { text-decoration-color: var(--buch, currentColor); }
 
-/* Mit JavaScript: alle Zitate liegen übereinander (die Höhe richtet sich nach dem längsten, nichts springt),
-   eines ist sichtbar. Beim Wechsel blendet das alte nach oben aus und das neue von unten ein. */
-.zitate.bereit .zitate-liste { gap: 0; align-items: center; }
-.zitate.bereit .zitate-liste > li { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s linear 0.7s; }
+/* Mit JavaScript: ein Zitat ist sichtbar, die anderen liegen unsichtbar darüber.
+   Die Höhe des Bereichs folgt dem aktuellen Zitat und gleitet beim Wechsel mit (gesetzt per Skript),
+   damit kurze Zitate nicht in einem riesigen Leerraum stehen.
+   Beim Wechsel blendet das alte nach oben aus und das neue von unten ein. */
+.zitate.bereit .zitate-liste { display: block; position: relative; transition: height 0.6s ease; }
+.zitate.bereit .zitate-liste > li { position: absolute; inset: 0 0 auto 0; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s linear 0.7s; }
 .zitate.bereit .zitate-liste > li.weg { transform: translateY(-1rem); }
-.zitate.bereit .zitate-liste > li.aktiv { opacity: 1; visibility: visible; transform: none; transition: opacity 0.9s ease 0.35s, transform 0.9s ease 0.35s, visibility 0s; }
+.zitate.bereit .zitate-liste > li.aktiv { position: relative; opacity: 1; visibility: visible; transform: none; transition: opacity 0.9s ease 0.35s, transform 0.9s ease 0.35s, visibility 0s; }
 
 /* Zeitleiste: füllt sich bis zum nächsten Zitat, steht still beim Anhalten oder mit der Maus darüber. */
 .zitate-uhr { display: none; position: relative; height: 1px; width: min(14rem, 60%); margin: 2rem auto 0; background: var(--linie); overflow: hidden; }
@@ -244,14 +249,22 @@ a:hover { text-decoration-color: currentColor; }
 .zitate.laeuft.wartet .zitate-uhr::after { animation-play-state: paused; }
 @keyframes zitat-uhr { to { transform: scaleX(1); } }
 
-.zitate-steuerung { display: none; justify-content: center; align-items: center; gap: 1rem; margin-top: 1rem; font-size: 1.05rem; color: var(--bleistift); }
+.zitate-steuerung { display: none; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.2rem 1.6rem; margin-top: 1rem; font-size: 1.05rem; color: var(--bleistift); }
 .zitate.bereit .zitate-steuerung { display: flex; }
-.zitate-steuerung button { font: inherit; color: inherit; letter-spacing: inherit; font-variant-caps: inherit; background: none; border: 0; padding: 0.4rem 0.5rem; cursor: pointer; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.25em; }
+.zitate-blaettern { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+.zitate-steuerung button { font: inherit; color: inherit; letter-spacing: inherit; font-variant-caps: inherit; background: none; border: 0; padding: 0.5rem 0.6rem; min-height: 2.75rem; cursor: pointer; white-space: nowrap; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 0.25em; }
 .zitate-steuerung button:hover { color: var(--tinte); text-decoration-color: currentColor; }
-.zitate-zaehler { font-variant-numeric: oldstyle-nums tabular-nums; min-width: 4.5em; }
+.zitate-zaehler { font-variant-numeric: oldstyle-nums tabular-nums; min-width: 5.5em; text-align: center; white-space: nowrap; }
+/* Auf dem Handy: nur die Pfeile, groß genug zum Tippen; „anhalten“ in eigener Zeile */
+@media (max-width: 40em) {
+  .zitate-wort { display: none; }
+  .zitate-blaettern button { font-size: 1.6rem; line-height: 1; padding: 0.3rem 1rem; min-width: 2.75rem; }
+  .zitate-steuerung { flex-direction: column; gap: 0; }
+  .zitate-pause { font-size: 0.95rem; min-height: 2.25rem; padding-block: 0.2rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .zitate.bereit .zitate-liste > li, .zitate.bereit .zitate-liste > li.aktiv { transition: none; transform: none; }
+  .zitate.bereit .zitate-liste, .zitate.bereit .zitate-liste > li, .zitate.bereit .zitate-liste > li.aktiv { transition: none; transform: none; }
 }
 
 /* Vorstellung */
@@ -415,6 +428,8 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .werk-titel a:hover { text-decoration: underline; text-decoration-color: var(--buch); }
 .werk-untertitel { margin: 0.4rem 0 0; font-style: italic; color: var(--bleistift); }
 .werk-angaben { margin: 0.8rem 0 0; font-size: 1rem; color: var(--bleistift); }
+.werk-reihe { margin: 0.5rem 0 0; font-size: 1rem; color: var(--buch); font-variant-caps: all-small-caps; letter-spacing: 0.07em; }
+.werk-reihe cite { font-variant-caps: normal; letter-spacing: 0; }
 .werk-logline { margin: 1rem 0 0; max-width: 34em; }
 .werk-links { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.5rem; font-size: 1.1rem; }
 .werk-links a { text-decoration: none; color: var(--buch); }
@@ -433,7 +448,7 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .druck-autorin { display: none; }
 .leseprobe-titel { font-size: clamp(2.6rem, 1.4rem + 4.5vw, 4.4rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.015em; }
 .leseprobe-untertitel { margin: 0.6rem 0 0; font-style: italic; font-size: var(--gross); color: var(--bleistift); }
-.leseprobe-angabe { margin: 1.2rem 0 0; font-size: 1.05rem; color: var(--bleistift); }
+.leseprobe-angabe { margin: 1.2rem 0 0; font-size: 1.05rem; color: var(--bleistift); text-wrap: balance; }
 .leseprobe-kopf .motto { margin: 2.5rem auto 0; }
 .leseprobe-inhalt { margin: 2.5rem auto 0; padding-top: 1.2rem; border-top: 3px double var(--linie); font-size: 1.05rem; max-width: 26rem; text-align: left; }
 .leseprobe-inhalt ol { margin: 0; padding-left: 2em; display: grid; gap: 0.25rem; color: var(--bleistift); list-style: upper-roman; }
@@ -476,6 +491,8 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .tabelle tbody th a { text-decoration: none; }
 .tabelle tbody th a:hover { text-decoration: underline; }
 .tabelle .zahl { text-align: right; }
+.tabelle-reihe { display: block; margin-top: 0.2rem; font-style: normal; font-size: 0.72em; color: var(--bleistift); font-variant-caps: all-small-caps; letter-spacing: 0.06em; }
+.tabelle-reihe cite { font-variant-caps: normal; letter-spacing: 0; font-style: italic; }
 .angeboten, .frei { font-variant-caps: all-small-caps; letter-spacing: 0.07em; color: var(--siegel); font-style: normal; font-size: 0.75em; margin-left: 0.4em; white-space: nowrap; }
 .frei { color: #2c6a3f; }
 
@@ -555,3 +572,13 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 }
 
 abbr[title] { text-decoration: none; cursor: help; }
+
+/* ---------- Feinschliff fürs Handy ---------- */
+@media (max-width: 40em) {
+  /* Erste Sätze: kein ganzer Bildschirm pro Satz, sonst stehen kurze Sätze in großer Leere */
+  .incipit { min-height: 0; padding-block: 3rem; }
+  /* Werkverzeichnis: Titelblatt klein über dem Text statt daneben */
+  .werk { grid-template-columns: 1fr; gap: 1.2rem; padding-block: 2.2rem; }
+  .werk-bild { width: 6rem; }
+  .werk-titel::before { display: block; margin: 0 0 0.2rem; }
+}

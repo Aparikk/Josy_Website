@@ -14,7 +14,7 @@
         v(6 * e)
         box(width: 18 * e, height: calc.max(0.8 * e, 1.5pt), fill: rgb(daten.farbe.akzent))
       }),
-      text(font: "Literata Text", size: 5.6 * e, tracking: 0.14em, fill: hell.transparentize(12%), smallcaps(lower(daten.gattung))),
+      text(font: "Literata Text", size: 5.6 * e, tracking: 0.14em, fill: hell.transparentize(12%), smallcaps(lower(daten.at("zeile", default: daten.gattung)))),
     )
   })
 }

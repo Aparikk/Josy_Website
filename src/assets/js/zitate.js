@@ -42,6 +42,11 @@ for (const bereich of document.querySelectorAll("[data-zitate]")) {
   let stelle = -1;
   let angehalten = ruhig;
 
+  const liste = bereich.querySelector(".zitate-liste");
+  // Höhe des Bereichs an das aktuelle Zitat anpassen (gleitet per CSS-Übergang)
+  const hoeheAnpassen = () => (liste.style.height = `${reihenfolge[stelle].offsetHeight}px`);
+  addEventListener("resize", hoeheAnpassen);
+
   function zeigen(neu) {
     const vorher = reihenfolge[stelle];
     stelle = (neu + reihenfolge.length) % reihenfolge.length;
@@ -51,6 +56,7 @@ for (const bereich of document.querySelectorAll("[data-zitate]")) {
       e.classList.toggle("weg", e === vorher && e !== jetzt);
       e.setAttribute("aria-hidden", String(e !== jetzt));
     }
+    hoeheAnpassen();
     zaehler.textContent = `${stelle + 1} von ${reihenfolge.length}`;
     // Zeitleiste neu starten
     bereich.classList.remove("laeuft");

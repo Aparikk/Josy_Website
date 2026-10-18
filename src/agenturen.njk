@@ -3,6 +3,7 @@ layout: layouts/basis.njk
 titel: Für Agenturen und Verlage
 beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt von Josie H. Matchèque für Literaturagenturen und Verlage."
 ---
+{%- from "partials/buch.njk" import reihe -%}
 {%- set liste = buecher | buchliste(manuskripte) -%}
 <div class="seite">
   <header class="seiten-kopf">
@@ -18,7 +19,7 @@ beschreibung: "Manuskripte, Leseproben, Kurzvita und Kontakt von Josie H. Match�
         <tbody>
           {%- for buch in liste %}
           <tr>
-            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a>{% if buch.slug in site.angeboten %}<span class="angeboten">angeboten</span>{% elif buch.vollstaendig %}<span class="frei">frei</span>{% endif %}</th>
+            <th scope="row"><a href="/buecher/{{ buch.slug }}/">{{ buch.titel }}</a>{% if buch.slug in site.angeboten %}<span class="angeboten">angeboten</span>{% elif buch.vollstaendig %}<span class="frei">frei</span>{% endif %}{% if buch.band %}<span class="tabelle-reihe">{{ reihe(buch, liste) }}</span>{% endif %}</th>
             <td data-label="Gattung">{{ buch.genre or buch.gattung }}</td>
             <td data-label="Wörter" class="zahl">{{ buch.woerterZahl | zahl or "–" }}</td>
             <td data-label="Normseiten" class="zahl">{% if buch.normseitenZahl %}{% if buch.normseitenGeschaetzt %}≈ {% endif %}{{ buch.normseitenZahl | zahl }}{% else %}–{% endif %}</td>

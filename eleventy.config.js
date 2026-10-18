@@ -64,6 +64,10 @@ export default function (eleventyConfig) {
       })
   );
 
+  eleventyConfig.addFilter("ohneMarkdown", (text = "") =>
+    String(text).replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[*_]/g, "")
+  );
+
   eleventyConfig.addFilter("zitateFuer", (zitate, slug) => (slug ? zitate.filter((z) => z.buch === slug) : zitate));
 
   eleventyConfig.addFilter("findeBuch", (liste, slug) => liste.find((b) => b.slug === slug));

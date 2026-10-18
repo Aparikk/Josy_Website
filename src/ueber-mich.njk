@@ -3,6 +3,8 @@ layout: layouts/basis.njk
 titel: Über mich
 beschreibung: "Über Josie H. Matchèque: Kurzvita und was sie liest."
 ---
+{%- from "partials/buch.njk" import zitate as zitatGalerie -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
 <div class="seite ueber">
   <header class="seiten-kopf">
     <h1 class="seiten-titel">Über mich</h1>
@@ -29,3 +31,7 @@ beschreibung: "Über Josie H. Matchèque: Kurzvita und was sie liest."
     </div>
   </div>
 </div>
+
+<p class="ornament" aria-hidden="true">⁂</p>
+{{ zitatGalerie(zitate, liste, "Aus den Büchern") }}
+<script src="/assets/js/zitate.js" defer></script>

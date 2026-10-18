@@ -1,0 +1,46 @@
+# Waten in Zement – Angaben für Startseite, Buchseite, Lesen und Werkverzeichnis.
+# Felder mit "TODO" sind Platzhalter. Leere Felder ("") werden auf der Seite weggelassen.
+
+slug: waten-in-zement
+reihenfolge: 2
+titel: Waten in Zement
+untertitel: "Fortsetzung zu [*Ich fahr dich.*](/buecher/ich-fahr-dich/)"
+gattung: Roman
+genre: Literarischer Roman
+status: in finaler Redaktion
+entstanden: 2022–2026
+reihe: Band 2 von 2
+vorgaenger: ich-fahr-dich
+erzaehlform: Ich-Erzähler
+ortUndZeit: Gegenwart, Süddeutschland
+inhaltshinweise: ""
+woerter: 78791
+normseiten: 354
+
+farbe:
+  hell: "#3f4a4d"
+  akzent: "#c9852f"
+
+# Quelle für den Text im Browser und die Kennzahlen der Leseprobe (in manuskripte/, nie veröffentlicht)
+manuskript: waten-in-zement-leseprobe.epub
+lesen:
+  umfang: leseprobe
+  kapitel: alle
+  angabe: Prolog und Kapitel 1–3
+# Downloads aus manuskripte/. Leer = wird erzeugt.
+dateien:
+  epub: waten-in-zement-leseprobe.epub
+  pdf: waten-in-zement-leseprobe.pdf
+
+# Der Prolog ist ein Chatverlauf; der erste Satz auf der Startseite stammt aus dem ersten Kapitel.
+ersterSatz: "„Wolltest du nicht jemanden mitbringen?“"
+
+logline: "Der Rechtsstaat, als Ideal hübsch anzusehen, wird unangenehm handfest, als man Richard für sein Schweigen im Fall Mara anklagt. Mara ist nicht davon abzubringen, im Zweifel vor Gericht zu lügen; Zeugnisverweigerungsrecht hätte sie nur als Angehörige."
+klappentext: |
+  Auf Richard Horvaths Schweigen im Fall Mara folgt über vier Jahre später Justitias Rache: Die Staatsanwaltschaft erhebt Anklage wegen versuchter Strafvereitelung im Amt. Zum Gutachtenschreiben nach Karlsruhe abgeordnet, rettet Richard sich in Cognac und eine Verlobung mit einer Kollegin, dem letzten Bindeglied zu seinem alten Leben. Immerhin wohnt er jetzt näher an den Grunds. Inzwischen auf Süddeutschland verteilt, haben die bisher keinen Umgang mit dem Geschehenen gefunden. Bernd, loyal an Richards Seite, bündelt seine Energie auf den bevorstehenden Prozess; die Zwillinge, die von alldem nichts wissen sollen, entzweien sich, und über allem schwebt Maras Ladung vor Gericht. Mara, die Justitia niemals hörig war, macht keinen Hehl daraus, dass sie für ihn lügen würde. Zeugnisverweigerungsrecht hat sie keines, denn das Gesetz kennt keinen Namen für das, was die beiden verbindet – und Richard hat sich verboten, einen zu finden.
+lieblingsstelle: |
+  Nathalie sah eindrucksvoll aus in der zu großen schwarzen Robe. Einen Moment lang fühlte sie sich wohl auch so, als sie sich mit ausgebreiteten Armen vor dem Spiegel am Kleiderschrank drehte. Im nächsten Augenblick strauchelte sie, eingeschnürt von dem schweren Stoff, der wie überlange Gardinen über den Boden schleifte und sich nicht mitdrehen wollte. Sie setzte sich mehr, als dass sie fiel, plumpste lautlos auf den Hintern. So verharrte sie, sah zu mir hoch, blass im Kontrast. Sogar ihr Lächeln kam mir traurig vor wie auf einer alten Schwarz-Weiß-Aufnahme. Ich hockte mich neben sie. Der Eigengeruch, den das Ding immer schon gehabt hatte, hatte sich in der langen Zeit im Kleidersack verstärkt. Merinowolle und Samt. Ich strich über ein Stück Saum, das unter der schwarzen Masse hervorschaute. Mahagoni, Stuck, Bogengänge und die Steintreppen des alten Kriminalgerichts. Es war so verdammt lange her.
+warum: "Richards Geschichte ist noch nicht auserzählt."
+vergleichstitel: |
+  - Juli Zeh: *Corpus Delicti*
+  - Ödön von Horváth: *Jugend ohne Gott*

@@ -120,15 +120,20 @@ function lesen(epub) {
     aktuell.absaetze.push({ html: inlineBereinigen(b.html), text: b.text, ohneEinzug: /noindent/.test(b.klasse), nachWechsel: !!aktuell.szenenwechsel });
     aktuell.szenenwechsel = false;
   }
+  // Kapitel nach einem Teil gehören zu diesem Teil, bis der nächste Teil beginnt.
+  // k.teilBeginn: dieses Kapitel eröffnet den Teil (dort steht die Teil-Überschrift).
   let teil = null;
+  let neuerTeil = false;
   kapitel = kapitel.filter((k) => {
     if (!k.absaetze.length) {
       teil = k.titel;
+      neuerTeil = true;
       return false;
     }
     if (teil) {
       k.teil = teil;
-      teil = null;
+      k.teilBeginn = neuerTeil;
+      neuerTeil = false;
     }
     return true;
   });
@@ -143,11 +148,13 @@ function lesen(epub) {
 }
 
 function leseprobeHtml(kapitel) {
-  // Bücher mit Teilen: Teil = h2, Kapitel = h3. Sonst Kapitel = h2.
+  // Bücher ohne Teile: Kapitel = h2.
+  // Bücher mit Teilen (Alma Mater): oberste Ebene (h2) sind die Teile und Kapitel, die zu keinem Teil gehören
+  // (etwa der Prolog); Kapitel innerhalb eines Teils stehen eine Ebene darunter (h3).
   const mitTeilen = kapitel.some((k) => k.teil);
-  const h = mitTeilen ? "h3" : "h2";
   return kapitel
     .map((k, i) => {
+      const n = i + 1;
       const absaetze = k.absaetze
         .map((a, j) => {
           const hr = a.nachWechsel ? '<hr class="szenenwechsel">\n' : "";
@@ -155,11 +162,26 @@ function leseprobeHtml(kapitel) {
           return `${hr}<p${klasse}>${a.html}</p>`;
         })
         .join("\n");
-      const teil = k.teil ? `<h2 class="teil" id="teil-${i + 1}">${k.teil}</h2>\n` : "";
+      const teil = k.teilBeginn ? `<h2 class="teil" id="teil-${n}">${k.teil}</h2>\n` : "";
+      const oben = mitTeilen && !k.teil;
+      const h = !mitTeilen || oben ? "h2" : "h3";
+      const titelKlasse = oben ? "teil" : "kapitel-titel";
       const untertitel = k.untertitel ? `\n<p class="kapitel-untertitel">${k.untertitel}</p>` : "";
-      return `${teil}<section class="kapitel" id="kapitel-${i + 1}" aria-labelledby="kapitel-${i + 1}-titel">\n<${h} id="kapitel-${i + 1}-titel">${k.titel}</${h}>${untertitel}\n${absaetze}\n</section>`;
+      return `${teil}<section class="kapitel${oben ? " kapitel--oben" : ""}" id="kapitel-${n}" aria-labelledby="kapitel-${n}-titel">\n<${h} class="${titelKlasse}" id="kapitel-${n}-titel">${k.titel}</${h}>${untertitel}\n${absaetze}\n</section>`;
     })
     .join("\n\n");
+}
+
+// Inhaltsverzeichnis für die Leseansicht: Teile mit ihren Kapiteln darunter.
+function inhalt(kapitel) {
+  const liste = [];
+  kapitel.forEach((k, i) => {
+    const eintrag = { titel: k.titel, anker: `kapitel-${i + 1}` };
+    if (!k.teil) return liste.push(eintrag);
+    if (k.teilBeginn) liste.push({ titel: k.teil, anker: `teil-${i + 1}`, kapitel: [] });
+    liste[liste.length - 1].kapitel.push(eintrag);
+  });
+  return liste;
 }
 
 const daten = {};
@@ -197,7 +219,8 @@ for (const datei of fs.readdirSync(buecherDir).filter((f) => f.endsWith(".yaml")
     leseprobe: {
       vollstaendig: buch.lesen?.umfang === "vollstaendig",
       mitTeilen: probe.some((k) => k.teil),
-      kapitel: probe.map((k) => (k.teil ? `${k.teil}: ${k.titel}` : k.titel)),
+      kapitel: probe.map((k) => k.titel),
+      inhalt: inhalt(probe),
       woerter: m.woerter(probe),
       normseiten: Math.round(m.zeichen(probe) / ZEICHEN_PRO_NORMSEITE),
     },

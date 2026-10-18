@@ -226,8 +226,8 @@ a:hover { text-decoration-color: currentColor; }
 .zitat p { margin: 0; font-style: italic; font-weight: 300; font-size: clamp(1.45rem, 1rem + 1.6vw, 2.2rem); line-height: 1.32; text-wrap: balance; }
 .zitat-quelle { display: block; margin-top: 1.1rem; color: var(--bleistift); font-size: 1.05rem; }
 .zitat-quelle cite { font-variant-caps: normal; letter-spacing: 0; font-style: italic; color: var(--buch, var(--tinte)); }
-.zitat-quelle a { text-decoration: none; }
-.zitat-quelle a:hover cite { text-decoration: underline; }
+.zitat-quelle a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--buch, currentColor) 50%, transparent); text-underline-offset: 0.25em; }
+.zitat-quelle a:hover { text-decoration-color: var(--buch, currentColor); }
 
 /* Mit JavaScript: alle Zitate liegen übereinander (die Höhe richtet sich nach dem längsten, nichts springt),
    eines ist sichtbar. Beim Wechsel blendet das alte nach oben aus und das neue von unten ein. */
@@ -437,6 +437,8 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .leseprobe-kopf .motto { margin: 2.5rem auto 0; }
 .leseprobe-inhalt { margin: 2.5rem auto 0; padding-top: 1.2rem; border-top: 3px double var(--linie); font-size: 1.05rem; max-width: 26rem; text-align: left; }
 .leseprobe-inhalt ol { margin: 0; padding-left: 2em; display: grid; gap: 0.25rem; color: var(--bleistift); list-style: upper-roman; }
+.leseprobe-inhalt ol ol { margin: 0.25rem 0 0.35rem; padding-left: 1.4em; list-style: none; font-variant-caps: normal; letter-spacing: 0; font-style: italic; }
+.leseprobe-inhalt ol ol a { color: var(--bleistift); }
 .leseprobe-inhalt a { color: var(--tinte); text-decoration: none; }
 .leseprobe-inhalt a:hover { text-decoration: underline; }
 
@@ -445,12 +447,15 @@ section + section > .abschnitt-titel, .buch-text > section + section .abschnitt-
 .leseprobe-text p.ohne-einzug { text-indent: 0; }
 @media (min-width: 40em) { .leseprobe-text p { text-align: justify; } }
 .kapitel + .kapitel, .kapitel + .teil { margin-top: 5rem; }
-.kapitel h2, .kapitel h3 { font-style: italic; font-size: var(--gross); text-align: center; margin: 0 0 2.2rem; scroll-margin-top: 2rem; }
+/* Kapitelüberschrift; bei Büchern mit Teilen eine Ebene unter dem Teil */
+.kapitel-titel { font-style: italic; font-size: var(--gross); text-align: center; margin: 0 0 2.2rem; scroll-margin-top: 2rem; }
 .leseprobe-text .kapitel-untertitel { text-align: center; text-indent: 0; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--bleistift); margin: -1.4rem 0 2.2rem; }
-.kapitel > h2 + p.ohne-einzug::first-letter, .kapitel > h3 + p.ohne-einzug::first-letter, .kapitel-untertitel + p.ohne-einzug::first-letter {
+.kapitel-titel + p.ohne-einzug::first-letter, .kapitel > .teil + p.ohne-einzug::first-letter, .kapitel-untertitel + p.ohne-einzug::first-letter {
   float: left; font-size: 3.3em; line-height: 0.8; padding: 0.07em 0.08em 0 0; color: var(--buch);
 }
-.teil { text-align: center; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 300; font-style: italic; margin: 6rem 0 3rem; }
+/* Oberste Ebene bei Büchern mit Teilen: Teile („Astra Mala“, „Janus“) und Kapitel ohne Teil („Prologos“) */
+.teil { text-align: center; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 300; font-style: italic; margin: 6rem 0 3rem; scroll-margin-top: 2rem; }
+.kapitel--oben > .teil:first-child { margin-top: 0; }
 .teil::before { content: "⁂"; display: block; font-style: normal; font-size: 1.1rem; color: var(--bleistift); margin-bottom: 1rem; }
 .szenenwechsel { border: 0; margin: 1.6rem 0; text-align: center; height: auto; }
 .szenenwechsel::after { content: "⁂"; color: var(--bleistift); font-size: 1rem; }

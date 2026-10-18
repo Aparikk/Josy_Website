@@ -79,7 +79,7 @@ function epubUebernehmen(quelle, ziel) {
 const buchDaten = (b) => ({
   autorin: site.name,
   titel: b.titel,
-  untertitel: b.untertitel || "",
+  untertitel: (b.untertitel || "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/[*_]/g, ""),
   gattung: b.gattung,
   farbe: b.farbe,
   satz: zitieren(b.ersterSatz || manuskripte[b.slug]?.ersterSatz || ""),

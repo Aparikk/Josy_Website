@@ -44,9 +44,9 @@
   <ul class="zitate-liste">
     {%- for z in liste %}
     {%- set b = buecher | findeBuch(z.buch) %}
-    <li class="buch-farbe" style="{{ farbe(b) }}">
+    <li class="buch-farbe" style="{{ farbe(b) }}" data-buch="{{ z.buch }}" data-wer="{{ z.wer }}">
       <blockquote class="zitat">
-        <p>„{{ z.text }}“</p>
+        <p>{{ z.text | zitieren | replace("\n", "<br>") | safe }}</p>
       </blockquote>
       <span class="zitat-quelle">{% if z.wer %}{{ z.wer }}{% if mitBuch %}, in {% endif %}{% endif %}{% if mitBuch %}<a href="/buecher/{{ b.slug }}/"><cite>{{ b.titel }}</cite></a>{% endif %}</span>
     </li>

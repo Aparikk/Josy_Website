@@ -1,4 +1,5 @@
-# Zitate für die wechselnde Galerie auf der Startseite und auf den Buchseiten.
+# Zitate für die wechselnde Galerie (Startseite, Bücher, Über mich, Kontakt und die Buchseiten).
+# Die Reihenfolge hier spielt keine Rolle: Die Galerie mischt die Zitate bei jedem Besuch neu.
 # buch: slug des Buchs · wer: Figur (optional) · text: das Zitat
 # Neue Zitate einfach unten anfügen.
 
@@ -68,3 +69,23 @@
   text: "Weißt du, ab dem Moment, da du versuchst, zu gewinnen, lieferst du dich aus. Gedeih und Verderben. Im Grunde ist es eine Falle."
 - buch: der-pfau
   text: "Alles verbraucht sich, sogar der Neuanfang. Man kann nicht beliebig oft den eigenen König stürzen und zur Startaufstellung zurückkehren."
+- buch: waten-in-zement
+  text: "Ich hätte von vornherein das eine Privileg nutzen sollen, das mir meine Juristerei einbrachte: Auf einen Rechtsbeistand zu verzichten. Mit Restwürde untergehen. Aber das, da hatte Mara Recht, hätte mir eine eigenständige Entscheidung abverlangt."
+- buch: waten-in-zement
+  text: "Aber was sollte er machen? Er hatte es sonst mit Ladendiebstahl und unerlaubtem Entfernen von einem Unfallort zu tun und jetzt flogen ihm hier die Rechtspflegedelikte um die Ohren. Wenn das so weiterging, war’s das mit der Mittagspause."
+- buch: waten-in-zement
+  text: "„Sag, Richard“, leitete sie ein, und diesmal traf sie ihn nicht ganz, diesen Ton, als hätte jeder doch schon allen möglichen Blödsinn von Beförderungserschleichung bis Völkermord verzapft, „kann es sein, dass du deine Ermittlungsergebnisse und -strategie wochenlang offen mit Mara, der späteren Opferzeugin, diskutiert hast?“"
+- buch: waten-in-zement
+  text: "Vor Gericht herrscht eine geradezu archaische Körperlichkeit: Mündlich, öffentlich, unmittelbar. Die Welt schrumpft zusammen auf die Anwesenden. Fleisch und Blut. Ich drückte meine Zigarette in dem Schraubglas aus, das hier seit Jahren als Aschenbecher diente. Sie würden da sein, oder eben nicht."
+- buch: waten-in-zement
+  text: "Bernd und Mara waren zu Rädchen in der Justizmaschinerie degradiert, umfunktioniert, verzweckt worden. Von niemand Bestimmtem: Der Staat, das sind wir alle."
+- buch: waten-in-zement
+  text: "Der Vorsitzende runzelte weiter angestrengt die Stirn. Ich konnte die herrschende Meinung förmlich gegen seine Schädeldecke pochen sehen."
+- buch: waten-in-zement
+  text: "Ich wollte nicht jammern, es passierte einfach."
+- buch: waten-in-zement
+  text: "Sogar meine Fantasie konnte Mara nicht in diese Wohnung beschwören. Und das war das Schlimmste an Karlsruhe."
+- buch: waten-in-zement
+  text: |-
+    ‚Du wirst aussehen wie der letzte Straßenkriminelle!‘, erboste Carmen sich, weil ich nicht mehr antwortete. ‚Ein blaues Auge! Richard!‘
+    ‚Ich weiß nicht, was du hast‘, entgegnete ich. ‚Passt doch zu der Krawatte.‘

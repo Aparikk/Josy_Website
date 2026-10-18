@@ -3,6 +3,8 @@ layout: layouts/basis.njk
 titel: Kontakt
 beschreibung: "Kontakt zu Josie H. Matchèque: für Lesepost, Agenturen, Verlage, Presse und Lesungen."
 ---
+{%- from "partials/buch.njk" import zitate as zitatGalerie -%}
+{%- set liste = buecher | buchliste(manuskripte) -%}
 <div class="seite kontakt">
   <header class="seiten-kopf">
     <h1 class="seiten-titel">Kontakt</h1>
@@ -41,5 +43,8 @@ beschreibung: "Kontakt zu Josie H. Matchèque: für Lesepost, Agenturen, Verlage
     </section>
   </div>
 </div>
+<p class="ornament" aria-hidden="true">⁂</p>
+{{ zitatGalerie(zitate, liste, "Aus den Büchern") }}
 <script src="/assets/js/kopieren.js" defer></script>
 <script src="/assets/js/kontakt.js" defer></script>
+<script src="/assets/js/zitate.js" defer></script>

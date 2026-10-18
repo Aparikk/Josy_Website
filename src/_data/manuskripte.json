@@ -14,10 +14,44 @@
       "mitTeilen": true,
       "kapitel": [
         "Prologos",
-        "Astra Mala: Was ist die Zeit?",
+        "Was ist die Zeit?",
         "Woraus besteht das Nichts?",
         "Wann wird Mögliches wirklich?",
-        "Janus: Des Teufels Lieblingsköder"
+        "Des Teufels Lieblingsköder"
+      ],
+      "inhalt": [
+        {
+          "titel": "Prologos",
+          "anker": "kapitel-1"
+        },
+        {
+          "titel": "Astra Mala",
+          "anker": "teil-2",
+          "kapitel": [
+            {
+              "titel": "Was ist die Zeit?",
+              "anker": "kapitel-2"
+            },
+            {
+              "titel": "Woraus besteht das Nichts?",
+              "anker": "kapitel-3"
+            },
+            {
+              "titel": "Wann wird Mögliches wirklich?",
+              "anker": "kapitel-4"
+            }
+          ]
+        },
+        {
+          "titel": "Janus",
+          "anker": "teil-5",
+          "kapitel": [
+            {
+              "titel": "Des Teufels Lieblingsköder",
+              "anker": "kapitel-5"
+            }
+          ]
+        }
       ],
       "woerter": 12619,
       "normseiten": 46
@@ -55,6 +89,64 @@
         "# 13",
         "# 14"
       ],
+      "inhalt": [
+        {
+          "titel": "# 1",
+          "anker": "kapitel-1"
+        },
+        {
+          "titel": "# 2",
+          "anker": "kapitel-2"
+        },
+        {
+          "titel": "# 3",
+          "anker": "kapitel-3"
+        },
+        {
+          "titel": "# 4",
+          "anker": "kapitel-4"
+        },
+        {
+          "titel": "# 5",
+          "anker": "kapitel-5"
+        },
+        {
+          "titel": "# 6",
+          "anker": "kapitel-6"
+        },
+        {
+          "titel": "# 7",
+          "anker": "kapitel-7"
+        },
+        {
+          "titel": "# 8",
+          "anker": "kapitel-8"
+        },
+        {
+          "titel": "# 9",
+          "anker": "kapitel-9"
+        },
+        {
+          "titel": "# 10",
+          "anker": "kapitel-10"
+        },
+        {
+          "titel": "# 11",
+          "anker": "kapitel-11"
+        },
+        {
+          "titel": "# 12",
+          "anker": "kapitel-12"
+        },
+        {
+          "titel": "# 13",
+          "anker": "kapitel-13"
+        },
+        {
+          "titel": "# 14",
+          "anker": "kapitel-14"
+        }
+      ],
       "woerter": 26835,
       "normseiten": 93
     }
@@ -77,8 +169,63 @@
         "Vergessen",
         "Weißwein also"
       ],
+      "inhalt": [
+        {
+          "titel": "Im Halteverbot",
+          "anker": "kapitel-1"
+        },
+        {
+          "titel": "Vergessen",
+          "anker": "kapitel-2"
+        },
+        {
+          "titel": "Weißwein also",
+          "anker": "kapitel-3"
+        }
+      ],
       "woerter": 7158,
       "normseiten": 26
+    }
+  },
+  "waten-in-zement": {
+    "woerter": 7565,
+    "woerterQuelle": "gezählt",
+    "zeichen": 48312,
+    "normseitenGeschaetzt": 27,
+    "kapitelAnzahl": 4,
+    "untertitel": "",
+    "motto": [],
+    "ersterSatz": "M: Ha, erster Versuch!",
+    "ersterAbsatz": "M: Ha, erster Versuch! Hast mich überhaupt nicht gesehen!",
+    "leseprobe": {
+      "vollstaendig": false,
+      "mitTeilen": false,
+      "kapitel": [
+        "– 13. Dezember 2011 –",
+        "Der wunde Punkt",
+        "Ein Gruß aus der Heimat",
+        "Ein schlechter Scherz"
+      ],
+      "inhalt": [
+        {
+          "titel": "– 13. Dezember 2011 –",
+          "anker": "kapitel-1"
+        },
+        {
+          "titel": "Der wunde Punkt",
+          "anker": "kapitel-2"
+        },
+        {
+          "titel": "Ein Gruß aus der Heimat",
+          "anker": "kapitel-3"
+        },
+        {
+          "titel": "Ein schlechter Scherz",
+          "anker": "kapitel-4"
+        }
+      ],
+      "woerter": 7565,
+      "normseiten": 27
     }
   }
 }

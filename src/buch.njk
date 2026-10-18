@@ -23,7 +23,7 @@
       <p class="dachzeile">{{ buch.gattung }}</p>
       <h1 class="buch-titel">{{ buch.titel }}</h1>
       {%- if buch.untertitel %}
-      <p class="buch-untertitel">{{ buch.untertitel }}</p>
+      <p class="buch-untertitel">{{ buch.untertitel | mdInline | safe }}</p>
       {%- endif %}
       <p class="buch-logline">{{ buch.logline }}</p>
       <div class="buch-aktionen">
@@ -89,7 +89,9 @@
         <div><dt>Entstanden</dt><dd>{{ buch.entstanden }}</dd></div>
         {%- endif %}
         {%- if buch.reihe %}
-        <div><dt>Reihe</dt><dd>{{ buch.reihe }}</dd></div>
+        {%- set fortsetzung = liste | findeBuch(buch.fortsetzung) if buch.fortsetzung else null %}
+        {%- set vorgaenger = liste | findeBuch(buch.vorgaenger) if buch.vorgaenger else null %}
+        <div><dt>Reihe</dt><dd>{{ buch.reihe }}{% if fortsetzung %}<br>Fortsetzung: <a href="/buecher/{{ fortsetzung.slug }}/"><cite>{{ fortsetzung.titel }}</cite></a>{% endif %}{% if vorgaenger %}<br>Davor: <a href="/buecher/{{ vorgaenger.slug }}/"><cite>{{ vorgaenger.titel }}</cite></a>{% endif %}</dd></div>
         {%- endif %}
         {%- if buch.erzaehlform %}
         <div><dt>Erzählform</dt><dd>{{ buch.erzaehlform }}</dd></div>
@@ -118,7 +120,7 @@
   "@context": "https://schema.org",
   "@type": "Book",
   "name": buch.titel,
-  "alternativeHeadline": buch.untertitel or undefined,
+  "alternativeHeadline": (buch.untertitel | ohneMarkdown) or undefined,
   "genre": buch.genre or buch.gattung,
   "inLanguage": "de",
   "description": buch.logline,

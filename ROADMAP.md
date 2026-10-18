@@ -22,7 +22,7 @@ Design proposal and reasoning: [Matchèque Redesign](https://claude.ai/artifact/
 |---|---|
 | Design direction | C · Erster Satz, on warm paper: one typeface (Literata) with small caps, italics, ornaments and double rules |
 | Stack | Eleventy 3, texts in YAML/Markdown, GitHub Actions → GitHub Pages, domain and Cloudflare unchanged |
-| Books, newest first | *Alma Mater* (sample: prologue and chapters 1–4), *Der Pfau* (complete, free), *Ich fahr dich.* (sample: chapters 1–3) |
+| Books, newest first | *Alma Mater* (sample: prologue and chapters 1–4), *Waten in Zement* (sequel to *Ich fahr dich.*, sample: prologue and chapters 1–3), *Der Pfau* (complete, free), *Ich fahr dich.* (sample: chapters 1–3) |
 | Downloads | Josie’s own EPUB/PDF files, with corrected metadata. The *Alma Mater* PDF is generated (Typst, A5) because there was none |
 | License | CC BY-NC-ND 4.0: sharing allowed with credit, no sale, no changes |
 | Name | Josie H. Matchèque (with the dot) |

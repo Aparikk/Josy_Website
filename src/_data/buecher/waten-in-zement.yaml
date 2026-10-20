@@ -33,7 +33,12 @@ dateien:
   epub: waten-in-zement-leseprobe.epub
   pdf: waten-in-zement-leseprobe.pdf
 
-# Der Prolog ist ein Chatverlauf; der erste Satz auf der Startseite stammt aus dem ersten Kapitel.
+# Der Anfang, wie Josie ihn ausgewählt hat (wortgetreu aus ihren Website-Texten).
+# Steht so auf der Startseite und unter „So beginnt es“. Ohne dieses Feld würde der Anfang des Prologs genommen.
+anfang: |
+  „Wolltest du nicht jemanden mitbringen?“
+
+  Die Frage fiel noch in der Begrüßungsumarmung. Sicher hätte ich Pia vorab informieren können, dass ich mich mit meiner Freundin – nein, das klang ja lächerlich. Partnerin? Ekelhaft verkehrsfähiges Wort. Lebensgefährtin? So altmodisch und fatal wie ein Ausflug nach Mordor – dass wir uns jedenfalls gestritten hatten.
 ersterSatz: "„Wolltest du nicht jemanden mitbringen?“"
 
 logline: "Der Rechtsstaat, als Ideal hübsch anzusehen, wird unangenehm handfest, als man Richard für sein Schweigen im Fall Mara anklagt. Mara ist nicht davon abzubringen, im Zweifel vor Gericht zu lügen; Zeugnisverweigerungsrecht hätte sie nur als Angehörige."

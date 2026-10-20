@@ -46,10 +46,14 @@
         <div class="fliesstext">{{ buch.klappentext | md | safe }}</div>
       </section>
 
-      {%- if m.ersterAbsatz %}
+      {%- if buch.anfang or m.ersterAbsatz %}
       <section aria-labelledby="anfang">
         <h2 id="anfang" class="abschnitt-titel">So beginnt es</h2>
+        {%- if buch.anfang %}
+        <blockquote class="auszug">{{ buch.anfang | md | safe }}</blockquote>
+        {%- else %}
         <blockquote class="auszug"><p>{{ m.ersterAbsatz | safe }}</p></blockquote>
+        {%- endif %}
         <p><a class="pfeil-link" href="leseprobe/">Weiterlesen <span aria-hidden="true">→</span></a></p>
       </section>
       {%- endif %}

@@ -23,10 +23,17 @@ ogBild: /assets/og/start.png
     {%- if buch.vorgaenger or buch.fortsetzung %}
     <p class="incipit-reihe">{{ reihe(buch, liste) }}</p>
     {%- endif %}
+    {%- if buch.anfang %}
+    {#- Von Josie ausgewählter Anfang: wortgetreu, ohne zusätzliche Anführungszeichen #}
+    <blockquote class="incipit-satz incipit-satz--{{ buch.anfang | satzlaenge }}{% if buch.anfang | haengt %} haengt{% endif %}" cite="{{ ('/buecher/' ~ buch.slug ~ '/') | absolut(site.url) }}">
+      {{ buch.anfang | md | safe }}
+    </blockquote>
+    {%- else %}
     {%- set satz = buch.satz | zitieren %}
     <blockquote class="incipit-satz incipit-satz--{{ satz | satzlaenge }}{% if satz | haengt %} haengt{% endif %}" cite="{{ ('/buecher/' ~ buch.slug ~ '/') | absolut(site.url) }}">
       <p>{{ satz }}</p>
     </blockquote>
+    {%- endif %}
     <figcaption class="incipit-quelle">
       <a class="incipit-titel" href="/buecher/{{ buch.slug }}/"><cite>{{ buch.titel }}</cite></a>
       <span class="incipit-gattung">{{ buch.gattung }}</span>

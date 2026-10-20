@@ -85,7 +85,7 @@ const buchDaten = (b) => ({
   gattung: b.gattung,
   zeile: b.band ? `${b.gattung} · Band ${b.band}` : b.gattung,
   farbe: b.farbe,
-  satz: zitieren(b.ersterSatz || manuskripte[b.slug]?.ersterSatz || ""),
+  satz: b.anfang ? b.anfang.split(/\n\s*\n/)[0].trim() : zitieren(b.ersterSatz || manuskripte[b.slug]?.ersterSatz || ""),
   url: domain,
 });
 
